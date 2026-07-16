@@ -3,7 +3,7 @@
  * One file: the canonical site registry + the drop-in "network bar" + support jar.
  *
  * INSTALL (on any static site)
- *   <script src="https://ohgeeceee.net/ogc-network.js" defer></script>
+ *   <script src="https://ohgeec.com/ogc-network.js" defer></script>
  *
  * OPTIONS (attributes on the <script> tag)
  *   data-ogc-theme="dark|light|auto"   force the bar's palette (default: auto)
@@ -15,7 +15,7 @@
 (function () {
   "use strict";
 
-  var HUB = "https://ohgeeceee.net"; // change to wherever the hub is hosted
+  var HUB = "https://ohgeec.com"; // change to wherever the hub is hosted
 
   var SITES = [
     {
@@ -80,11 +80,11 @@
     thanksNote: "Secure checkout by Stripe. One-time — no account, no subscription.",
     currency: "$",
     tiers: [
-      { label: "Coffee", amount: 3,  note: "A small thank-you",               link: "https://buy.stripe.com/REPLACE_3" },
-      { label: "Lunch",  amount: 8,  note: "Keeps a site online for a month",  link: "https://buy.stripe.com/REPLACE_8", featured: true },
-      { label: "Patron", amount: 25, note: "Helps fund the next feature",      link: "https://buy.stripe.com/REPLACE_25" }
+      { label: "Coffee", amount: 3,  note: "A small thank-you",               link: "https://buy.stripe.com/fZu28r3Va3JWdHY1e58EM06" },
+      { label: "Lunch",  amount: 8,  note: "Keeps a site online for a month",  link: "https://buy.stripe.com/4gMcN5ezO3JW8nE4qh8EM07", featured: true },
+      { label: "Patron", amount: 25, note: "Helps fund the next feature",      link: "https://buy.stripe.com/00w00j77m2FS0VccWN8EM08" }
     ],
-    customLink: "https://buy.stripe.com/REPLACE_CUSTOM",
+    customLink: "https://buy.stripe.com/5kQ9ATbnC4O09rIaOF8EM0a",
     monthlyLink: ""
   };
 

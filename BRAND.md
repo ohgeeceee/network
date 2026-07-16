@@ -35,9 +35,9 @@ so it needs no image files and recolours to any ink colour.
 The mark lives inside `ogc-network.js` and `index.html`. To reuse it elsewhere, copy
 the `<svg>…</svg>` block and change the `fill`/`stroke` colour.
 
-> **Naming note:** the hub currently points at `ohgeeceee.net` as the umbrella domain.
-> You don't own that yet — pick any domain you like for the hub (even one of the ones
-> you already have) and change the single `HUB` constant at the top of `ogc-network.js`.
+> **Hub domain:** the umbrella hub lives at **`ohgeec.com`**. It's wired up through the
+> single `HUB` constant at the top of `ogc-network.js`; if the hub ever moves, change it
+> there and everything (bar links, Support button, "Explore all") follows.
 
 ---
 
@@ -116,13 +116,13 @@ It automatically:
 
 ```html
 <!-- Most sites: just this -->
-<script src="https://ohgeeceee.net/ogc-network.js" defer></script>
+<script src="https://ohgeec.com/ogc-network.js" defer></script>
 
 <!-- A dark site (beemuu, Manners) — force the dark palette -->
-<script src="https://ohgeeceee.net/ogc-network.js" data-ogc-theme="dark" defer></script>
+<script src="https://ohgeec.com/ogc-network.js" data-ogc-theme="dark" defer></script>
 
 <!-- Pin the bar to the bottom of the screen -->
-<script src="https://ohgeeceee.net/ogc-network.js" data-ogc-position="bottom" defer></script>
+<script src="https://ohgeec.com/ogc-network.js" data-ogc-position="bottom" defer></script>
 ```
 
 ---
