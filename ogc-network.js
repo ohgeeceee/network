@@ -92,7 +92,7 @@
       { label: "Patron", amount: 25, note: "Helps fund the next feature",      link: "https://buy.stripe.com/00w00j77m2FS0VccWN8EM08" }
     ],
     customLink: "https://buy.stripe.com/5kQ9ATbnC4O09rIaOF8EM0a",
-    monthlyLink: ""
+    monthlyLink: "https://buy.stripe.com/3cI14g7pg7aWbLw2LZb3q00"
   };
 
   var API = {
