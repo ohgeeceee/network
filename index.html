@@ -5,14 +5,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ohgeeceee — a small network of useful things</title>
 <meta name="description" content="A little network of independent sites and tools by ohgeeceee — from plain-language explainers to open-source BMW diagnostics to public-record newsrooms." />
+<meta name="robots" content="index,follow" />
 <meta name="theme-color" content="#FAF7F2" />
+<link rel="canonical" href="https://ohgeec.com/" />
+
+<!-- social -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="the ohgeeceee network" />
 <meta property="og:title" content="ohgeeceee — a small network of useful things" />
 <meta property="og:description" content="Independent sites and tools, made one late night at a time." />
-<meta property="og:url" content="https://ohgeec.com" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<meta property="og:url" content="https://ohgeec.com/" />
+<meta property="og:image" content="https://ohgeec.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ohgeeceee — a small network of useful things" />
+<meta name="twitter:description" content="Independent sites and tools, made one late night at a time." />
+<meta name="twitter:image" content="https://ohgeec.com/og-image.png" />
+
+<!-- icons (no extra requests: inline SVG favicon) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FAF7F2'/%3E%3Ccircle cx='12' cy='5' r='2.4' fill='%2314110E'/%3E%3Ccircle cx='5' cy='17' r='2.4' fill='%2314110E'/%3E%3Ccircle cx='19' cy='17' r='2.4' fill='%2314110E'/%3E%3Cpath d='M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8' stroke='%2314110E' stroke-width='1.3' stroke-linecap='round' fill='none'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+<!-- self-hosted fonts: no third-party requests -->
+<link rel="preload" href="fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="fonts.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "the ohgeeceee network",
+  "url": "https://ohgeec.com/",
+  "description": "A small network of independent sites and tools.",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "item": { "@type": "WebSite", "name": "finally.", "url": "https://finally.help", "description": "Plain-language explainers. No jargon, no judgment." } },
+    { "@type": "ListItem", "position": 2, "item": { "@type": "WebSite", "name": "Manners", "url": "https://manners.pro", "description": "A 4 KB browser extension. Zero telemetry." } },
+    { "@type": "ListItem", "position": 3, "item": { "@type": "WebSite", "name": "beemuu", "url": "https://beemuu.com", "description": "Open-source BMW diagnostics. Any OBD-II cable. No dealer, no subscription." } },
+    { "@type": "ListItem", "position": 4, "item": { "@type": "WebSite", "name": "GarageRoute", "url": "https://garageroute.com", "description": "Discover garage & estate sales. Plan the route." } },
+    { "@type": "ListItem", "position": 5, "item": { "@type": "WebSite", "name": "Montana Blotter", "url": "https://montanablotter.com", "description": "Public records, reported plainly." } }
+  ]
+}
+</script>
+
 <style>
   :root{
     --ink:#14110E;
@@ -93,9 +129,9 @@
     content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
     background:var(--accent);opacity:.9;
   }
-  .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(20,17,14,.35);border-color:rgba(20,17,14,.2)}
-  .card.soon{opacity:.82}
-  .card.soon:hover{transform:translateY(-2px)}
+  a.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(20,17,14,.35);border-color:rgba(20,17,14,.2)}
+  a.card:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .card.soon{opacity:.82;cursor:default}
   .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
   .mono{
     width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
@@ -119,7 +155,9 @@
   .foot-in a:hover{border-color:var(--ink)}
 
   @media(max-width:560px){
-    .top nav{display:none}
+    /* keep Support reachable on mobile; only collapse the jump links */
+    .top nav{gap:16px}
+    .top nav a:not(.nav-support){display:none}
     .hero{padding:54px 0 20px}
     .grid{grid-template-columns:1fr}
   }
@@ -152,15 +190,106 @@
       <h1>Independent sites, <em>made one late night at a time.</em></h1>
       <p>A handful of tools and newsrooms that share nothing but a maker and a philosophy: clear, open, and quietly built to be genuinely useful.</p>
       <div class="meta">
-        <div><b id="stat-live">–</b><span>live sites</span></div>
-        <div><b id="stat-total">–</b><span>projects in the network</span></div>
+        <div><b id="stat-live">5</b><span>live sites</span></div>
+        <div><b id="stat-total">6</b><span>projects in the network</span></div>
         <div><b>MIT</b><span>open where it can be</span></div>
       </div>
     </section>
   </header>
 
   <main id="sites">
-    <div id="network"><!-- cards injected from ogc-network.js --></div>
+    <!-- Cards are static HTML so search engines, link unfurlers and no-JS
+         visitors see the full network. When you add/remove a site in
+         ogc-network.js, mirror the change here (same accent + copy). -->
+    <div id="network">
+
+      <section class="cat">
+        <h2 class="cat-h">Learning</h2>
+        <div class="grid">
+          <a class="card" href="https://finally.help" style="--accent:#DE8C2C">
+            <div class="card-top">
+              <span class="mono" style="background:#DE8C2C">f</span>
+              <span class="live"><i></i>Live</span>
+            </div>
+            <h3>finally.</h3>
+            <p>The stuff everyone assumes you already know — explained like you're ten.</p>
+            <div class="card-foot"><span class="host">finally.help</span><span class="go">Visit &rarr;</span></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="cat">
+        <h2 class="cat-h">Developer tools</h2>
+        <div class="grid">
+          <a class="card" href="https://manners.pro" style="--accent:#A9853B">
+            <div class="card-top">
+              <span class="mono" style="background:#A9853B">M</span>
+              <span class="live"><i></i>Live</span>
+            </div>
+            <h3>Manners</h3>
+            <p>Adds please and thank you to your LLM prompts, right before you hit Enter.</p>
+            <div class="card-foot"><span class="host">manners.pro</span><span class="go">Visit &rarr;</span></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="cat">
+        <h2 class="cat-h">Diagnostics</h2>
+        <div class="grid">
+          <a class="card" href="https://beemuu.com" style="--accent:#2E6DB4">
+            <div class="card-top">
+              <span class="mono" style="background:#2E6DB4">B</span>
+              <span class="live"><i></i>Live</span>
+            </div>
+            <h3>beemuu</h3>
+            <p>Open-source BMW diagnostics — read DTCs, watch live data, code modules.</p>
+            <div class="card-foot"><span class="host">beemuu.com</span><span class="go">Visit &rarr;</span></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="cat">
+        <h2 class="cat-h">Marketplace</h2>
+        <div class="grid">
+          <a class="card" href="https://garageroute.com" style="--accent:#1F9E8F">
+            <div class="card-top">
+              <span class="mono" style="background:#1F9E8F">GR</span>
+              <span class="live"><i></i>Live</span>
+            </div>
+            <h3>GarageRoute</h3>
+            <p>Find local garage &amp; estate sales, preview items, and plan the smartest Saturday route.</p>
+            <div class="card-foot"><span class="host">garageroute.com</span><span class="go">Visit &rarr;</span></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="cat">
+        <h2 class="cat-h">Public records</h2>
+        <div class="grid">
+          <a class="card" href="https://montanablotter.com" style="--accent:#9E3B34">
+            <div class="card-top">
+              <span class="mono" style="background:#9E3B34">MB</span>
+              <span class="live"><i></i>Live</span>
+            </div>
+            <h3>Montana Blotter</h3>
+            <p>Real-time public records — blotters, bookings, warrants, court data.</p>
+            <div class="card-foot"><span class="host">montanablotter.com</span><span class="go">Visit &rarr;</span></div>
+          </a>
+          <!-- Not linked on purpose: idahoblotter.com doesn't resolve yet.
+               Swap the <article> for an <a class="card"> when it launches. -->
+          <article class="card soon" style="--accent:#3E7D57">
+            <div class="card-top">
+              <span class="mono" style="background:#3E7D57">IB</span>
+              <span class="badge">Coming soon</span>
+            </div>
+            <h3>Idaho Blotter</h3>
+            <p>The Blotter newsroom, coming to Idaho.</p>
+            <div class="card-foot"><span class="host">idahoblotter.com</span><span class="go"></span></div>
+          </article>
+        </div>
+      </section>
+
+    </div>
 
     <section class="support">
       <div>
@@ -177,26 +306,22 @@
   <footer class="site" id="about">
     <div class="foot-in">
       <p>Built by <a href="https://github.com/ohgeeceee" rel="noopener">ohgeeceee</a> — one person, a lot of coffee. No trackers on this page.</p>
-      <p>&copy; <span id="yr"></span> the ohgeeceee network</p>
+      <p>&copy; <span id="yr">2026</span> the ohgeeceee network</p>
     </div>
   </footer>
 </div>
 
-<!-- The registry + renderer. Same file every site loads. -->
+<!-- Registry still loads: the live stats above are computed from it, and it
+     stays the canonical source for the network bar on the other sites. -->
 <script src="ogc-network.js" data-ogc-bar="off"></script>
 <script>
-  (function () {
-    document.getElementById("yr").textContent = new Date().getFullYear();
-    function boot() {
-      if (!window.OGCNetwork) { return setTimeout(boot, 40); }
-      window.OGCNetwork.renderHub("#network");
-      var sites = window.OGCNetwork.sites;
-      document.getElementById("stat-total").textContent = sites.length;
-      document.getElementById("stat-live").textContent =
-        sites.filter(function (s) { return s.status === "live"; }).length;
-    }
-    boot();
-  })();
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  if (window.OGCNetwork) {
+    var sites = window.OGCNetwork.sites;
+    document.getElementById("stat-total").textContent = sites.length;
+    document.getElementById("stat-live").textContent =
+      sites.filter(function (s) { return s.status === "live"; }).length;
+  }
 </script>
 </body>
 </html>
