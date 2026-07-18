@@ -47,6 +47,13 @@
       category: "Marketplace", accent: "#1F9E8F", status: "live"
     },
     {
+      id: "supportmt", name: "SupportMT", monogram: "S",
+      url: "https://supportmt.com", aliases: [],
+      tagline: "Montana community-resilience nonprofit — wildfire relief, rural families, food security, and housing stability across all 56 counties.",
+      blurb: "Neighbors helping neighbors.",
+      category: "Community", accent: "#6B7F3E", status: "live"
+    },
+    {
       id: "montanablotter", name: "Montana Blotter", monogram: "MB",
       url: "https://montanablotter.com",
       aliases: ["blotter.host", "agendas.montanablotter.com"],
@@ -65,7 +72,7 @@
 
   var CATEGORY_ORDER = [
     "Learning", "Developer tools", "Diagnostics",
-    "Marketplace", "Public records", "In the works"
+    "Marketplace", "Community", "Public records", "In the works"
   ];
 
   /* SUPPORT — one shared tip jar. Static sites => Stripe Payment Links only.
