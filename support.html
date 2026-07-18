@@ -34,113 +34,254 @@
 
 <style>
   :root{
-    --ink:#14110E; --paper:#FAF7F2; --muted:#6B645C;
-    --line:rgba(20,17,14,.11); --card:#FFFFFF;
+    --ink:#14110E;
+    --paper:#FAF7F2;
+    --muted:#6B645C;
+    --faint:rgba(20,17,14,.45);
+    --line:rgba(20,17,14,.12);
     --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    --serif:'Fraunces',Georgia,serif;
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --mono:'SF Mono',ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-       font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
-       min-height:100vh;display:flex;flex-direction:column}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;
+  }
   a{color:inherit}
-  .wrap{max-width:760px;margin:0 auto;padding:0 24px;width:100%}
+  ::selection{background:var(--ink);color:var(--paper)}
 
-  header{padding:26px 0}
-  .brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
-  .brand svg{width:24px;height:24px}
-  .brand b{font-weight:600;font-size:16px}
-  .brand span{color:var(--muted);font-size:16px}
-  .back{float:right;color:var(--muted);text-decoration:none;font-size:14px;margin-top:3px}
-  .back:hover{color:var(--ink)}
+  .grain{
+    position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .blinds{position:fixed;inset:0;z-index:100;display:flex;pointer-events:none}
+  .blinds i{flex:1;background:var(--ink);transform:scaleX(1);transform-origin:left;
+    animation:blind .7s cubic-bezier(.7,0,.2,1) forwards}
+  @keyframes blind{to{transform:scaleX(0)}}
+  .blinds.done{display:none}
 
-  main{flex:1;padding:26px 0 40px}
-  #support{max-width:640px;margin:0 auto;text-align:center}
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:20px 28px;animation:drop .6s .75s cubic-bezier(.25,1,.5,1) both;
+  }
+  @keyframes drop{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand svg{width:22px;height:22px}
+  .brand b{font-weight:600;font-size:15px;letter-spacing:.01em}
+  .coords{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    color:var(--faint);text-transform:uppercase;white-space:nowrap}
+  .topbar nav{display:flex;gap:26px;font-size:13.5px}
+  .topbar nav a{position:relative;text-decoration:none;color:var(--muted);padding:2px 9px;transition:color .2s}
+  .topbar nav a:hover{color:var(--ink)}
+  .topbar nav a::before,.topbar nav a::after{
+    content:"";position:absolute;width:7px;height:7px;opacity:0;
+    border-color:var(--ink);border-style:solid;transition:opacity .3s,transform .3s;
+  }
+  .topbar nav a::before{top:-3px;left:-3px;border-width:1px 0 0 1px;transform:translate(2px,2px)}
+  .topbar nav a::after{bottom:-3px;right:-3px;border-width:0 1px 1px 0;transform:translate(-2px,-2px)}
+  .topbar nav a:hover::before,.topbar nav a:hover::after{opacity:1;transform:none}
+  .topbar nav a.nav-support{color:var(--ink);font-weight:600}
+  .topbar nav a.nav-support::before,.topbar nav a.nav-support::after{opacity:1;transform:none}
 
-  .sup-h{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;
-    font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin:8px 0 16px}
-  .sup-blurb{color:#463F38;font-size:1.05rem;max-width:520px;margin:0 auto 36px}
+  main{flex:1}
+  .wrap{max-width:960px;margin:0 auto;padding:70px 28px 0}
 
-  .sup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
-  .sup-tier{position:relative;display:flex;flex-direction:column;align-items:center;
-    gap:4px;background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:26px 14px 20px;text-decoration:none;color:var(--ink);
-    transition:transform .16s,box-shadow .16s,border-color .16s}
-  .sup-tier:hover{transform:translateY(-3px);box-shadow:0 16px 34px -20px rgba(20,17,14,.4);
-    border-color:rgba(20,17,14,.24)}
-  .sup-tier:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-  .sup-tier.feat{border-color:var(--ink)}
-  .sup-flag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);
-    background:var(--ink);color:var(--paper);font-size:10.5px;font-weight:600;
-    letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 10px;white-space:nowrap}
-  .sup-amt{font-family:var(--serif);font-size:2.1rem;font-weight:500;line-height:1}
-  .sup-lbl{font-weight:600;font-size:.95rem}
-  .sup-note{color:var(--muted);font-size:.8rem;line-height:1.35}
+  .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);margin:0 0 18px}
+  h1{font-family:var(--serif);font-weight:400;letter-spacing:-.025em;
+    font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.03;margin:0 0 20px}
+  h1 em{font-style:italic;color:var(--muted)}
+  .lede{font-size:clamp(1.02rem,1.8vw,1.2rem);color:#413B34;max-width:600px;margin:0}
 
-  .sup-alt{display:flex;flex-direction:column;gap:8px;align-items:center;margin:6px 0 30px}
-  .sup-custom{font-weight:600;text-decoration:none;border-bottom:1px solid var(--ink);
-    padding-bottom:1px}
-  .sup-custom:hover{opacity:.65}
+  /* tiers: border-grid cells, featured inverted */
+  .tiers{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line);
+    border-left:1px solid var(--line);margin:56px 0 26px}
+  @media(min-width:700px){.tiers{grid-template-columns:repeat(3,1fr)}}
+  .tier{
+    position:relative;display:flex;flex-direction:column;gap:5px;
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:30px 26px 26px;text-decoration:none;color:var(--ink);
+    transition:background .25s ease;
+  }
+  .tier:hover{background:rgba(20,17,14,.03)}
+  .tier:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+  .tier .num{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.08em}
+  .tier .amt{font-family:var(--serif);font-weight:500;font-size:2.9rem;line-height:1;
+    letter-spacing:-.02em;margin:14px 0 2px;transition:transform .35s cubic-bezier(.25,1,.5,1)}
+  .tier:hover .amt{transform:translateX(8px)}
+  .tier .lbl{font-weight:600;font-size:1rem}
+  .tier .note{color:var(--muted);font-size:.85rem;line-height:1.45;flex:1}
+  .tier .go{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-top:16px;
+    transition:color .25s}
+  .tier:hover .go{color:var(--ink)}
+  .tier.feat{background:var(--ink);color:var(--paper)}
+  .tier.feat:hover{background:#231E19}
+  .tier.feat .num{color:rgba(250,247,242,.5)}
+  .tier.feat .note{color:rgba(250,247,242,.66)}
+  .tier.feat .go{color:rgba(250,247,242,.55)}
+  .tier.feat:hover .go{color:var(--paper)}
+  .tier .flag{position:absolute;top:18px;right:18px;font-family:var(--mono);
+    font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--paper);border:1px solid rgba(250,247,242,.4);
+    border-radius:999px;padding:3px 10px}
 
-  .sup-fine{color:var(--muted);font-size:.82rem;display:flex;align-items:center;
-    justify-content:center;gap:7px;margin-top:6px}
-  .sup-fine::before{content:"";width:14px;height:14px;border-radius:3px;
-    background:#635BFF;display:inline-block} /* Stripe blurple dot */
+  .alt{display:flex;flex-wrap:wrap;gap:10px 34px;align-items:center;margin:6px 0 40px}
+  .alt a{font-size:14px;font-weight:600;text-decoration:none;color:var(--ink);
+    border-bottom:1px solid var(--ink);padding-bottom:1px}
+  .alt a:hover{opacity:.6}
+  .fine{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.82rem;margin:0}
+  .fine::before{content:"";width:13px;height:13px;border-radius:3px;
+    background:#635BFF;display:inline-block}
 
-  footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--muted);font-size:13.5px;text-align:center}
+  footer.site{border-top:1px solid var(--line);margin-top:70px;padding:26px 28px 34px;
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+    font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--faint)}
+  footer.site a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+  footer.site a:hover{color:var(--ink);border-color:var(--ink)}
 
-  @media(max-width:520px){.sup-grid{grid-template-columns:1fr;gap:12px}
-    .sup-tier{flex-direction:row;justify-content:center;gap:12px;padding:18px}
-    .sup-flag{left:18px;transform:none}}
+  .rv{opacity:0;transform:translateY(26px);filter:blur(5px)}
+  .rv.in{opacity:1;transform:none;filter:blur(0);
+    transition:opacity 1s cubic-bezier(.25,1,.5,1),transform 1s cubic-bezier(.25,1,.5,1),filter 1s cubic-bezier(.25,1,.5,1)}
+
+  @media(max-width:640px){
+    .coords{display:none}
+    .topbar{padding:16px 20px}
+    .topbar nav{gap:16px}
+    .topbar nav a:not(.nav-support){display:none}
+    .wrap{padding:50px 20px 0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+    .blinds{display:none}
+    .rv{opacity:1;transform:none;filter:none}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <a class="brand" href="/">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="5" r="2.4" fill="#14110E"/><circle cx="5" cy="17" r="2.4" fill="#14110E"/>
-        <circle cx="19" cy="17" r="2.4" fill="#14110E"/>
-        <path d="M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8" stroke="#14110E" stroke-width="1.3" stroke-linecap="round"/>
-      </svg>
-      <b>ohgeeceee</b><span>network</span>
-    </a>
-    <a class="back" href="/">&larr; Back to the network</a>
-  </header>
 
-  <main>
-    <!-- Static HTML now: works with JavaScript off and shows up in unfurls.
-         If you change tiers or Stripe links in ogc-network.js (SUPPORT),
-         mirror the same edits here. -->
-    <div id="support">
-      <h1 class="sup-h">Support the network</h1>
-      <p class="sup-blurb">Every site here is free, open-source, and ad-free. If one saved you time or taught you something, you can drop a tip in the jar. It goes straight to keeping the servers on and the next thing shipping.</p>
-      <div class="sup-grid">
-        <a class="sup-tier" href="https://buy.stripe.com/fZu28r3Va3JWdHY1e58EM06" rel="noopener">
-          <span class="sup-amt">$3</span>
-          <span class="sup-lbl">Coffee</span>
-          <span class="sup-note">A small thank-you</span>
-        </a>
-        <a class="sup-tier feat" href="https://buy.stripe.com/4gMcN5ezO3JW8nE4qh8EM07" rel="noopener">
-          <span class="sup-flag">Most picked</span>
-          <span class="sup-amt">$8</span>
-          <span class="sup-lbl">Lunch</span>
-          <span class="sup-note">Keeps a site online for a month</span>
-        </a>
-        <a class="sup-tier" href="https://buy.stripe.com/00w00j77m2FS0VccWN8EM08" rel="noopener">
-          <span class="sup-amt">$25</span>
-          <span class="sup-lbl">Patron</span>
-          <span class="sup-note">Helps fund the next feature</span>
-        </a>
-      </div>
-      <div class="sup-alt">
-        <a class="sup-custom" href="https://buy.stripe.com/5kQ9ATbnC4O09rIaOF8EM0a" rel="noopener">Choose your own amount &rarr;</a>
-      </div>
-      <p class="sup-fine">Secure checkout by Stripe. One-time — no account, no subscription.</p>
-    </div>
-  </main>
+<div class="blinds" id="blinds" aria-hidden="true">
+  <i style="animation-delay:.00s"></i><i style="animation-delay:.03s"></i><i style="animation-delay:.06s"></i><i style="animation-delay:.09s"></i>
+  <i style="animation-delay:.12s"></i><i style="animation-delay:.15s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.21s"></i>
+  <i style="animation-delay:.24s"></i><i style="animation-delay:.27s"></i><i style="animation-delay:.30s"></i><i style="animation-delay:.33s"></i>
+  <i style="animation-delay:.36s"></i><i style="animation-delay:.39s"></i><i style="animation-delay:.42s"></i><i style="animation-delay:.45s"></i>
 </div>
+<div class="grain" aria-hidden="true"></div>
 
-<footer>No trackers on this page. Payments handled entirely by Stripe.</footer>
+<header class="topbar">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="5" r="2.4" fill="#14110E"/><circle cx="5" cy="17" r="2.4" fill="#14110E"/><circle cx="19" cy="17" r="2.4" fill="#14110E"/>
+      <path d="M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8" stroke="#14110E" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    <b>ohgeeceee</b>
+  </a>
+  <span class="coords">46.8797&deg; N, 110.3626&deg; W &mdash; Montana</span>
+  <nav>
+    <a href="/#work" data-scramble>Index</a>
+    <a href="/#about" data-scramble>About</a>
+    <a href="https://github.com/ohgeeceee" rel="noopener" data-scramble>GitHub</a>
+    <a href="support.html" class="nav-support" aria-current="page">Support</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="kicker rv">Support / the tip jar</p>
+    <h1 class="rv">Free forever. <em>Fueled by coffee.</em></h1>
+    <p class="lede rv">Every site here is free, open-source, and ad-free. If one saved you time or taught you something, you can drop a tip in the jar — it goes straight to keeping the servers on and the next thing shipping.</p>
+
+    <!-- Static HTML, no JS required. Mirror tier/link changes from
+         SUPPORT in ogc-network.js if you ever edit them there. -->
+    <div class="tiers rv">
+      <a class="tier" href="https://buy.stripe.com/fZu28r3Va3JWdHY1e58EM06" rel="noopener">
+        <span class="num">01</span>
+        <span class="amt">$3</span>
+        <span class="lbl">Coffee</span>
+        <span class="note">A small thank-you</span>
+        <span class="go">Tip $3 &rarr;</span>
+      </a>
+      <a class="tier feat" href="https://buy.stripe.com/4gMcN5ezO3JW8nE4qh8EM07" rel="noopener">
+        <span class="flag">Most picked</span>
+        <span class="num">02</span>
+        <span class="amt">$8</span>
+        <span class="lbl">Lunch</span>
+        <span class="note">Keeps a site online for a month</span>
+        <span class="go">Tip $8 &rarr;</span>
+      </a>
+      <a class="tier" href="https://buy.stripe.com/00w00j77m2FS0VccWN8EM08" rel="noopener">
+        <span class="num">03</span>
+        <span class="amt">$25</span>
+        <span class="lbl">Patron</span>
+        <span class="note">Helps fund the next feature</span>
+        <span class="go">Tip $25 &rarr;</span>
+      </a>
+    </div>
+
+    <div class="alt rv">
+      <a href="https://buy.stripe.com/5kQ9ATbnC4O09rIaOF8EM0a" rel="noopener" data-scramble>Choose your own amount &rarr;</a>
+    </div>
+
+    <p class="fine rv">Secure checkout by Stripe. One-time — no account, no subscription.</p>
+  </div>
+</main>
+
+<footer class="site">
+  <span>ohgeeceee &mdash; no trackers on this page. Payments handled entirely by Stripe.</span>
+  <span>46.8797&deg; N, 110.3626&deg; W</span>
+  <span>&copy; <span id="yr">2026</span> the ohgeeceee network &mdash; <a href="/">&larr; Back to the network</a></span>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  var blinds = document.getElementById("blinds");
+  if (blinds) setTimeout(function () { blinds.classList.add("done"); }, 1300);
+
+  var GLYPHS = "abcdefghjkmnpqrstuvwxyz*+=<>/";
+  function scramble(el) {
+    if (el.dataset.busy) return;
+    el.dataset.busy = "1";
+    var original = el.dataset.text || (el.dataset.text = el.textContent);
+    var frame = 0, total = Math.max(10, original.length * 2);
+    (function tick() {
+      var out = "", i;
+      for (i = 0; i < original.length; i++) {
+        var reveal = (frame / total) * original.length * 1.6;
+        out += i < reveal ? original[i]
+             : original[i] === " " ? " "
+             : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+      }
+      el.textContent = out;
+      if (frame++ < total) requestAnimationFrame(tick);
+      else { el.textContent = original; delete el.dataset.busy; }
+    })();
+  }
+  document.querySelectorAll("[data-scramble]").forEach(function (el) {
+    el.addEventListener("mouseenter", function () { scramble(el); });
+  });
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rvEls = document.querySelectorAll(".rv");
+  if (reduced || !("IntersectionObserver" in window)) {
+    rvEls.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e, k) {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (k * 70) + "ms";
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    rvEls.forEach(function (el) { io.observe(el); });
+  }
+})();
+</script>
 </body>
 </html>
