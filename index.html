@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>ohgeeceee — a small network of useful things</title>
-<meta name="description" content="A little network of independent sites and tools by ohgeeceee — from plain-language explainers to open-source BMW diagnostics to public-record newsrooms." />
+<title>ohgeeceee — maker of a small network of useful things</title>
+<meta name="description" content="The personal portfolio of ohgeeceee — one person in Montana building a small network of independent sites: plain-language explainers, open-source BMW diagnostics, public-record newsrooms, and community tools." />
 <meta name="robots" content="index,follow" />
 <meta name="theme-color" content="#FAF7F2" />
 <link rel="canonical" href="https://ohgeec.com/" />
@@ -12,18 +12,18 @@
 <!-- social -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="the ohgeeceee network" />
-<meta property="og:title" content="ohgeeceee — a small network of useful things" />
+<meta property="og:title" content="ohgeeceee — maker of a small network of useful things" />
 <meta property="og:description" content="Independent sites and tools, made one late night at a time." />
 <meta property="og:url" content="https://ohgeec.com/" />
 <meta property="og:image" content="https://ohgeec.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="ohgeeceee — a small network of useful things" />
+<meta name="twitter:title" content="ohgeeceee — maker of a small network of useful things" />
 <meta name="twitter:description" content="Independent sites and tools, made one late night at a time." />
 <meta name="twitter:image" content="https://ohgeec.com/og-image.png" />
 
-<!-- icons (no extra requests: inline SVG favicon) -->
+<!-- icons -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FAF7F2'/%3E%3Ccircle cx='12' cy='5' r='2.4' fill='%2314110E'/%3E%3Ccircle cx='5' cy='17' r='2.4' fill='%2314110E'/%3E%3Ccircle cx='19' cy='17' r='2.4' fill='%2314110E'/%3E%3Cpath d='M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8' stroke='%2314110E' stroke-width='1.3' stroke-linecap='round' fill='none'/%3E%3C/svg%3E" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
@@ -38,7 +38,7 @@
   "@type": "ItemList",
   "name": "the ohgeeceee network",
   "url": "https://ohgeec.com/",
-  "description": "A small network of independent sites and tools.",
+  "description": "A small network of independent sites and tools, made by one person.",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "item": { "@type": "WebSite", "name": "finally.", "url": "https://finally.help", "description": "Plain-language explainers. No jargon, no judgment." } },
     { "@type": "ListItem", "position": 2, "item": { "@type": "WebSite", "name": "Manners", "url": "https://manners.pro", "description": "A 4 KB browser extension. Zero telemetry." } },
@@ -55,289 +55,608 @@
     --ink:#14110E;
     --paper:#FAF7F2;
     --muted:#6B645C;
-    --line:rgba(20,17,14,.11);
-    --card:#FFFFFF;
+    --faint:rgba(20,17,14,.45);
+    --line:rgba(20,17,14,.12);
     --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     --serif:'Fraunces',Georgia,'Times New Roman',serif;
-    --maxw:1140px;
+    --mono:'SF Mono',ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{
     margin:0;background:var(--paper);color:var(--ink);
     font-family:var(--sans);font-size:16px;line-height:1.6;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
   }
   a{color:inherit}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  ::selection{background:var(--ink);color:var(--paper)}
 
-  /* ---- header ---- */
-  header{padding:26px 0 0}
-  .top{display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
-  .brand svg{width:26px;height:26px}
-  .brand b{font-weight:600;font-size:17px;letter-spacing:.01em}
-  .brand span{color:var(--muted);font-weight:400;font-size:17px}
-  .top nav{display:flex;gap:22px;font-size:14px}
-  .top nav a{color:var(--muted);text-decoration:none;transition:color .15s}
-  .top nav a:hover{color:var(--ink)}
-  .top nav a.nav-support{color:var(--ink);font-weight:600}
+  /* ---- film grain (code-drawn, 5% opacity, non-interactive) ---- */
+  .grain{
+    position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 
-  /* ---- support band ---- */
-  .support{margin:12px 0 4px;background:var(--ink);color:var(--paper);
-    border-radius:20px;padding:38px 34px;display:flex;flex-wrap:wrap;
-    align-items:center;justify-content:space-between;gap:22px}
-  .support h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3.4vw,2.1rem);
-    letter-spacing:-.01em;margin:0 0 8px}
-  .support p{margin:0;color:rgba(250,247,242,.72);max-width:440px;font-size:.98rem}
-  .support .cta{flex:none;display:inline-flex;align-items:center;gap:9px;
-    background:var(--paper);color:var(--ink);text-decoration:none;font-weight:600;
-    border-radius:999px;padding:13px 22px;transition:transform .15s,opacity .15s}
-  .support .cta:hover{transform:translateY(-2px)}
-  .support .cta svg{width:15px;height:15px}
+  /* ---- vertical blinds reveal (16 strips, staggered scaleX) ---- */
+  .blinds{position:fixed;inset:0;z-index:100;display:flex;pointer-events:none}
+  .blinds i{
+    flex:1;background:var(--ink);transform:scaleX(1);transform-origin:left;
+    animation:blind .7s cubic-bezier(.7,0,.2,1) forwards;
+  }
+  @keyframes blind{to{transform:scaleX(0)}}
+  .blinds.done{display:none}
 
-  /* ---- hero ---- */
-  .hero{padding:78px 0 30px;max-width:820px}
-  .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 20px}
+  /* ---- top bar ---- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:20px 28px;
+    background:linear-gradient(to bottom,var(--paper) 62%,transparent);
+    animation:drop .6s .75s cubic-bezier(.25,1,.5,1) both;
+  }
+  @keyframes drop{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand svg{width:22px;height:22px}
+  .brand b{font-weight:600;font-size:15px;letter-spacing:.01em}
+  .coords{
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--faint);
+    text-transform:uppercase;white-space:nowrap;
+  }
+  .topbar nav{display:flex;gap:26px;font-size:13.5px}
+  .topbar nav a{position:relative;text-decoration:none;color:var(--muted);padding:2px 9px;transition:color .2s}
+  .topbar nav a:hover{color:var(--ink)}
+  /* corner brackets shift outward on hover */
+  .topbar nav a::before,.topbar nav a::after{
+    content:"";position:absolute;width:7px;height:7px;opacity:0;
+    border-color:var(--ink);border-style:solid;
+    transition:opacity .3s,transform .3s;
+  }
+  .topbar nav a::before{top:-3px;left:-3px;border-width:1px 0 0 1px;transform:translate(2px,2px)}
+  .topbar nav a::after{bottom:-3px;right:-3px;border-width:0 1px 1px 0;transform:translate(-2px,-2px)}
+  .topbar nav a:hover::before,.topbar nav a:hover::after{opacity:1;transform:none}
+  .topbar nav a.nav-support{color:var(--ink);font-weight:600}
+
+  /* ---- hero: ASCII constellation ---- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+  #sky{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+  .hero-copy{
+    position:relative;z-index:2;max-width:760px;padding:120px 28px 80px;pointer-events:none;
+  }
+  .hero-copy a,.hero-copy .meta{pointer-events:auto}
+  .eyebrow{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--faint);margin:0 0 26px;
+  }
   .hero h1{
     font-family:var(--serif);font-weight:400;
-    font-size:clamp(2.6rem,6.4vw,4.6rem);line-height:1.04;
-    letter-spacing:-.02em;margin:0 0 22px;
+    font-size:clamp(2.8rem,7vw,5.4rem);line-height:1.02;
+    letter-spacing:-.025em;margin:0 0 24px;
   }
   .hero h1 em{font-style:italic;color:var(--muted)}
-  .hero p{font-size:clamp(1.05rem,2vw,1.28rem);color:#413B34;max-width:620px;margin:0}
-  .hero .meta{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px;font-size:14px;color:var(--muted)}
+  .hero .lede{font-size:clamp(1.02rem,1.8vw,1.22rem);color:#413B34;max-width:560px;margin:0}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:30px;margin-top:40px;font-size:13.5px;color:var(--muted)}
   .hero .meta b{color:var(--ink);font-weight:600;font-family:var(--serif);font-size:22px;display:block;line-height:1}
   .hero .meta div span{display:block;margin-top:5px}
+  .scrollcue{
+    position:absolute;bottom:26px;left:28px;z-index:2;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--faint);display:flex;align-items:center;gap:10px;
+  }
+  .scrollcue::after{content:"";width:44px;height:1px;background:var(--faint);
+    animation:cue 2.2s ease-in-out infinite;transform-origin:left}
+  @keyframes cue{0%,100%{transform:scaleX(.35);opacity:.5}50%{transform:scaleX(1);opacity:1}}
+  .hero-hint{
+    position:absolute;bottom:26px;right:28px;z-index:2;text-align:right;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  }
 
-  /* ---- sections / cards ---- */
-  main{padding:34px 0 20px}
-  .cat{margin:0 0 30px}
-  .cat-h{
-    font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.15em;
-    text-transform:uppercase;color:var(--muted);margin:0 0 16px;
-    padding-bottom:12px;border-bottom:1px solid var(--line);
+  /* ---- section shells: border-grid editorial ---- */
+  .shell{display:grid;grid-template-columns:1fr;max-width:1280px;margin:0 auto;
+    padding:0 28px;position:relative}
+  .sec{border-top:1px solid var(--line)}
+  .sec-head{padding:64px 0 28px}
+  .sec-head .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+  .sec-head h2{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;
+    font-size:clamp(1.9rem,4vw,3rem);line-height:1.05;margin:0}
+  .sec-head h2 em{font-style:italic;color:var(--muted)}
+  @media(min-width:1000px){
+    .shell{grid-template-columns:300px 1fr;gap:64px}
+    .sec-head{position:sticky;top:88px;align-self:start;padding-bottom:64px}
   }
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-  .card{
-    position:relative;display:flex;flex-direction:column;
-    background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:22px 22px 18px;text-decoration:none;color:var(--ink);
-    min-height:196px;overflow:hidden;
-    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+
+  /* ---- work index rows ---- */
+  .rows{border-top:1px solid var(--line);margin-top:34px}
+  @media(min-width:1000px){.rows{margin-top:64px}}
+  .row{
+    position:relative;display:grid;grid-template-columns:52px 1fr auto;gap:6px 22px;
+    align-items:baseline;padding:26px 10px 24px;text-decoration:none;
+    border-bottom:1px solid var(--line);
+    transition:background .25s ease;
   }
-  .card::before{
-    content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
-    background:var(--accent);opacity:.9;
-  }
-  a.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(20,17,14,.35);border-color:rgba(20,17,14,.2)}
-  a.card:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-  .card.soon{opacity:.82;cursor:default}
-  .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-  .mono{
-    width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-    color:#fff;font-family:var(--serif);font-weight:500;font-size:18px;line-height:1;
-  }
-  .live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
-  .live i{width:7px;height:7px;border-radius:50%;background:#3E9D57;display:inline-block;box-shadow:0 0 0 3px rgba(62,157,87,.15)}
-  .badge{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
-    border:1px solid var(--line);border-radius:999px;padding:3px 9px}
-  .card h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;margin:0 0 7px;letter-spacing:-.01em}
-  .card p{font-size:.92rem;line-height:1.5;color:#514A42;margin:0 0 18px;flex:1}
-  .card-foot{display:flex;align-items:center;justify-content:space-between;font-size:.82rem;color:var(--muted)}
-  .card-foot .host{font-variant:tabular-nums}
-  .card-foot .go{font-weight:600;color:var(--ink)}
+  .row::before{content:"";position:absolute;left:-28px;top:0;bottom:0;width:3px;
+    background:var(--accent);transform:scaleY(0);transform-origin:top;
+    transition:transform .35s cubic-bezier(.25,1,.5,1)}
+  .row:hover{background:rgba(20,17,14,.025)}
+  .row:hover::before{transform:scaleY(1)}
+  .row:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+  .row .num{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.05em}
+  .row .name{font-family:var(--serif);font-weight:500;font-size:clamp(1.4rem,2.6vw,2rem);
+    letter-spacing:-.015em;line-height:1.1;display:flex;align-items:center;gap:14px;
+    transition:transform .35s cubic-bezier(.25,1,.5,1)}
+  .row:hover .name{transform:translateX(10px)}
+  .row .name .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:none}
+  .row .go{font-family:var(--mono);font-size:12px;color:var(--faint);white-space:nowrap;
+    transition:color .25s}
+  .row:hover .go{color:var(--ink)}
+  .row .tag{grid-column:2;font-size:.92rem;color:#514A42;max-width:560px;margin:2px 0 0}
+  .row .cat{grid-column:3;justify-self:end;font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .row .st{display:inline-flex;align-items:center;gap:6px;margin-left:6px;
+    font-size:11px;color:var(--muted);font-family:var(--sans);letter-spacing:.02em}
+  .row .st i{width:6px;height:6px;border-radius:50%;background:#3E9D57;
+    box-shadow:0 0 0 3px rgba(62,157,87,.16)}
+  .row.soon{cursor:default}
+  .row.soon .st i{background:#B08D4A;box-shadow:0 0 0 3px rgba(176,141,74,.18)}
+
+  /* ---- about ---- */
+  .bio{padding:0 0 30px}
+  @media(min-width:1000px){.bio{padding-top:64px}}
+  .bio p{font-size:clamp(1.05rem,1.9vw,1.3rem);line-height:1.55;color:#332D27;
+    max-width:640px;margin:0 0 22px}
+  .bio p em{font-family:var(--serif);font-style:italic}
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);
+    border-left:1px solid var(--line);margin-top:44px;max-width:640px}
+  @media(min-width:700px){.facts{grid-template-columns:repeat(4,1fr)}}
+  .fact{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px}
+  .fact b{font-family:var(--serif);font-weight:500;font-size:1.7rem;display:block;line-height:1}
+  .fact span{font-size:12px;color:var(--muted);display:block;margin-top:7px}
+
+  /* ---- cta ---- */
+  .cta{border-top:1px solid var(--line);text-align:center;padding:110px 28px 120px}
+  .cta h2{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;
+    font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.04;margin:0 0 18px}
+  .cta h2 em{font-style:italic;color:var(--muted)}
+  .cta p{color:var(--muted);max-width:460px;margin:0 auto 34px}
+  .cta a.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);
+    text-decoration:none;font-weight:600;border-radius:999px;padding:15px 28px;
+    transition:transform .18s,opacity .18s}
+  .cta a.btn:hover{transform:translateY(-2px);opacity:.92}
+  .cta a.btn svg{width:15px;height:15px}
 
   /* ---- footer ---- */
-  footer.site{border-top:1px solid var(--line);margin-top:40px;padding:34px 0 60px}
-  .foot-in{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
-  .foot-in p{margin:0;color:var(--muted);font-size:14px}
-  .foot-in a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
-  .foot-in a:hover{border-color:var(--ink)}
+  footer.site{border-top:1px solid var(--line);padding:26px 28px 34px;
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+    font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--faint)}
+  footer.site a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+  footer.site a:hover{color:var(--ink);border-color:var(--ink)}
 
-  @media(max-width:560px){
-    /* keep Support reachable on mobile; only collapse the jump links */
-    .top nav{gap:16px}
-    .top nav a:not(.nav-support){display:none}
-    .hero{padding:54px 0 20px}
-    .grid{grid-template-columns:1fr}
+  /* ---- blur-reveal on scroll ---- */
+  .rv{opacity:0;transform:translateY(26px);filter:blur(5px)}
+  .rv.in{opacity:1;transform:none;filter:blur(0);
+    transition:opacity 1s cubic-bezier(.25,1,.5,1),transform 1s cubic-bezier(.25,1,.5,1),filter 1s cubic-bezier(.25,1,.5,1)}
+
+  @media(max-width:640px){
+    .coords{display:none}
+    .topbar{padding:16px 20px}
+    .topbar nav{gap:16px}
+    .topbar nav a:not(.nav-support):not([href="#work"]){display:none}
+    .hero-copy{padding:110px 20px 90px}
+    .scrollcue{left:20px}
+    .hero-hint{display:none}
+    .shell{padding:0 20px}
+    .row{grid-template-columns:34px 1fr;gap:4px 14px}
+    .row .go{display:none}
+    .row .cat{display:none}
+    .row::before{left:-20px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+    .blinds{display:none}
+    .rv{opacity:1;transform:none;filter:none}
+    html{scroll-behavior:auto}
   }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header>
-    <div class="top">
-      <a class="brand" href="/">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="12" cy="5" r="2.4" fill="#14110E"/>
-          <circle cx="5" cy="17" r="2.4" fill="#14110E"/>
-          <circle cx="19" cy="17" r="2.4" fill="#14110E"/>
-          <path d="M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8" stroke="#14110E" stroke-width="1.3" stroke-linecap="round"/>
-        </svg>
-        <b>ohgeeceee</b><span>network</span>
-      </a>
-      <nav>
-        <a href="#sites">Sites</a>
-        <a href="#about">About</a>
-        <a href="https://github.com/ohgeeceee" rel="noopener">GitHub</a>
-        <a href="support.html" class="nav-support">Support</a>
-      </nav>
-    </div>
+<div class="blinds" id="blinds" aria-hidden="true">
+  <i style="animation-delay:.00s"></i><i style="animation-delay:.03s"></i><i style="animation-delay:.06s"></i><i style="animation-delay:.09s"></i>
+  <i style="animation-delay:.12s"></i><i style="animation-delay:.15s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.21s"></i>
+  <i style="animation-delay:.24s"></i><i style="animation-delay:.27s"></i><i style="animation-delay:.30s"></i><i style="animation-delay:.33s"></i>
+  <i style="animation-delay:.36s"></i><i style="animation-delay:.39s"></i><i style="animation-delay:.42s"></i><i style="animation-delay:.45s"></i>
+</div>
+<div class="grain" aria-hidden="true"></div>
 
-    <section class="hero">
-      <p class="eyebrow">A small network of useful things</p>
-      <h1>Independent sites, <em>made one late night at a time.</em></h1>
-      <p>A handful of tools and newsrooms that share nothing but a maker and a philosophy: clear, open, and quietly built to be genuinely useful.</p>
+<header class="topbar">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="5" r="2.4" fill="#14110E"/><circle cx="5" cy="17" r="2.4" fill="#14110E"/><circle cx="19" cy="17" r="2.4" fill="#14110E"/>
+      <path d="M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8" stroke="#14110E" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    <b>ohgeeceee</b>
+  </a>
+  <span class="coords">46.8797&deg; N, 110.3626&deg; W &mdash; Montana</span>
+  <nav>
+    <a href="#work" data-scramble>Index</a>
+    <a href="#about" data-scramble>About</a>
+    <a href="https://github.com/ohgeeceee" rel="noopener" data-scramble>GitHub</a>
+    <a href="support.html" class="nav-support" data-scramble>Support</a>
+  </nav>
+</header>
+
+<main>
+  <!-- hero: the network drawn as an interactive ASCII constellation.
+       Nodes are the real sites; glyphs are letters of their own domains. -->
+  <section class="hero" id="top">
+    <canvas id="sky" aria-hidden="true"></canvas>
+    <div class="hero-copy">
+      <p class="eyebrow">Personal portfolio &mdash; one maker, one network</p>
+      <h1>ohgeeceee makes <em>small, useful things.</em></h1>
+      <p class="lede">Independent sites and tools — explainers, diagnostics, newsrooms, and community projects — designed, written, and shipped by one person, one late night at a time.</p>
       <div class="meta">
-        <div><b id="stat-live">6</b><span>live sites</span></div>
-        <div><b id="stat-total">7</b><span>projects in the network</span></div>
+        <div><b>6</b><span>live sites</span></div>
+        <div><b>7</b><span>projects in the network</span></div>
         <div><b>MIT</b><span>open where it can be</span></div>
       </div>
-    </section>
-  </header>
-
-  <main id="sites">
-    <!-- Cards are static HTML so search engines, link unfurlers and no-JS
-         visitors see the full network. When you add/remove a site in
-         ogc-network.js, mirror the change here (same accent + copy). -->
-    <div id="network">
-
-      <section class="cat">
-        <h2 class="cat-h">Learning</h2>
-        <div class="grid">
-          <a class="card" href="https://finally.help" style="--accent:#DE8C2C">
-            <div class="card-top">
-              <span class="mono" style="background:#DE8C2C">f</span>
-              <span class="live"><i></i>Live</span>
-            </div>
-            <h3>finally.</h3>
-            <p>The stuff everyone assumes you already know — explained like you're ten.</p>
-            <div class="card-foot"><span class="host">finally.help</span><span class="go">Visit &rarr;</span></div>
-          </a>
-        </div>
-      </section>
-
-      <section class="cat">
-        <h2 class="cat-h">Developer tools</h2>
-        <div class="grid">
-          <a class="card" href="https://manners.pro" style="--accent:#A9853B">
-            <div class="card-top">
-              <span class="mono" style="background:#A9853B">M</span>
-              <span class="live"><i></i>Live</span>
-            </div>
-            <h3>Manners</h3>
-            <p>Adds please and thank you to your LLM prompts, right before you hit Enter.</p>
-            <div class="card-foot"><span class="host">manners.pro</span><span class="go">Visit &rarr;</span></div>
-          </a>
-        </div>
-      </section>
-
-      <section class="cat">
-        <h2 class="cat-h">Diagnostics</h2>
-        <div class="grid">
-          <a class="card" href="https://beemuu.com" style="--accent:#2E6DB4">
-            <div class="card-top">
-              <span class="mono" style="background:#2E6DB4">B</span>
-              <span class="live"><i></i>Live</span>
-            </div>
-            <h3>beemuu</h3>
-            <p>Open-source BMW diagnostics — read DTCs, watch live data, code modules.</p>
-            <div class="card-foot"><span class="host">beemuu.com</span><span class="go">Visit &rarr;</span></div>
-          </a>
-        </div>
-      </section>
-
-      <section class="cat">
-        <h2 class="cat-h">Marketplace</h2>
-        <div class="grid">
-          <a class="card" href="https://garageroute.com" style="--accent:#1F9E8F">
-            <div class="card-top">
-              <span class="mono" style="background:#1F9E8F">GR</span>
-              <span class="live"><i></i>Live</span>
-            </div>
-            <h3>GarageRoute</h3>
-            <p>Find local garage &amp; estate sales, preview items, and plan the smartest Saturday route.</p>
-            <div class="card-foot"><span class="host">garageroute.com</span><span class="go">Visit &rarr;</span></div>
-          </a>
-        </div>
-      </section>
-
-      <section class="cat">
-        <h2 class="cat-h">Community</h2>
-        <div class="grid">
-          <a class="card" href="https://supportmt.com" style="--accent:#6B7F3E">
-            <div class="card-top">
-              <span class="mono" style="background:#6B7F3E">S</span>
-              <span class="live"><i></i>Live</span>
-            </div>
-            <h3>SupportMT</h3>
-            <p>Montana community-resilience nonprofit — wildfire relief, rural families, food security, and housing stability across all 56 counties.</p>
-            <div class="card-foot"><span class="host">supportmt.com</span><span class="go">Visit &rarr;</span></div>
-          </a>
-        </div>
-      </section>
-
-      <section class="cat">
-        <h2 class="cat-h">Public records</h2>
-        <div class="grid">
-          <a class="card" href="https://montanablotter.com" style="--accent:#9E3B34">
-            <div class="card-top">
-              <span class="mono" style="background:#9E3B34">MB</span>
-              <span class="live"><i></i>Live</span>
-            </div>
-            <h3>Montana Blotter</h3>
-            <p>Real-time public records — blotters, bookings, warrants, court data.</p>
-            <div class="card-foot"><span class="host">montanablotter.com</span><span class="go">Visit &rarr;</span></div>
-          </a>
-          <!-- Not linked on purpose: idahoblotter.com doesn't resolve yet.
-               Swap the <article> for an <a class="card"> when it launches. -->
-          <article class="card soon" style="--accent:#3E7D57">
-            <div class="card-top">
-              <span class="mono" style="background:#3E7D57">IB</span>
-              <span class="badge">Coming soon</span>
-            </div>
-            <h3>Idaho Blotter</h3>
-            <p>The Blotter newsroom, coming to Idaho.</p>
-            <div class="card-foot"><span class="host">idahoblotter.com</span><span class="go"></span></div>
-          </article>
-        </div>
-      </section>
-
     </div>
+    <p class="scrollcue">Scroll</p>
+    <p class="hero-hint">The sky above is the network itself &mdash;<br/>move through it, touch a node</p>
+  </section>
 
-    <section class="support">
-      <div>
-        <h2>Support the network</h2>
-        <p>Free, open, and ad-free. If something here saved you time, you can drop a tip in the jar.</p>
+  <!-- work index -->
+  <section class="sec" id="work">
+    <div class="shell">
+      <div class="sec-head">
+        <p class="kicker rv">Index / 01</p>
+        <h2 class="rv">The network, <em>seven projects deep.</em></h2>
       </div>
-      <a class="cta" href="support.html">
-        <svg viewBox="0 0 24 24" fill="#14110E" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.2C.3 8.4 2 5 5.2 5c2 0 3.3 1.2 4.8 3 1.5-1.8 2.8-3 4.8-3C18 5 19.7 8.4 22 11.8 19.5 16.4 12 21 12 21z"/></svg>
-        Buy me a coffee
-      </a>
-    </section>
-  </main>
-
-  <footer class="site" id="about">
-    <div class="foot-in">
-      <p>Built by <a href="https://github.com/ohgeeceee" rel="noopener">ohgeeceee</a> — one person, a lot of coffee. No trackers on this page.</p>
-      <p>&copy; <span id="yr">2026</span> the ohgeeceee network</p>
+      <div class="rows">
+        <a class="row rv" href="https://finally.help" style="--accent:#DE8C2C">
+          <span class="num">01</span>
+          <span class="name"><span class="dot"></span>finally.<span class="st"><i></i>Live</span></span>
+          <span class="go" data-scramble>finally.help &rarr;</span>
+          <p class="tag">The stuff everyone assumes you already know — explained like you're ten.</p>
+          <span class="cat">Learning</span>
+        </a>
+        <a class="row rv" href="https://manners.pro" style="--accent:#A9853B">
+          <span class="num">02</span>
+          <span class="name"><span class="dot"></span>Manners<span class="st"><i></i>Live</span></span>
+          <span class="go" data-scramble>manners.pro &rarr;</span>
+          <p class="tag">Adds please and thank you to your LLM prompts, right before you hit Enter.</p>
+          <span class="cat">Developer tools</span>
+        </a>
+        <a class="row rv" href="https://beemuu.com" style="--accent:#2E6DB4">
+          <span class="num">03</span>
+          <span class="name"><span class="dot"></span>beemuu<span class="st"><i></i>Live</span></span>
+          <span class="go" data-scramble>beemuu.com &rarr;</span>
+          <p class="tag">Open-source BMW diagnostics — read DTCs, watch live data, code modules.</p>
+          <span class="cat">Diagnostics</span>
+        </a>
+        <a class="row rv" href="https://garageroute.com" style="--accent:#1F9E8F">
+          <span class="num">04</span>
+          <span class="name"><span class="dot"></span>GarageRoute<span class="st"><i></i>Live</span></span>
+          <span class="go" data-scramble>garageroute.com &rarr;</span>
+          <p class="tag">Find local garage &amp; estate sales, preview items, and plan the smartest Saturday route.</p>
+          <span class="cat">Marketplace</span>
+        </a>
+        <a class="row rv" href="https://supportmt.com" style="--accent:#6B7F3E">
+          <span class="num">05</span>
+          <span class="name"><span class="dot"></span>SupportMT<span class="st"><i></i>Live</span></span>
+          <span class="go" data-scramble>supportmt.com &rarr;</span>
+          <p class="tag">Montana community-resilience nonprofit — wildfire relief, rural families, food security, housing stability.</p>
+          <span class="cat">Community</span>
+        </a>
+        <a class="row rv" href="https://montanablotter.com" style="--accent:#9E3B34">
+          <span class="num">06</span>
+          <span class="name"><span class="dot"></span>Montana Blotter<span class="st"><i></i>Live</span></span>
+          <span class="go" data-scramble>montanablotter.com &rarr;</span>
+          <p class="tag">Real-time public records — blotters, bookings, warrants, court data.</p>
+          <span class="cat">Public records</span>
+        </a>
+        <article class="row soon rv" style="--accent:#3E7D57">
+          <span class="num">07</span>
+          <span class="name"><span class="dot"></span>Idaho Blotter<span class="st"><i></i>Soon</span></span>
+          <span class="go">idahoblotter.com</span>
+          <p class="tag">The Blotter newsroom, coming to Idaho.</p>
+          <span class="cat">Public records</span>
+        </article>
+      </div>
     </div>
-  </footer>
-</div>
+  </section>
 
-<!-- Registry still loads: the live stats above are computed from it, and it
-     stays the canonical source for the network bar on the other sites. -->
-<script src="ogc-network.js" data-ogc-bar="off"></script>
+  <!-- about -->
+  <section class="sec" id="about">
+    <div class="shell">
+      <div class="sec-head">
+        <p class="kicker rv">About / 02</p>
+        <h2 class="rv">One person, <em>a lot of coffee.</em></h2>
+      </div>
+      <div class="bio">
+        <p class="rv">I'm the one person behind the ohgeeceee network. Based in Montana, I build the things I couldn't find: <em>explainers with no jargon, diagnostics with no dealer, public records with no gatekeeping,</em> and tools for the communities I actually live in.</p>
+        <p class="rv">Every site here is free, ad-free, and tracker-free. Open-source where it can be. No growth hacks, no engagement tricks — just small, sharp software that respects the person using it.</p>
+        <div class="facts rv">
+          <div class="fact"><b>6</b><span>sites live &amp; monitored</span></div>
+          <div class="fact"><b>56</b><span>Montana counties served</span></div>
+          <div class="fact"><b>4 KB</b><span>smallest tool shipped</span></div>
+          <div class="fact"><b>24 h</b><span>uptime watch, self-run</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- support cta -->
+  <section class="cta">
+    <h2 class="rv">Like what's here? <em>Keep it brewing.</em></h2>
+    <p class="rv">Free, open, and ad-free — tips go straight to keeping the servers on and the next thing shipping.</p>
+    <a class="btn rv" href="support.html">
+      <svg viewBox="0 0 24 24" fill="#FAF7F2" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.2C.3 8.4 2 5 5.2 5c2 0 3.3 1.2 4.8 3 1.5-1.8 2.8-3 4.8-3C18 5 19.7 8.4 22 11.8 19.5 16.4 12 21 12 21z"/></svg>
+      Buy me a coffee
+    </a>
+  </section>
+</main>
+
+<footer class="site">
+  <span>ohgeeceee &mdash; built by hand in Montana. No trackers on this page.</span>
+  <span>46.8797&deg; N, 110.3626&deg; W</span>
+  <span>&copy; <span id="yr">2026</span> the ohgeeceee network &mdash; <a href="https://github.com/ohgeeceee" rel="noopener">GitHub</a></span>
+</footer>
+
 <script>
+/* ================= the network sky =================
+   The hero canvas draws the actual network: each site is a node,
+   the hub sits at the center, edges are real relationships.
+   The field itself is made of ASCII glyphs — letters sampled from
+   the sites' own domains — brightening near connections and
+   swirling around the cursor with momentum. */
+(function () {
+  "use strict";
   document.getElementById("yr").textContent = new Date().getFullYear();
-  if (window.OGCNetwork) {
-    var sites = window.OGCNetwork.sites;
-    document.getElementById("stat-total").textContent = sites.length;
-    document.getElementById("stat-live").textContent =
-      sites.filter(function (s) { return s.status === "live"; }).length;
+
+  /* ---- blinds cleanup ---- */
+  var blinds = document.getElementById("blinds");
+  if (blinds) setTimeout(function () { blinds.classList.add("done"); }, 1300);
+
+  /* ---- text scramble on interactive elements ---- */
+  var GLYPHS = "abcdefghjkmnpqrstuvwxyz*+=<>/";
+  function scramble(el) {
+    if (el.dataset.busy) return;
+    el.dataset.busy = "1";
+    var original = el.dataset.text || (el.dataset.text = el.textContent);
+    var frame = 0, total = Math.max(10, original.length * 2);
+    (function tick() {
+      var out = "", i;
+      for (i = 0; i < original.length; i++) {
+        var reveal = (frame / total) * original.length * 1.6;
+        out += i < reveal ? original[i]
+             : original[i] === " " ? " "
+             : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+      }
+      el.textContent = out;
+      if (frame++ < total) requestAnimationFrame(tick);
+      else { el.textContent = original; delete el.dataset.busy; }
+    })();
   }
+  document.querySelectorAll("[data-scramble]").forEach(function (el) {
+    el.addEventListener("mouseenter", function () { scramble(el); });
+  });
+
+  /* ---- blur-reveal on scroll ---- */
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rvEls = document.querySelectorAll(".rv");
+  if (reduced || !("IntersectionObserver" in window)) {
+    rvEls.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e, k) {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (k * 70) + "ms";
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    rvEls.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---- constellation ---- */
+  var SITES = [
+    { name: "finally.",        host: "finally.help",        accent: "#DE8C2C", status: "live" },
+    { name: "Manners",         host: "manners.pro",         accent: "#A9853B", status: "live" },
+    { name: "beemuu",          host: "beemuu.com",          accent: "#2E6DB4", status: "live" },
+    { name: "GarageRoute",     host: "garageroute.com",     accent: "#1F9E8F", status: "live" },
+    { name: "SupportMT",       host: "supportmt.com",       accent: "#6B7F3E", status: "live" },
+    { name: "Montana Blotter", host: "montanablotter.com",  accent: "#9E3B34", status: "live" },
+    { name: "Idaho Blotter",   host: "idahoblotter.com",    accent: "#3E7D57", status: "soon" }
+  ];
+  var RAMP = " .:-=+*#%@";
+  var canvas = document.getElementById("sky");
+  var ctx = canvas.getContext("2d");
+  var W = 0, H = 0, DPR = 1, nodes = [], edges = [], cells = [];
+  var mouse = { x: -9e3, y: -9e3 }, smooth = { x: -9e3, y: -9e3 };
+  var hover = -1, running = true, raf = 0, t = 0;
+  var LETTERS = SITES.map(function (s) { return s.host.replace(/\./g, ""); }).join("");
+
+  function layout() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * DPR; canvas.height = H * DPR;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+    /* constellation anchor: right of center on wide screens, centered on narrow */
+    var wide = W > 760;
+    var cx = wide ? W * 0.70 : W * 0.5;
+    var cy = H * 0.44;
+    var R = Math.min(W, H) * (wide ? 0.27 : 0.34);
+
+    nodes = [{ x: cx, y: cy, hub: true, name: "ohgeec.com", accent: "#14110E", url: null }];
+    edges = [];
+    SITES.forEach(function (s, i) {
+      var a = -Math.PI / 2 + (i / SITES.length) * Math.PI * 2;
+      var jitter = 1 + 0.12 * Math.sin(i * 2.7);
+      var n = {
+        x: cx + Math.cos(a) * R * jitter * (wide ? 1.15 : 1),
+        y: cy + Math.sin(a) * R * jitter,
+        site: s, hub: false, name: s.name, accent: s.accent,
+        url: s.status === "live" ? "https://" + s.host : null,
+        pulse: Math.random() * Math.PI * 2
+      };
+      nodes.push(n);
+      edges.push([0, i + 1]);
+      if (i > 0) edges.push([i, i + 1]);
+    });
+    edges.push([SITES.length, 1]); /* close the ring */
+
+    /* glyph grid */
+    var size = wide ? 15 : 18;
+    cells = [];
+    for (var y = size / 2; y < H; y += size)
+      for (var x = size / 2; x < W; x += size)
+        cells.push({ x: x, y: y });
+  }
+
+  function segDist(px, py, ax, ay, bx, by) {
+    var dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
+    var tt = l2 ? ((px - ax) * dx + (py - ay) * dy) / l2 : 0;
+    tt = Math.max(0, Math.min(1, tt));
+    var qx = ax + tt * dx - px, qy = ay + tt * dy - py;
+    return Math.sqrt(qx * qx + qy * qy);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    /* mouse momentum: smooth chases target at ~0.06/frame; parallax at 0.02 */
+    if (smooth.x < -8e3) { smooth.x = mouse.x; smooth.y = mouse.y; }
+    smooth.x += (mouse.x - smooth.x) * 0.06;
+    smooth.y += (mouse.y - smooth.y) * 0.06;
+    var px = (smooth.x - W / 2) * 0.02, py = (smooth.y - H / 2) * 0.02;
+
+    /* glyph field */
+    ctx.font = "11px 'SF Mono', ui-monospace, Menlo, Consolas, monospace";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    var i, j, c, d, best;
+    for (i = 0; i < cells.length; i++) {
+      c = cells[i];
+      /* field brightness from edges + nodes */
+      var e = 0;
+      for (j = 0; j < edges.length; j++) {
+        var A = nodes[edges[j][0]], B = nodes[edges[j][1]];
+        d = segDist(c.x, c.y, A.x + px, A.y + py, B.x + px, B.y + py);
+        if (d < 46) { var f = 1 - d / 46; e = Math.max(e, f * f); }
+      }
+      for (j = 0; j < nodes.length; j++) {
+        d = Math.hypot(c.x - (nodes[j].x + px), c.y - (nodes[j].y + py));
+        if (d < 78) { var g = 1 - d / 78; e = Math.max(e, g * g * 1.1); }
+      }
+      /* cursor swirl: nearby glyphs ignite and become domain letters */
+      var md = Math.hypot(c.x - smooth.x, c.y - smooth.y);
+      var nearCursor = md < 120;
+      if (nearCursor) { var h = 1 - md / 120; e = Math.max(e, h * h * 1.35); }
+      if (e < 0.08) continue;
+      e = Math.min(1, e);
+      var ch;
+      if (nearCursor && md > 24) {
+        ch = LETTERS[(i * 7 + ((t / 8) | 0)) % LETTERS.length];
+      } else {
+        ch = RAMP[Math.min(RAMP.length - 1, (e * RAMP.length) | 0)];
+      }
+      ctx.fillStyle = "rgba(20,17,14," + (0.04 + e * 0.6).toFixed(3) + ")";
+      ctx.fillText(ch, c.x, c.y);
+    }
+
+    /* edges */
+    ctx.lineWidth = 1;
+    for (j = 0; j < edges.length; j++) {
+      var n1 = nodes[edges[j][0]], n2 = nodes[edges[j][1]];
+      var hot = hover >= 0 && (edges[j][0] === hover || edges[j][1] === hover);
+      ctx.strokeStyle = hot ? "rgba(20,17,14,.55)" : "rgba(20,17,14,.14)";
+      ctx.beginPath();
+      ctx.moveTo(n1.x + px, n1.y + py);
+      ctx.lineTo(n2.x + px, n2.y + py);
+      ctx.stroke();
+    }
+
+    /* nodes */
+    for (j = 0; j < nodes.length; j++) {
+      var n = nodes[j];
+      var isHover = j === hover;
+      var base = n.hub ? 5 : 4;
+      var pulse = n.site && n.site.status === "live"
+        ? 1 + 0.22 * Math.sin(t / 30 + n.pulse) : 1;
+      var r = base * pulse * (isHover ? 1.8 : 1);
+      /* halo */
+      ctx.beginPath();
+      ctx.arc(n.x + px, n.y + py, r * 3.2, 0, Math.PI * 2);
+      ctx.fillStyle = hexA(n.accent, isHover ? 0.16 : 0.07);
+      ctx.fill();
+      /* core */
+      ctx.beginPath();
+      ctx.arc(n.x + px, n.y + py, r, 0, Math.PI * 2);
+      ctx.fillStyle = n.accent;
+      ctx.fill();
+      /* label */
+      if (isHover || n.hub) {
+        ctx.font = (isHover ? "600 13px" : "500 11px") + " 'Inter', sans-serif";
+        ctx.fillStyle = "rgba(20,17,14," + (isHover ? ".95" : ".55") + ")";
+        ctx.fillText(n.name, n.x + px, n.y + py - r - 14);
+        ctx.font = "11px 'SF Mono', ui-monospace, Menlo, Consolas, monospace";
+      }
+    }
+  }
+
+  function hexA(hex, a) {
+    var v = parseInt(hex.slice(1), 16);
+    return "rgba(" + (v >> 16) + "," + ((v >> 8) & 255) + "," + (v & 255) + "," + a + ")";
+  }
+
+  function pick(mx, my) {
+    /* parallax-corrected hit test */
+    var px = (smooth.x - W / 2) * 0.02, py = (smooth.y - H / 2) * 0.02;
+    for (var j = 1; j < nodes.length; j++) {
+      if (Math.hypot(mx - (nodes[j].x + px), my - (nodes[j].y + py)) < 26) return j;
+    }
+    return -1;
+  }
+
+  function loop() {
+    if (!running) return;
+    t++;
+    draw();
+    raf = requestAnimationFrame(loop);
+  }
+
+  canvas.addEventListener("mousemove", function (e) {
+    var r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    hover = pick(mouse.x, mouse.y);
+    canvas.style.cursor = hover > 0 && nodes[hover].url ? "pointer" : "crosshair";
+  });
+  canvas.addEventListener("mouseleave", function () {
+    mouse.x = -9e3; mouse.y = -9e3; hover = -1;
+  });
+  canvas.addEventListener("click", function () {
+    if (hover > 0 && nodes[hover].url) window.open(nodes[hover].url, "_blank", "noopener");
+  });
+  canvas.addEventListener("touchstart", function (e) {
+    var r = canvas.getBoundingClientRect();
+    var tx = e.touches[0].clientX - r.left, ty = e.touches[0].clientY - r.top;
+    mouse.x = tx; mouse.y = ty; hover = pick(tx, ty);
+    if (hover > 0 && nodes[hover].url) window.open(nodes[hover].url, "_blank", "noopener");
+  }, { passive: true });
+
+  document.addEventListener("visibilitychange", function () {
+    running = !document.hidden;
+    if (running && !reduced) { cancelAnimationFrame(raf); loop(); }
+  });
+  window.addEventListener("resize", function () {
+    layout();
+    if (reduced) draw();
+  });
+
+  layout();
+  if (reduced) { draw(); } else { loop(); }
+})();
 </script>
 </body>
 </html>
