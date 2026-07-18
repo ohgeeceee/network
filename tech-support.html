@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Support the ohgeeceee network</title>
-<meta name="description" content="These sites are free, open, and ad-free. Drop a tip in the jar to help keep them running." />
+<title>Remote tech support — ohgeeceee</title>
+<meta name="description" content="Friendly remote tech support from the maker of the ohgeeceee network. Plain answers, no jargon — for homes and small businesses, anywhere in the US." />
 <meta name="robots" content="index,follow" />
 <meta name="theme-color" content="#FAF7F2" />
-<link rel="canonical" href="https://ohgeec.com/support.html" />
+<link rel="canonical" href="https://ohgeec.com/tech-support.html" />
 
 <!-- social -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="the ohgeeceee network" />
-<meta property="og:title" content="Support the ohgeeceee network" />
-<meta property="og:description" content="These sites are free, open, and ad-free. Drop a tip in the jar to help keep them running." />
-<meta property="og:url" content="https://ohgeec.com/support.html" />
+<meta property="og:title" content="Remote tech support — ohgeeceee" />
+<meta property="og:description" content="Plain answers, no jargon. Remote tech help for homes and small businesses." />
+<meta property="og:url" content="https://ohgeec.com/tech-support.html" />
 <meta property="og:image" content="https://ohgeec.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Support the ohgeeceee network" />
-<meta name="twitter:description" content="These sites are free, open, and ad-free. Drop a tip in the jar to help keep them running." />
+<meta name="twitter:title" content="Remote tech support — ohgeeceee" />
+<meta name="twitter:description" content="Plain answers, no jargon. Remote tech help for homes and small businesses." />
 <meta name="twitter:image" content="https://ohgeec.com/og-image.png" />
 
 <!-- icons -->
@@ -31,6 +31,19 @@
 <link rel="preload" href="fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="fonts.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Remote tech support by ohgeeceee",
+  "provider": { "@type": "Person", "name": "ohgeeceee", "url": "https://ohgeec.com/" },
+  "areaServed": "United States",
+  "serviceType": "Remote computer support",
+  "url": "https://ohgeec.com/tech-support.html",
+  "description": "Friendly remote tech support in plain language — cleanup, Wi-Fi, setup, backups, security, and small-business IT."
+}
+</script>
 
 <style>
   :root{
@@ -84,60 +97,62 @@
   .topbar nav a::before{top:-3px;left:-3px;border-width:1px 0 0 1px;transform:translate(2px,2px)}
   .topbar nav a::after{bottom:-3px;right:-3px;border-width:0 1px 1px 0;transform:translate(-2px,-2px)}
   .topbar nav a:hover::before,.topbar nav a:hover::after{opacity:1;transform:none}
-  .topbar nav a.nav-support{color:var(--ink);font-weight:600}
-  .topbar nav a.nav-support::before,.topbar nav a.nav-support::after{opacity:1;transform:none}
+  .topbar nav a.current{color:var(--ink);font-weight:600}
+  .topbar nav a.current::before,.topbar nav a.current::after{opacity:1;transform:none}
 
   main{flex:1}
-  .wrap{max-width:960px;margin:0 auto;padding:70px 28px 0}
-
+  .wrap{max-width:1100px;margin:0 auto;padding:70px 28px 0}
   .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
     text-transform:uppercase;color:var(--faint);margin:0 0 18px}
   h1{font-family:var(--serif);font-weight:400;letter-spacing:-.025em;
-    font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.03;margin:0 0 20px}
+    font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.03;margin:0 0 20px;max-width:900px}
   h1 em{font-style:italic;color:var(--muted)}
-  .lede{font-size:clamp(1.02rem,1.8vw,1.2rem);color:#413B34;max-width:600px;margin:0}
+  .lede{font-size:clamp(1.02rem,1.8vw,1.2rem);color:#413B34;max-width:620px;margin:0}
+  .lede a{border-bottom:1px solid var(--line);text-decoration:none}
+  .lede a:hover{border-color:var(--ink)}
 
-  /* tiers: border-grid cells, featured inverted */
-  .tiers{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line);
-    border-left:1px solid var(--line);margin:56px 0 26px}
-  @media(min-width:700px){.tiers{grid-template-columns:repeat(3,1fr)}}
-  .tier{
-    position:relative;display:flex;flex-direction:column;gap:5px;
-    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:30px 26px 26px;text-decoration:none;color:var(--ink);
-    transition:background .25s ease;
-  }
-  .tier:hover{background:rgba(20,17,14,.03)}
-  .tier:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-  .tier .num{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.08em}
-  .tier .amt{font-family:var(--serif);font-weight:500;font-size:2.9rem;line-height:1;
-    letter-spacing:-.02em;margin:14px 0 2px;transition:transform .35s cubic-bezier(.25,1,.5,1)}
-  .tier:hover .amt{transform:translateX(8px)}
-  .tier .lbl{font-weight:600;font-size:1rem}
-  .tier .note{color:var(--muted);font-size:.85rem;line-height:1.45;flex:1}
-  .tier .go{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-top:16px;
-    transition:color .25s}
-  .tier:hover .go{color:var(--ink)}
-  .tier.feat{background:var(--ink);color:var(--paper)}
-  .tier.feat:hover{background:#231E19}
-  .tier.feat .num{color:rgba(250,247,242,.5)}
-  .tier.feat .note{color:rgba(250,247,242,.66)}
-  .tier.feat .go{color:rgba(250,247,242,.55)}
-  .tier.feat:hover .go{color:var(--paper)}
-  .tier .flag{position:absolute;top:18px;right:18px;font-family:var(--mono);
-    font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--paper);border:1px solid rgba(250,247,242,.4);
-    border-radius:999px;padding:3px 10px}
+  .sec-h{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);margin:70px 0 0}
 
-  .alt{display:flex;flex-wrap:wrap;gap:10px 34px;align-items:center;margin:6px 0 40px}
-  .alt a{font-size:14px;font-weight:600;text-decoration:none;color:var(--ink);
-    border-bottom:1px solid var(--ink);padding-bottom:1px}
-  .alt a:hover{opacity:.6}
-  .fine{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.82rem;margin:0}
-  .fine::before{content:"";width:13px;height:13px;border-radius:3px;
-    background:#635BFF;display:inline-block}
+  /* services grid */
+  .svcs{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line);
+    border-left:1px solid var(--line);margin:22px 0 0}
+  @media(min-width:700px){.svcs{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.svcs{grid-template-columns:repeat(3,1fr)}}
+  .svc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:24px 24px 22px;transition:background .25s ease}
+  .svc:hover{background:rgba(20,17,14,.03)}
+  .svc .num{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.08em}
+  .svc h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;
+    letter-spacing:-.01em;margin:12px 0 6px}
+  .svc p{font-size:.9rem;color:#514A42;margin:0;line-height:1.5}
 
-  footer.site{border-top:1px solid var(--line);margin-top:70px;padding:26px 28px 34px;
+  /* steps */
+  .steps{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line);
+    border-left:1px solid var(--line);margin:22px 0 0}
+  @media(min-width:700px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px}
+  .step b{font-family:var(--serif);font-weight:500;font-size:1.55rem;display:block;
+    line-height:1;margin-bottom:12px}
+  .step b i{font-style:normal;color:var(--faint);font-family:var(--mono);
+    font-size:11px;display:block;margin-bottom:14px;letter-spacing:.1em}
+  .step p{font-size:.92rem;color:#514A42;margin:0}
+
+  /* booking cta */
+  .book{border-top:1px solid var(--line);margin-top:70px;text-align:center;
+    padding:80px 28px 90px}
+  .book h2{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;
+    font-size:clamp(2rem,5.4vw,3.8rem);line-height:1.05;margin:0 0 16px}
+  .book h2 em{font-style:italic;color:var(--muted)}
+  .book p{color:var(--muted);max-width:480px;margin:0 auto 32px}
+  .book a.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);
+    color:var(--paper);text-decoration:none;font-weight:600;border-radius:999px;
+    padding:15px 30px;transition:transform .18s,opacity .18s}
+  .book a.btn:hover{transform:translateY(-2px);opacity:.92}
+  .book .fine{margin:26px 0 0;font-family:var(--mono);font-size:11px;
+    letter-spacing:.06em;color:var(--faint)}
+
+  footer.site{border-top:1px solid var(--line);padding:26px 28px 34px;
     display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
     font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--faint)}
   footer.site a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
@@ -151,7 +166,7 @@
     .coords{display:none}
     .topbar{padding:16px 20px}
     .topbar nav{gap:16px}
-    .topbar nav a:not(.nav-support):not([href="tech-support.html"]){display:none}
+    .topbar nav a:not(.current):not(.nav-support){display:none}
     .wrap{padding:50px 20px 0}
   }
   @media(prefers-reduced-motion:reduce){
@@ -179,60 +194,82 @@
     </svg>
     <b>ohgeeceee</b>
   </a>
-  <span class="coords">46.8797&deg; N, 110.3626&deg; W &mdash; Montana</span>
+  <span class="coords">Remote &mdash; anywhere in the US</span>
   <nav>
     <a href="/#work" data-scramble>Index</a>
     <a href="/#about" data-scramble>About</a>
-    <a href="tech-support.html" data-scramble>Tech help</a>
-    <a href="https://github.com/ohgeeceee" rel="noopener" data-scramble>GitHub</a>
-    <a href="support.html" class="nav-support" aria-current="page">Support</a>
+    <a href="tech-support.html" class="current" aria-current="page">Tech help</a>
+    <a href="support.html" class="nav-support" data-scramble>Support</a>
   </nav>
 </header>
 
 <main>
   <div class="wrap">
-    <p class="kicker rv">Support / the tip jar</p>
-    <h1 class="rv">Free forever. <em>Fueled by coffee.</em></h1>
-    <p class="lede rv">Every site here is free, open-source, and ad-free. If one saved you time or taught you something, you can drop a tip in the jar — it goes straight to keeping the servers on and the next thing shipping.</p>
+    <p class="kicker rv">Services / remote tech support</p>
+    <h1 class="rv">Tech support, <em>minus the jargon.</em></h1>
+    <p class="lede rv">I'm the one person behind <a href="/#work">the ohgeeceee network</a>. When I'm not building it, I fix tech for people and small businesses — remotely, in plain language, at a flat rate you'll see before we start.</p>
 
-    <!-- Static HTML, no JS required. Mirror tier/link changes from
-         SUPPORT in ogc-network.js if you ever edit them there. -->
-    <div class="tiers rv">
-      <a class="tier" href="https://buy.stripe.com/fZu28r3Va3JWdHY1e58EM06" rel="noopener">
+    <p class="sec-h rv">What I can help with</p>
+    <div class="svcs rv">
+      <div class="svc">
         <span class="num">01</span>
-        <span class="amt">$3</span>
-        <span class="lbl">Coffee</span>
-        <span class="note">A small thank-you</span>
-        <span class="go">Tip $3 &rarr;</span>
-      </a>
-      <a class="tier feat" href="https://buy.stripe.com/4gMcN5ezO3JW8nE4qh8EM07" rel="noopener">
-        <span class="flag">Most picked</span>
+        <h3>Slow computers</h3>
+        <p>Cleanup, startup trimming, malware and adware removal. Your machine, but faster than it's been in years.</p>
+      </div>
+      <div class="svc">
         <span class="num">02</span>
-        <span class="amt">$8</span>
-        <span class="lbl">Lunch</span>
-        <span class="note">Keeps a site online for a month</span>
-        <span class="go">Tip $8 &rarr;</span>
-      </a>
-      <a class="tier" href="https://buy.stripe.com/00w00j77m2FS0VccWN8EM08" rel="noopener">
+        <h3>Wi-Fi &amp; networks</h3>
+        <p>Dead zones, router setup, getting the printer on the network and keeping it there.</p>
+      </div>
+      <div class="svc">
         <span class="num">03</span>
-        <span class="amt">$25</span>
-        <span class="lbl">Patron</span>
-        <span class="note">Helps fund the next feature</span>
-        <span class="go">Tip $25 &rarr;</span>
-      </a>
+        <h3>New device setup</h3>
+        <p>Moving to a new computer or phone — files, photos, accounts, and passwords, all transferred.</p>
+      </div>
+      <div class="svc">
+        <span class="num">04</span>
+        <h3>Backups &amp; security</h3>
+        <p>A backup plan that actually runs, plus password managers and two-factor done right.</p>
+      </div>
+      <div class="svc">
+        <span class="num">05</span>
+        <h3>Updates &amp; tune-ups</h3>
+        <p>OS updates, driver wrangling, full storage drives, mystery error messages.</p>
+      </div>
+      <div class="svc">
+        <span class="num">06</span>
+        <h3>Small business IT</h3>
+        <p>Email, shared files, and the everyday tech a small shop runs on — without a contract.</p>
+      </div>
     </div>
 
-    <div class="alt rv">
-      <a href="https://buy.stripe.com/5kQ9ATbnC4O09rIaOF8EM0a" rel="noopener" data-scramble>Choose your own amount &rarr;</a>
-      <a href="https://buy.stripe.com/3cI14g7pg7aWbLw2LZb3q00" rel="noopener" data-scramble>Support monthly instead &rarr;</a>
+    <p class="sec-h rv">How it works</p>
+    <div class="steps rv">
+      <div class="step">
+        <b><i>STEP 01</i>Tell me what's wrong</b>
+        <p>Plain words are fine. "It's slow and the thingy pops up" is a perfectly good diagnosis.</p>
+      </div>
+      <div class="step">
+        <b><i>STEP 02</i>We meet remotely</b>
+        <p>A secure screen-share where you watch everything I do — and can ask questions the whole time.</p>
+      </div>
+      <div class="step">
+        <b><i>STEP 03</i>Fixed, with notes</b>
+        <p>You get a written summary of what changed and how to keep it from happening again.</p>
+      </div>
     </div>
-
-    <p class="fine rv">Secure checkout by Stripe. One-time or monthly — cancel anytime, no account needed.</p>
   </div>
+
+  <section class="book">
+    <h2 class="rv">Something broken? <em>Let's fix it.</em></h2>
+    <p class="rv">Flat, up-front pricing — you'll see the exact rate on the booking page before you pay. No hourly meters running in the background.</p>
+    <a class="btn rv" href="https://book.stripe.com/9B6fZa10S9j4aHs2LZb3q01" rel="noopener">Book a session &rarr;</a>
+    <p class="fine rv">REMOTE SESSIONS ONLY &mdash; ANYWHERE IN THE US &mdash; SECURE CHECKOUT BY STRIPE</p>
+  </section>
 </main>
 
 <footer class="site">
-  <span>ohgeeceee &mdash; no trackers on this page. Payments handled entirely by Stripe.</span>
+  <span>ohgeeceee &mdash; remote tech support, built on the same plain-language philosophy as <a href="https://finally.help" rel="noopener">finally.help</a></span>
   <span>46.8797&deg; N, 110.3626&deg; W</span>
   <span>&copy; <span id="yr">2026</span> the ohgeeceee network &mdash; <a href="/">&larr; Back to the network</a></span>
 </footer>

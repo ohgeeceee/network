@@ -206,6 +206,8 @@
   .bio p{font-size:clamp(1.05rem,1.9vw,1.3rem);line-height:1.55;color:#332D27;
     max-width:640px;margin:0 0 22px}
   .bio p em{font-family:var(--serif);font-style:italic}
+  .bio p a{text-decoration:none;border-bottom:1px solid var(--line)}
+  .bio p a:hover{border-color:var(--ink)}
   .facts{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);
     border-left:1px solid var(--line);margin-top:44px;max-width:640px}
   @media(min-width:700px){.facts{grid-template-columns:repeat(4,1fr)}}
@@ -241,7 +243,7 @@
     .coords{display:none}
     .topbar{padding:16px 20px}
     .topbar nav{gap:16px}
-    .topbar nav a:not(.nav-support):not([href="#work"]){display:none}
+    .topbar nav a:not(.nav-support):not([href="#work"]):not([href="tech-support.html"]){display:none}
     .hero-copy{padding:110px 20px 90px}
     .scrollcue{left:20px}
     .hero-hint{display:none}
@@ -281,6 +283,7 @@
   <nav>
     <a href="#work" data-scramble>Index</a>
     <a href="#about" data-scramble>About</a>
+    <a href="tech-support.html" data-scramble>Tech help</a>
     <a href="https://github.com/ohgeeceee" rel="noopener" data-scramble>GitHub</a>
     <a href="support.html" class="nav-support" data-scramble>Support</a>
   </nav>
@@ -375,7 +378,7 @@
       </div>
       <div class="bio">
         <p class="rv">I'm the one person behind the ohgeeceee network. Based in Montana, I build the things I couldn't find: <em>explainers with no jargon, diagnostics with no dealer, public records with no gatekeeping,</em> and tools for the communities I actually live in.</p>
-        <p class="rv">Every site here is free, ad-free, and tracker-free. Open-source where it can be. No growth hacks, no engagement tricks — just small, sharp software that respects the person using it.</p>
+        <p class="rv">Every site here is free, ad-free, and tracker-free. Open-source where it can be. No growth hacks, no engagement tricks — just small, sharp software that respects the person using it. And when your own tech breaks, <a href="tech-support.html">I fix that too</a> — remote tech support, plain answers, no jargon.</p>
         <div class="facts rv">
           <div class="fact"><b>6</b><span>sites live &amp; monitored</span></div>
           <div class="fact"><b>56</b><span>Montana counties served</span></div>
