@@ -106,7 +106,7 @@ a { color: inherit; }
 .hero-link:hover { transform: translateY(-2px); background: #383128; }
 .hero-link span { font-size: 17px; transition: transform .18s ease; }
 .hero-link:hover span { transform: translateX(4px); }
-.hero-link:focus-visible, .atlas-point:focus-visible, .row:focus-visible, .cta .btn:focus-visible {
+.hero-link:focus-visible, .atlas-point:focus-visible, .row:focus-visible, .repo-card a:focus-visible, .github-all:focus-visible, .cta .btn:focus-visible {
   outline: 3px solid #2e6db4;
   outline-offset: 4px;
 }
@@ -217,6 +217,23 @@ a { color: inherit; }
 .row .cat { grid-column: 4; grid-row: 2; justify-self: end; color: var(--faint); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
 .row.soon { cursor: default; }
 .row.soon::before { display: none; }
+.github-work .sec-head { padding-top: 54px; }
+.github-all { display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; padding-bottom: 4px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 12px; text-decoration: none; }
+.github-all span { transition: transform .18s ease; }
+.github-all:hover span { transform: translate(2px, -2px); }
+.repo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; align-content: start; margin: 68px 0 72px; border-top: 1px solid var(--line); }
+.repo-card { min-width: 0; min-height: 190px; padding: 20px 5px 18px; border-bottom: 1px solid var(--line); transition: background .2s ease; }
+.repo-card:hover { background: rgba(20, 17, 14, .025); }
+.repo-card__head, .repo-card__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.repo-number { color: var(--faint); font: 9px var(--mono); letter-spacing: .1em; }
+.repo-mark { color: #9e3b34; font-size: 17px; }
+.repo-name { overflow-wrap: anywhere; margin: 13px 0 7px; font: 500 clamp(1.25rem, 1.8vw, 1.65rem)/1.15 var(--serif); }
+.repo-description { min-height: 42px; margin: 0 0 14px; color: #514a42; font-size: 12px; line-height: 1.6; }
+.repo-card__foot { padding-top: 11px; border-top: 1px solid rgba(20, 17, 14, .08); }
+.repo-language { color: var(--faint); font: 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.repo-links { display: flex; gap: 14px; }
+.repo-links a { color: var(--muted); font-size: 10px; text-decoration: none; }
+.repo-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 .about .sec-head { padding-top: 66px; }
 .bio { padding: 67px 0 78px; }
 .bio p { max-width: 670px; margin: 0 0 21px; color: #332d27; font-size: clamp(1.04rem, 1.7vw, 1.23rem); line-height: 1.65; }
@@ -255,7 +272,7 @@ footer.site a:hover { color: var(--ink); }
   .coords { display: none; }
   .topbar nav { gap: 8px; }
   .topbar nav a { font-size: 11px; }
-  .topbar nav a:not(.nav-support):not([href="#work"]):not([href="tech-support.html"]) { display: none; }
+  .topbar nav a:not(.nav-support):not([href="#work"]):not([href="#github-work"]):not([href="tech-support.html"]) { display: none; }
   .hero { display: flex; width: 100%; height: auto; min-height: 0; max-height: none; flex-direction: column; align-items: stretch; gap: 0; padding: 93px 20px 56px; overflow: hidden; }
   .hero-copy { max-width: 620px; padding: 26px 0 12px; }
   .eyebrow { margin-bottom: 19px; font-size: 9px; }
@@ -275,6 +292,11 @@ footer.site a:hover { color: var(--ink); }
   .sec-head h2 { font-size: clamp(2.1rem, 8vw, 2.9rem); }
   .index-intro { max-width: 420px; }
   .rows { margin: 23px 0 58px; }
+  .github-work .sec-head { padding-top: 38px; }
+  .repo-grid { grid-template-columns: minmax(0, 1fr); gap: 0; margin: 22px 0 58px; }
+  .repo-card { min-height: 0; padding: 18px 5px; }
+  .repo-name { font-size: 1.45rem; }
+  .repo-description { min-height: 0; }
   .row { grid-template-columns: 30px minmax(0, 1fr) auto; gap: 5px 11px; padding: 19px 5px; }
   .row .name { gap: 9px; font-size: clamp(1.3rem, 5.6vw, 1.65rem); }
   .row .st { font-size: 9px; }
