@@ -67,12 +67,20 @@
       tagline: "The Blotter newsroom, coming to Idaho.",
       blurb: "Public records for the Gem State.",
       category: "Public records", accent: "#3E7D57", status: "soon"
+    },
+    {
+      id: "carguy", name: "CarGuy Dealership Platform", monogram: "CG",
+      url: "https://github.com/ohgeeceee/carguy-dealership-platform", aliases: [],
+      tagline: "A complete dealership in a box — public inventory site, sales desk, and owner console on one backend.",
+      blurb: "Self-hosted DMS for independent lots. You own it.",
+      category: "Business software", accent: "#C2541B", status: "soon"
     }
   ];
 
   var CATEGORY_ORDER = [
     "Learning", "Developer tools", "Diagnostics",
-    "Marketplace", "Community", "Public records", "In the works"
+    "Marketplace", "Community", "Public records",
+    "Business software", "In the works"
   ];
 
   /* SUPPORT — one shared tip jar. Static sites => Stripe Payment Links only.
