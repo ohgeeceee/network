@@ -77,6 +77,13 @@
       blurb: "Public records for the Gem State.",
       category: "Public records", accent: "#3E7D57", status: "soon"
     }
+    ,{
+      id: "adboard", name: "AdBoard", monogram: "AB",
+      url: "https://ohgeeceee.github.io/adboard/", aliases: [],
+      tagline: "Self-serve digital billboard advertising — design, book, and go live in minutes.",
+      blurb: "Put your business on any billboard in seconds.",
+      category: "Business software", accent: "#22B8D6", status: "live"
+    }
   ];
 
   var CATEGORY_ORDER = [
