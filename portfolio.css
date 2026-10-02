@@ -214,6 +214,9 @@ a { color: inherit; }
 .row .tag { grid-column: 3; grid-row: 1 / span 2; max-width: 440px; margin: 0; color: #514a42; font-size: 13px; line-height: 1.6; }
 .row .go { grid-column: 4; grid-row: 1; justify-self: end; color: var(--muted); font-size: 9px; white-space: nowrap; }
 .row:hover .go { color: var(--ink); }
+.row-actions { display: flex; grid-column: 4; grid-row: 1; justify-self: end; gap: 12px; }
+.row-actions a { color: var(--muted); font-size: 10px; font-weight: 600; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; white-space: nowrap; }
+.row-actions a:hover { color: var(--ink); text-decoration-color: currentColor; }
 .row .cat { grid-column: 4; grid-row: 2; justify-self: end; color: var(--faint); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
 .row.soon { cursor: default; }
 .row.soon::before { display: none; }
@@ -302,6 +305,8 @@ footer.site a:hover { color: var(--ink); }
   .row .st { font-size: 9px; }
   .row .tag { grid-column: 2 / 4; grid-row: 2; max-width: none; font-size: 12px; }
   .row .go { display: block; grid-column: 3; grid-row: 1; font-size: 9px; }
+  .row-actions { grid-column: 3; grid-row: 1; gap: 9px; }
+  .row-actions a { font-size: 9px; }
   .row .cat { display: none; }
   .row::before { left: -20px; }
   .bio { padding: 20px 0 54px; }

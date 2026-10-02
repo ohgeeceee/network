@@ -62,18 +62,20 @@
       category: "Public records", accent: "#9E3B34", status: "live"
     },
     {
+      id: "carguy", name: "Car Guy Portal", monogram: "CG",
+      url: "https://ohgeeceee.github.io/car-dealership/", aliases: [],
+      demoUrl: "https://ohgeeceee.github.io/car-dealership/demo/",
+      portalUrl: "https://ohgeeceee.github.io/car-dealership/portal/",
+      tagline: "A dealership SaaS concept bringing the inventory website, sales desk, and dealer portal together.",
+      blurb: "An interactive dealership demo with sample data and three packages.",
+      category: "Business software", accent: "#C2541B", status: "live"
+    },
+    {
       id: "idahoblotter", name: "Idaho Blotter", monogram: "IB",
       url: "https://idahoblotter.com", aliases: [],
       tagline: "The Blotter newsroom, coming to Idaho.",
       blurb: "Public records for the Gem State.",
       category: "Public records", accent: "#3E7D57", status: "soon"
-    },
-    {
-      id: "carguy", name: "CarGuy Dealership Platform", monogram: "CG",
-      url: "https://github.com/ohgeeceee/carguy-dealership-platform", aliases: [],
-      tagline: "A complete dealership in a box — public inventory site, sales desk, and owner console on one backend.",
-      blurb: "Self-hosted DMS for independent lots. You own it.",
-      category: "Business software", accent: "#C2541B", status: "soon"
     }
   ];
 

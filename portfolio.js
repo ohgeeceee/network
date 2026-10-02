@@ -7,6 +7,7 @@
   const repositories = [
     { name: 'network', description: 'The home for this portfolio and the independent sites in the network.', language: 'HTML', homepage: 'https://ohgeec.com' },
     { name: 'soulregistry', description: 'An open registry and marketplace for portable AI agent identities and SOUL.md files.', language: 'JavaScript', homepage: 'https://ohgeeceee.github.io/soulregistry/' },
+    { name: 'car-dealership', description: 'A dealership SaaS portfolio demo combining a public inventory site, interactive sales desk, and dealer portal.', language: 'JavaScript', homepage: 'https://ohgeeceee.github.io/car-dealership/', demo: 'https://ohgeeceee.github.io/car-dealership/demo/', portal: 'https://ohgeeceee.github.io/car-dealership/portal/' },
     { name: 'beemuu', description: 'Open-source BMW diagnostics and telemetry, built with Tauri, Rust, Python, and web UI.', language: 'JavaScript', homepage: 'https://beemuu.com' },
     { name: 'montanablotter', description: 'The codebase behind Montana Blotter, a public-records newsroom.', language: 'Python', homepage: 'https://montanablotter.com' },
     { name: 'beemuu-plugins', description: 'Plugins for the beemuu diagnostics suite.', language: 'JavaScript', homepage: 'https://plugins.beemuu.com/' },
@@ -26,6 +27,7 @@
   ];
   const positions = {
     idahoblotter: [28.3, 23],
+    carguy: [53, 88],
     finally: [48, 10.2],
     manners: [73, 26.1],
     montanablotter: [20.1, 53.6],
@@ -56,9 +58,10 @@
     sites.forEach((site, index) => {
       const host = new URL(site.url).host.replace(/^www\./, '');
       const soon = site.status === 'soon';
-      const row = element(soon ? 'article' : 'a', `row rv${soon ? ' soon' : ''}`);
+      const hasActions = site.id === 'carguy' && site.demoUrl && site.portalUrl;
+      const row = element(soon || hasActions ? 'article' : 'a', `row rv${soon ? ' soon' : ''}${hasActions ? ' row-with-actions' : ''}`);
       row.style.setProperty('--accent', site.accent);
-      if (!soon) {
+      if (!soon && !hasActions) {
         row.href = site.url;
         row.setAttribute('aria-label', `${site.name}: ${site.tagline}`);
       }
@@ -75,7 +78,22 @@
 
       const tag = element('p', 'tag', site.tagline);
       row.append(tag);
-      row.append(element('span', 'go', soon ? host : `${host}  →`));
+      if (hasActions) {
+        const actions = element('span', 'row-actions');
+        [
+          { label: 'Demo ↗', url: site.demoUrl },
+          { label: 'Portal ↗', url: site.portalUrl },
+        ].forEach(({ label, url }) => {
+          const link = element('a', '', label);
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          actions.append(link);
+        });
+        row.append(actions);
+      } else {
+        row.append(element('span', 'go', soon ? host : `${host}  →`));
+      }
       row.append(element('span', 'cat', site.category));
       rows.append(row);
 
@@ -125,6 +143,22 @@
         live.rel = 'noopener noreferrer';
         live.setAttribute('aria-label', `Open ${repo.name} website`);
         links.append(live);
+      }
+      if (repo.demo) {
+        const demo = element('a', 'repo-demo', 'Demo ↗');
+        demo.href = repo.demo;
+        demo.target = '_blank';
+        demo.rel = 'noopener noreferrer';
+        demo.setAttribute('aria-label', `Open ${repo.name} demo`);
+        links.append(demo);
+      }
+      if (repo.portal) {
+        const portal = element('a', 'repo-portal', 'Portal ↗');
+        portal.href = repo.portal;
+        portal.target = '_blank';
+        portal.rel = 'noopener noreferrer';
+        portal.setAttribute('aria-label', `Open ${repo.name} dealer portal`);
+        links.append(portal);
       }
       const source = element('a', 'repo-source', 'Source ↗');
       source.href = url;

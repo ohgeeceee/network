@@ -2,7 +2,7 @@
 
 This is the connective tissue for the sites you make: **finally**, **Manners**,
 **beemuu**, **Montana Blotter**, **Idaho Blotter**, **Garage Route**, and the
-**CarGuy Dealership Platform**. The goal
+**Car Guy Portal**. The goal
 isn't to make them look identical — each has its own personality — but to make it
 obvious they come from the same hand, and to let a visitor on one hop to the others.
 
@@ -73,7 +73,7 @@ and dot in the bar):
 | Montana Blotter | oxblood | `#9E3B34` |
 | Idaho Blotter | pine | `#3E7D57` |
 | GarageRoute | teal | `#1F9E8F` |
-| CarGuy Dealership Platform | signal | `#C2541B` |
+| Car Guy Portal | signal | `#C2541B` |
 
 These are defined per-site in the registry (`accent` field). Change one there and it
 updates everywhere.
