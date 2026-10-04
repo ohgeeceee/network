@@ -238,6 +238,9 @@ function loadGuides() {
     if (d.difficulty_level && !DIFFICULTY_LABEL[d.difficulty_level]) errors.push(`${file}: difficulty_level must be easy|medium|advanced`);
     if (d.targeted_region && !REGION_LABEL[d.targeted_region]) errors.push(`${file}: targeted_region must be us|montana|rural-us`);
     if (d.primary_device && !DEVICE_LABEL[d.primary_device]) errors.push(`${file}: unknown primary_device "${d.primary_device}"`);
+    if (d.service_intent && !SERVICE_INTENTS.includes(d.service_intent)) errors.push(`${file}: service_intent must be ${SERVICE_INTENTS.join('|')}`);
+    if (d.cta_type && !CTA_TYPES.includes(d.cta_type)) errors.push(`${file}: cta_type must be ${CTA_TYPES.join('|')}`);
+    if (d.cta_type && d.cta_type !== 'none' && !d.service_link) warnings.push(`${file}: no service_link — falling back to the lane default`);
     if (d.quick_fix && String(d.quick_fix).length > 220) warnings.push(`${file}: quick_fix is ${String(d.quick_fix).length} chars (keep it under ~220)`);
     if (!/###\s*Step\s+1/i.test(parsed.body)) errors.push(`${file}: body needs at least one "### Step 1 — ..." section`);
     const words = parsed.body.split(/\s+/).filter(Boolean).length;
@@ -246,6 +249,10 @@ function loadGuides() {
       tags: asList(d.tags), difficulty_level: d.difficulty_level, estimated_time: d.estimated_time,
       reading_time: Math.max(1, Math.round(words / 200)), primary_device: d.primary_device,
       os_versions: asList(d.os_versions), audience: asList(d.audience), targeted_region: d.targeted_region,
+      service_intent: d.service_intent || 'pro_recommended',
+      on_site_eligible: d.on_site_eligible === true || d.on_site_eligible === 'true',
+      cta_type: d.cta_type || 'remote_booking',
+      service_link: d.service_link || (SERVICE_LANES[d.cta_type] ? SERVICE_LANES[d.cta_type].url : BOOKING_URL),
       problem_type: d.problem_type || '', symptoms: asList(d.symptoms), quick_fix: d.quick_fix,
       prerequisites: asList(d.prerequisites), dont_need: d.dont_need || '',
       verification: asList(d.verification), escalation: asList(d.escalation),
@@ -355,11 +362,30 @@ function revealScript() {
   var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var els = document.querySelectorAll(".rv");
-  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  els.forEach(function (e) { io.observe(e); });
+  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); }
+  else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+  // sticky CTA bar — appears past half a page, dismissible, remembered. No tracker.
+  var bar = document.getElementById("stickybar");
+  if (bar) {
+    var KEY = "ogc-cta-dismissed";
+    try { if (localStorage.getItem(KEY) === "1") { bar.parentNode.removeChild(bar); return; } } catch (e) {}
+    var onScroll = function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.hidden = (h > 0 ? window.scrollY / h : 0) < 0.5;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    var x = bar.querySelector(".sb-x");
+    if (x) x.addEventListener("click", function () {
+      bar.parentNode.removeChild(bar);
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    });
+  }
 })();
 </script>`;
 }
