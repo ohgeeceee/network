@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Satellite Internet Slow or Dropping Out (Starlink &amp; HughesNet) — ohgeeceee</title>
+<meta name="description" content="Why satellite internet slows down, drops out, and stalls in bad weather — and the settings and placement fixes that actually help." />
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#FAF7F2" />
+<link rel="canonical" href="https://ohgeec.com/tech-support/connectivity/satellite-internet-slow-starlink-hughesnet/" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="the ohgeeceee network" />
+<meta property="og:title" content="Satellite Internet Slow or Dropping Out (Starlink &amp; HughesNet) — ohgeeceee" />
+<meta property="og:description" content="Why satellite internet slows down, drops out, and stalls in bad weather — and the settings and placement fixes that actually help." />
+<meta property="og:url" content="https://ohgeec.com/tech-support/connectivity/satellite-internet-slow-starlink-hughesnet/" />
+<meta property="og:image" content="https://ohgeec.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Satellite Internet Slow or Dropping Out (Starlink &amp; HughesNet) — ohgeeceee" />
+<meta name="twitter:description" content="Why satellite internet slows down, drops out, and stalls in bad weather — and the settings and placement fixes that actually help." />
+<meta name="twitter:image" content="https://ohgeec.com/og-image.png" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FAF7F2'/%3E%3Ccircle cx='12' cy='5' r='2.4' fill='%2314110E'/%3E%3Ccircle cx='5' cy='17' r='2.4' fill='%2314110E'/%3E%3Ccircle cx='19' cy='17' r='2.4' fill='%2314110E'/%3E%3Cpath d='M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8' stroke='%2314110E' stroke-width='1.3' stroke-linecap='round' fill='none'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/fonts.css" />
+<link rel="stylesheet" href="/tech-support/tech-support.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Satellite Internet Slow or Dropping Out (Starlink & HughesNet)",
+      "description": "Why satellite internet slows down, drops out, and stalls in bad weather — and the settings and placement fixes that actually help.",
+      "url": "https://ohgeec.com/tech-support/connectivity/satellite-internet-slow-starlink-hughesnet/",
+      "datePublished": "2026-10-04",
+      "dateModified": "2026-10-04",
+      "author": {
+        "@type": "Person",
+        "name": "ohgeeceee",
+        "url": "https://ohgeec.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "the ohgeeceee network",
+        "url": "https://ohgeec.com/"
+      },
+      "mainEntityOfPage": "https://ohgeec.com/tech-support/connectivity/satellite-internet-slow-starlink-hughesnet/",
+      "image": "https://ohgeec.com/og-image.png",
+      "inLanguage": "en-US",
+      "about": "buffering, video calls drop, slow evenings, no internet in storms, high latency",
+      "keywords": "Connectivity, network:satellite, isp:starlink, isp:hughesnet, problem:slow, audience:rural"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ohgeec.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tech Support",
+          "item": "https://ohgeec.com/tech-support/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Connectivity",
+          "item": "https://ohgeec.com/tech-support/connectivity/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Satellite Internet Slow or Dropping Out (Starlink & HughesNet)",
+          "item": "https://ohgeec.com/tech-support/connectivity/satellite-internet-slow-starlink-hughesnet/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why is satellite internet slow in the evening?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Everyone in your area is online at once, and the satellite capacity is shared. This is congestion, not a fault. It is worst between about 7pm and 11pm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does weather really break satellite internet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Heavy rain, wet snow, and thick cloud attenuate the signal. Light rain usually does not. This is called rain fade and it is physics, not a broken dish."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does latency matter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A lot for video calls and gaming. Satellite round-trips run much higher than cable, so a stable 50 Mbps on satellite can feel worse than 15 Mbps on cable for live calls."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="5" r="2.4" fill="#14110E"/><circle cx="5" cy="17" r="2.4" fill="#14110E"/><circle cx="19" cy="17" r="2.4" fill="#14110E"/>
+      <path d="M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8" stroke="#14110E" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    <b>ohgeeceee</b>
+  </a>
+  <span class="coords">Remote &mdash; anywhere in the US</span>
+  <nav>
+    <a href="/#work">Index</a>
+    <a href="/#about">About</a>
+    <a href="/tech-support/" class="current" aria-current="page">Tech help</a>
+    <a href="/support.html" class="nav-support">Support</a>
+  </nav>
+</header>
+<main>
+  <div class="wrap wrap--narrow">
+    <nav class="crumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tech-support/">Tech Support</a></li><li><a href="/tech-support/connectivity/">Connectivity</a></li><li><span aria-current="page">Satellite Internet Slow or Dropping Out (Starlink &amp; HughesNet)</span></li></ol></nav>
+    <p class="kicker rv">Connectivity / Slow</p>
+    <h1 class="rv">Satellite Internet Slow or Dropping Out (Starlink &amp; HughesNet)</h1>
+    <p class="lede rv">Why satellite internet slows down, drops out, and stalls in bad weather — and the settings and placement fixes that actually help.</p>
+    <div class="metastrip"><span class="chip chip--go"><b>&#9889; 30-second fix</b></span>
+      <span class="chip">Difficulty <b>Medium</b></span>
+      <span class="chip">About <b>15 min</b></span>
+      <span class="chip">Works on <b>Router · Starlink app · HughesNet</b></span>
+      <span class="chip">Rural US</span></div>
+
+    <div class="quickfix rv">
+      <p class="qf-label">The 30-second fix</p>
+      <p class="qf-do">Check the dish for snow, dust, or a new obstruction (a growing tree) and clear it. Then run the app's own speed test. Most satellite slowdowns are obstruction or weather, not a setting.</p>
+      <p class="qf-done">If that sorted it, you are done. If not, keep reading &mdash; the rest takes about 15 minutes.</p>
+    </div>
+
+    <div class="prereq">
+      <h2>Before you start</h2>
+      <ul><li>The Starlink or HughesNet app on your phone</li><li>The Wi-Fi password for your router</li><li>A clear line of sight check — can you see the dish from the ground</li></ul>
+      <p class="dont">You do not need to reboot the dish to factory settings, or buy a new router. Most fixes are placement and weather.</p>
+    </div>
+
+    <h2 class="sec-h">Two different problems, one symptom</h2>
+<p>&quot;Satellite internet is slow&quot; covers two very different faults, and they need different fixes.</p>
+<p>The first is <strong>obstruction</strong> — something between your dish and the sky. The second is <strong>congestion and weather</strong> — the shared satellite link itself. The app tells you which one you have, so start there rather than guessing.</p>
+<h2 class="sec-h">The steps</h2>
+<div class="steps">
+<article class="step"><div class="step-head"><span class="step-num">Step 1</span><h3>Read the app's obstruction view</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">Starlink app obstruction view showing a mostly dark sky circle</p></figure>
+<p>Open the Starlink app and tap <strong>Obstructions</strong>. You are looking for a mostly dark circle. Any large red or orange blob is something in the way — a tree, a chimney, a pole.</p>
+<p>HughesNet users: look for the signal strength and obstruction indicators in the HughesNet app or the modem's status page.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 2</span><h3>Clear what you can</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">Snow being brushed off a satellite dish</p></figure>
+<p>Wet snow, ice, and dust are the most common culprits and the easiest to fix. Brush snow off the face of the dish — do not scrape at it with anything metal. Check that a tree has not grown into the line of sight since you installed it; that is a very common summer-to-winter change.</p>
+<div class="callout callout--warn">Never climb onto a roof to clear a dish in icy conditions. If you cannot reach it safely, wait it out or hire it out.</div>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 3</span><h3>Run the app's own speed test</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">Speed test result screen in the satellite app</p></figure>
+<p>Use the speed test <strong>inside the app</strong>, not a website. It tests the satellite link itself, which is what you want to isolate. Then run a speed test on a device over Wi-Fi. If the app test is fast and the Wi-Fi test is slow, your problem is the Wi-Fi, not the satellite — go to <a href="/tech-support/connectivity/boost-wifi-signal-large-home-outbuildings/">boosting Wi-Fi across a large property</a>.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 4</span><h3>Note the time of day</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">A notebook with evening hours circled</p></figure>
+<p>Write down when it slows. If it is consistently 7pm to 11pm, that is congestion and there is no setting that fixes it — it is shared capacity. Knowing this saves you an hour of pointless fiddling.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 5</span><h3>Move the router off the dish's power supply</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">Router placed on a shelf away from other electronics</p></figure>
+<p>If your router sits right on top of the dish's power brick, or next to a microwave or cordless phone base, move it. Those devices throw out interference on the same frequencies Wi-Fi uses.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 6</span><h3>Power-cycle the dish properly</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">Power brick being unplugged from a wall socket</p></figure>
+<p>Unplug the dish at the wall — not just the router — and leave it a full 60 seconds. Plug it back in and give it up to 15 minutes to re-acquire satellites. This clears the &quot;it has been running for eight months&quot; gremlins.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 7</span><h3>Test with a cable</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">Ethernet cable running from the router to a laptop</p></figure>
+<p>Run an ethernet cable from the router directly to one laptop and test there. If it is still slow on a cable, the problem is the satellite link and no router change will help. If the cable is fast and Wi-Fi is slow, you have a Wi-Fi problem.</p>
+</div></article>
+</div>
+<h2 class="sec-h">What genuinely cannot be fixed</h2>
+<ul><li><strong>Rain fade.</strong> Heavy rain and wet snow block the signal. It clears when the weather does.</li><li><strong>Evening congestion.</strong> Shared capacity in a busy cell. It eases after about 11pm.</li><li><strong>High latency.</strong> Satellite round-trips are long. Fine for streaming, harder for live video calls and gaming.</li></ul>
+<p>Being clear about those three stops you chasing a fix that does not exist — and tells you when a different technology (fixed wireless, fibre if it ever arrives, or a second connection for calls) is the real answer.</p>
+
+    <div class="verify">
+      <h2>Did it work?</h2>
+      <ul><li>A speed test inside the app shows your normal range for the plan</li><li>The obstruction view in the app shows a clear, dark sky area</li><li>Video calls hold for five minutes without freezing</li><li>No red or yellow alerts on the app's home screen</li></ul>
+    </div>
+    <details class="escalation">
+      <summary>Still not working?</summary>
+      <div class="esc-body">
+        <ol><li>Power-cycle the dish: unplug it at the wall for a full 60 seconds, then plug it back in and let it re-acquire (up to 15 minutes).</li><li>Move the router away from the dish's power supply and away from microwaves and cordless phone bases.</li><li>Run an ethernet cable from the router straight to one device to prove whether the slowdown is Wi-Fi or the satellite link itself.</li><li>Contact support with your speed test history and the exact times the slowdown happens — evenings and storms are normal and worth documenting.</li></ol>
+        <p class="esc-pro">If none of that helped, it is usually a hardware or account problem rather than a settings one &mdash; and that is exactly the kind of thing worth handing to someone for an hour. <a href="/book.html">Book a session &rarr;</a></p>
+      </div>
+    </details>
+  </div>
+
+  <section class="cta">
+  <h2 class="rv">Still stuck? <em>I can take it from here.</em></h2>
+  <p class="rv">If the steps above did not do it, that is what I am here for &mdash; remote, flat rate, plain language. You watch everything I do.</p>
+  <a class="btn rv" href="/book.html" rel="noopener">Book a session &rarr;</a>
+  <p class="fine rv">REMOTE SESSIONS ONLY &mdash; ANYWHERE IN THE US &mdash; FLAT RATE, UP FRONT</p>
+</section>
+
+  <div class="wrap wrap--narrow">
+    <section class="related">
+    <h2>Related fixes</h2>
+    <div class="card-grid card-grid--3">
+      <a class="gcard" href="/tech-support/connectivity/boost-wifi-signal-large-home-outbuildings/">
+        <span class="gcat">Connectivity</span>
+        <h3>Boost Home Wi-Fi Across a Large House and Outbuildings</h3>
+        <p>Get Wi-Fi to the far bedroom, the shop, and the barn without buying the wrong gadget. Where to put the router, and when a mesh or a bridge is the right call.</p>
+        <span class="gmeta"><span>Medium</span><span>20 min</span><span class="go">Open &rarr;</span></span>
+      </a>
+      <a class="gcard" href="/tech-support/connectivity/fix-no-service-sos-mode-rural-montana/">
+        <span class="gcat">Connectivity</span>
+        <h3>Fix &quot;No Service&quot; and SOS Mode on Your Phone in Rural Areas</h3>
+        <p>Your phone says No Service or shows SOS only. Nine things to try, in order, before you assume there is no signal at all.</p>
+        <span class="gmeta"><span>Easy</span><span>8 min</span><span class="go">Open &rarr;</span></span>
+      </a>
+      <a class="gcard" href="/tech-support/hardware/smart-tv-streaming-weak-wifi/">
+        <span class="gcat">Hardware &amp; Devices</span>
+        <h3>Connect a Smart TV or Streaming Stick to Weak Wi-Fi</h3>
+        <p>Stop the buffering on a smart TV or streaming stick that sits too far from the router. The settings that help, and the cheap cable that beats all of them.</p>
+        <span class="gmeta"><span>Easy</span><span>12 min</span><span class="go">Open &rarr;</span></span>
+      </a>
+    </div>
+  </section>
+    <section class="local">
+    <h2>Around the network</h2>
+    <p>Written from Montana, for the places where the nearest store is a drive and the nearest technician is you.</p>
+    <p><a href="https://finally.help" rel="noopener">What latency actually means, in plain words</a> · <a href="https://supportmt.com" rel="noopener">Rural Montana resilience and family support</a></p>
+  </section>
+    <section class="related"><h2>Common questions</h2><details class="escalation"><summary>Why is satellite internet slow in the evening?</summary><div class="esc-body"><p>Everyone in your area is online at once, and the satellite capacity is shared. This is congestion, not a fault. It is worst between about 7pm and 11pm.</p></div></details>
+    <details class="escalation"><summary>Does weather really break satellite internet?</summary><div class="esc-body"><p>Yes. Heavy rain, wet snow, and thick cloud attenuate the signal. Light rain usually does not. This is called rain fade and it is physics, not a broken dish.</p></div></details>
+    <details class="escalation"><summary>How much does latency matter?</summary><div class="esc-body"><p>A lot for video calls and gaming. Satellite round-trips run much higher than cable, so a stable 50 Mbps on satellite can feel worse than 15 Mbps on cable for live calls.</p></div></details></section>
+    <div class="provenance">
+      <span>By ohgeeceee</span>
+      <span>Published 2026-10-04</span>
+      <span>Last verified 2026-10-04</span>
+      <span>Sources <a href="https://support.starlink.com" rel="noopener">Starlink support — obstruction and speed</a><a href="https://support.hughesnet.com" rel="noopener">HughesNet support centre</a></span>
+    </div>
+  </div>
+</main>
+<footer class="site">
+  <span>ohgeeceee &mdash; plain-language tech guides, built on the same philosophy as <a href="https://finally.help" rel="noopener">finally.help</a></span>
+  <span>46.8797&deg; N, 110.3626&deg; W</span>
+  <span>&copy; <span id="yr">2026</span> the ohgeeceee network &mdash; <a href="/">&larr; Back to the network</a></span>
+</footer>
+<script>
+(function () {
+  "use strict";
+  var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var els = document.querySelectorAll(".rv");
+  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+</body>
+</html>

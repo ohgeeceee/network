@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Password Recovery and Setting Up a Password Manager with 2FA — ohgeeceee</title>
+<meta name="description" content="Get back into a locked account, then set up a password manager and two-factor so it never happens again. Written for people who have never used one." />
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#FAF7F2" />
+<link rel="canonical" href="https://ohgeec.com/tech-support/security/password-recovery-password-managers-2fa/" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="the ohgeeceee network" />
+<meta property="og:title" content="Password Recovery and Setting Up a Password Manager with 2FA — ohgeeceee" />
+<meta property="og:description" content="Get back into a locked account, then set up a password manager and two-factor so it never happens again. Written for people who have never used one." />
+<meta property="og:url" content="https://ohgeec.com/tech-support/security/password-recovery-password-managers-2fa/" />
+<meta property="og:image" content="https://ohgeec.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Password Recovery and Setting Up a Password Manager with 2FA — ohgeeceee" />
+<meta name="twitter:description" content="Get back into a locked account, then set up a password manager and two-factor so it never happens again. Written for people who have never used one." />
+<meta name="twitter:image" content="https://ohgeec.com/og-image.png" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FAF7F2'/%3E%3Ccircle cx='12' cy='5' r='2.4' fill='%2314110E'/%3E%3Ccircle cx='5' cy='17' r='2.4' fill='%2314110E'/%3E%3Ccircle cx='19' cy='17' r='2.4' fill='%2314110E'/%3E%3Cpath d='M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8' stroke='%2314110E' stroke-width='1.3' stroke-linecap='round' fill='none'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/fonts.css" />
+<link rel="stylesheet" href="/tech-support/tech-support.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Password Recovery and Setting Up a Password Manager with 2FA",
+      "description": "Get back into a locked account, then set up a password manager and two-factor so it never happens again. Written for people who have never used one.",
+      "url": "https://ohgeec.com/tech-support/security/password-recovery-password-managers-2fa/",
+      "datePublished": "2026-10-04",
+      "dateModified": "2026-10-04",
+      "author": {
+        "@type": "Person",
+        "name": "ohgeeceee",
+        "url": "https://ohgeec.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "the ohgeeceee network",
+        "url": "https://ohgeec.com/"
+      },
+      "mainEntityOfPage": "https://ohgeec.com/tech-support/security/password-recovery-password-managers-2fa/",
+      "image": "https://ohgeec.com/og-image.png",
+      "inLanguage": "en-US",
+      "about": "locked out, forgot password, reset link not working, need 2FA, account hacked",
+      "keywords": "Security & Privacy, problem:security, network:cellular, audience:senior, audience:non-technical"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ohgeec.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tech Support",
+          "item": "https://ohgeec.com/tech-support/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Security & Privacy",
+          "item": "https://ohgeec.com/tech-support/security/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Password Recovery and Setting Up a Password Manager with 2FA",
+          "item": "https://ohgeec.com/tech-support/security/password-recovery-password-managers-2fa/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which password manager should I use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A well-known one that syncs across your devices and has a free tier. Bitwarden is free and open-source. 1Password and Dashlane are paid and polished. Your browser's built-in one is better than nothing but weaker than a dedicated app."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a password manager safe if they get hacked?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A good one stores your passwords encrypted with a key only you hold, so a break-in at the company does not expose them. That is the whole point of the design."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is two-factor, in one sentence?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A second proof that it is really you — a code from an app or a text — on top of your password, so a stolen password alone is not enough."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use text messages for 2FA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is far better than nothing, but an authenticator app is stronger because text messages can be intercepted. Use the app when the site offers it."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="5" r="2.4" fill="#14110E"/><circle cx="5" cy="17" r="2.4" fill="#14110E"/><circle cx="19" cy="17" r="2.4" fill="#14110E"/>
+      <path d="M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8" stroke="#14110E" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    <b>ohgeeceee</b>
+  </a>
+  <span class="coords">Remote &mdash; anywhere in the US</span>
+  <nav>
+    <a href="/#work">Index</a>
+    <a href="/#about">About</a>
+    <a href="/tech-support/" class="current" aria-current="page">Tech help</a>
+    <a href="/support.html" class="nav-support">Support</a>
+  </nav>
+</header>
+<main>
+  <div class="wrap wrap--narrow">
+    <nav class="crumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tech-support/">Tech Support</a></li><li><a href="/tech-support/security/">Security &amp; Privacy</a></li><li><span aria-current="page">Password Recovery and Setting Up a Password Manager with 2FA</span></li></ol></nav>
+    <p class="kicker rv">Security &amp; Privacy / Security</p>
+    <h1 class="rv">Password Recovery and Setting Up a Password Manager with 2FA</h1>
+    <p class="lede rv">Get back into a locked account, then set up a password manager and two-factor so it never happens again. Written for people who have never used one.</p>
+    <div class="metastrip"><span class="chip chip--go"><b>&#9889; 30-second fix</b></span>
+      <span class="chip">Difficulty <b>Medium</b></span>
+      <span class="chip">About <b>25 min</b></span>
+      <span class="chip">Works on <b>Any device · iPhone · Android · Windows · Mac</b></span>
+      <span class="chip">Anywhere in the US</span></div>
+
+    <div class="quickfix rv">
+      <p class="qf-label">The 30-second fix</p>
+      <p class="qf-do">Before anything else, find the account's own Forgot password link and use the email or phone number you signed up with. Do not use a reset link from an email you did not ask for.</p>
+      <p class="qf-done">If that sorted it, you are done. If not, keep reading &mdash; the rest takes about 25 minutes.</p>
+    </div>
+
+    <div class="prereq">
+      <h2>Before you start</h2>
+      <ul><li>Access to the email address the account uses</li><li>Your phone, for verification codes</li><li>About 25 minutes, done calmly</li></ul>
+      <p class="dont">You do not need to write passwords on paper, and you do not need to change every password today. Start with email, then bank, then everything else.</p>
+    </div>
+
+    <h2 class="sec-h">Two jobs, in order</h2>
+<p>There are two separate jobs here and it matters which you do first.</p>
+<ol><li><strong>Get back in.</strong> Recover the account you are locked out of.</li><li><strong>Make sure it never happens again.</strong> Set up a password manager and two-factor.</li></ol>
+<p>Do them in that order. Recovering an account is urgent; the setup is what stops it recurring.</p>
+<h2 class="sec-h">Part 1 — Get back in</h2>
+<div class="steps">
+<article class="step"><div class="step-head"><span class="step-num">Step 1</span><h3>Use the site's own Forgot password link</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">A sign-in page with the Forgot password link highlighted</p></figure>
+<p>Go to the site directly — type the address yourself rather than clicking a link in an email. Then use its <strong>Forgot password</strong> link.</p>
+<div class="callout callout--stop">Never use a password reset link from an email you did not ask for. That is the single most common phishing trick there is. If you did not request it, delete it.</div>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 2</span><h3>Check your email, including junk</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">An inbox showing a password reset email</p></figure>
+<p>The reset email should arrive within a minute or two. If it does not, check <strong>spam</strong> and <strong>junk</strong>, and search your inbox for the site's name. Reset links expire quickly, so use it the moment it arrives.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 3</span><h3>Handle the verification code</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">A phone showing a six-digit verification code</p></figure>
+<p>Most sites now send a code to your phone or email as a second check. Enter it on the site. This is two-factor working as intended — it is what keeps someone else out even if they know your password.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 4</span><h3>Set a new password you will actually keep</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">A password field showing a long passphrase</p></figure>
+<p>Long beats complicated. Three or four random words strung together — <code>copper-tractor-lantern-nine</code> — is both stronger and easier to remember than <code>P@ssw0rd1</code>.</p>
+</div></article>
+</div>
+<h2 class="sec-h">Part 2 — Never do this again</h2>
+<div class="steps">
+<article class="step"><div class="step-head"><span class="step-num">Step 5</span><h3>Install a password manager</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">A password manager app showing a list of saved logins</p></figure>
+<p>Install one on your phone and your computer. Bitwarden is free and open-source; 1Password and Dashlane are paid and very polished. Any of them is a huge improvement on a notebook.</p>
+<p>The manager remembers every password so you only have to remember one — the master password. Make that one a long passphrase and never reuse it anywhere.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 6</span><h3>Let it generate your passwords</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">A password manager generating a long random password</p></figure>
+<p>From now on, when you sign up somewhere, let the manager generate a long random password. You will never type it. That is the point.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 7</span><h3>Turn on two-factor, starting with email</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">Security settings showing two-step verification enabled</p></figure>
+<p>Turn on two-factor for your <strong>email first</strong>, then your bank, then everything else. Email is the master key to every other account, because that is where password resets go.</p>
+<p>Use an <strong>authenticator app</strong> when offered. Text messages are a decent fallback, not the best choice.</p>
+</div></article>
+<article class="step"><div class="step-head"><span class="step-num">Step 8</span><h3>Save your recovery codes offline</h3></div><div class="step-body">
+<figure class="shot shot--missing"><span class="ph-tag">Screenshot to add</span><p class="ph-alt">Recovery codes written on a card stored in a drawer</p></figure>
+<p>Every account gives you one-time <strong>recovery codes</strong> when you turn on two-factor. Print them or write them down and put them somewhere physical — a drawer, a safe, a wallet. If you lose your phone, these are the only way back in.</p>
+<div class="callout callout--warn">Do not store recovery codes in the same place as your password manager. If you lose access to one, you want the other to still work.</div>
+</div></article>
+</div>
+<h2 class="sec-h">The order that matters</h2>
+<p>Email first, then bank, then the rest. If you only do one thing today, turn on two-factor for your email account — that single step protects everything else by making sure nobody can reset your other passwords.</p>
+
+    <div class="verify">
+      <h2>Did it work?</h2>
+      <ul><li>You are signed in to the account you were locked out of</li><li>The password manager fills a login for you on a test site</li><li>Two-factor codes arrive and work</li><li>You have saved your recovery codes somewhere offline</li></ul>
+    </div>
+    <details class="escalation">
+      <summary>Still not working?</summary>
+      <div class="esc-body">
+        <ol><li>If the reset email never arrives, check the spam and junk folders, and search your inbox for the account name.</li><li>If the account uses a phone number you no longer have, use the account's account-recovery form rather than the normal reset.</li><li>If you are locked out of your email itself, call the provider's support line — email is the master key, so it is worth the phone call.</li><li>If you believe the account was taken over, change the email password first, then everything else, then check the account's forwarding and recovery settings for anything you did not add.</li></ol>
+        <p class="esc-pro">If none of that helped, it is usually a hardware or account problem rather than a settings one &mdash; and that is exactly the kind of thing worth handing to someone for an hour. <a href="/book.html">Book a session &rarr;</a></p>
+      </div>
+    </details>
+  </div>
+
+  <section class="cta">
+  <h2 class="rv">Still stuck? <em>I can take it from here.</em></h2>
+  <p class="rv">If the steps above did not do it, that is what I am here for &mdash; remote, flat rate, plain language. You watch everything I do.</p>
+  <a class="btn rv" href="/book.html" rel="noopener">Book a session &rarr;</a>
+  <p class="fine rv">REMOTE SESSIONS ONLY &mdash; ANYWHERE IN THE US &mdash; FLAT RATE, UP FRONT</p>
+</section>
+
+  <div class="wrap wrap--narrow">
+    <section class="related">
+    <h2>Related fixes</h2>
+    <div class="card-grid card-grid--3">
+      <a class="gcard" href="/tech-support/security/spot-avoid-phishing-text-scams-robocalls/">
+        <span class="gcat">Security &amp; Privacy</span>
+        <h3>Spot and Avoid Phishing Scams, Text Spam and Robocalls</h3>
+        <p>The five tells that give away a scam message, plus how to cut down spam texts and robocalls and what to do if you already clicked.</p>
+        <span class="gmeta"><span>Easy</span><span>10 min</span><span class="go">Open &rarr;</span></span>
+      </a>
+      <a class="gcard" href="/tech-support/software/clear-cache-cookies-popups/">
+        <span class="gcat">Software &amp; Performance</span>
+        <h3>Clear Cache, Cookies and Pop-Ups in Any Browser</h3>
+        <p>A slow, cluttered browser and constant pop-ups are usually the same problem. Clear the right things in Chrome, Edge, Safari or Firefox without losing your passwords.</p>
+        <span class="gmeta"><span>Easy</span><span>6 min</span><span class="go">Open &rarr;</span></span>
+      </a>
+      <a class="gcard" href="/tech-support/software/transfer-photos-data-new-device-cloud/">
+        <span class="gcat">Software &amp; Performance</span>
+        <h3>Move Your Photos and Files to a New Device and Set Up Cloud Backup</h3>
+        <p>Get everything off the old phone or computer and onto the new one without losing photos — then set up a backup that actually runs on its own.</p>
+        <span class="gmeta"><span>Medium</span><span>40 min</span><span class="go">Open &rarr;</span></span>
+      </a>
+    </div>
+  </section>
+    <section class="local">
+    <h2>Around the network</h2>
+    <p>More from the maker of this network.</p>
+    <p><a href="https://finally.help" rel="noopener">What two-factor authentication really is</a> · <a href="https://manners.pro" rel="noopener">Small tools that respect the person using them</a></p>
+  </section>
+    <section class="related"><h2>Common questions</h2><details class="escalation"><summary>Which password manager should I use?</summary><div class="esc-body"><p>A well-known one that syncs across your devices and has a free tier. Bitwarden is free and open-source. 1Password and Dashlane are paid and polished. Your browser's built-in one is better than nothing but weaker than a dedicated app.</p></div></details>
+    <details class="escalation"><summary>Is a password manager safe if they get hacked?</summary><div class="esc-body"><p>A good one stores your passwords encrypted with a key only you hold, so a break-in at the company does not expose them. That is the whole point of the design.</p></div></details>
+    <details class="escalation"><summary>What is two-factor, in one sentence?</summary><div class="esc-body"><p>A second proof that it is really you — a code from an app or a text — on top of your password, so a stolen password alone is not enough.</p></div></details>
+    <details class="escalation"><summary>Should I use text messages for 2FA?</summary><div class="esc-body"><p>It is far better than nothing, but an authenticator app is stronger because text messages can be intercepted. Use the app when the site offers it.</p></div></details></section>
+    <div class="provenance">
+      <span>By ohgeeceee</span>
+      <span>Published 2026-10-04</span>
+      <span>Last verified 2026-10-04</span>
+      <span>Sources <a href="https://bitwarden.com" rel="noopener">Bitwarden — free password manager</a><a href="https://www.cisa.gov/secure-our-world" rel="noopener">CISA — use a password manager</a></span>
+    </div>
+  </div>
+</main>
+<footer class="site">
+  <span>ohgeeceee &mdash; plain-language tech guides, built on the same philosophy as <a href="https://finally.help" rel="noopener">finally.help</a></span>
+  <span>46.8797&deg; N, 110.3626&deg; W</span>
+  <span>&copy; <span id="yr">2026</span> the ohgeeceee network &mdash; <a href="/">&larr; Back to the network</a></span>
+</footer>
+<script>
+(function () {
+  "use strict";
+  var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var els = document.querySelectorAll(".rv");
+  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+</body>
+</html>

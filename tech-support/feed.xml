@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Tech support guides &mdash; the ohgeeceee network</title>
+    <link>https://ohgeec.com/tech-support/</link>
+    <description>Plain-language fixes for the tech around a rural home.</description>
+    <language>en-us</language>
+    <item>
+      <title>Fix &quot;No Service&quot; and SOS Mode on Your Phone in Rural Areas</title>
+      <link>https://ohgeec.com/tech-support/connectivity/fix-no-service-sos-mode-rural-montana/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/connectivity/fix-no-service-sos-mode-rural-montana/</guid>
+      <description>Your phone says No Service or shows SOS only. Nine things to try, in order, before you assume there is no signal at all.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Satellite Internet Slow or Dropping Out (Starlink &amp; HughesNet)</title>
+      <link>https://ohgeec.com/tech-support/connectivity/satellite-internet-slow-starlink-hughesnet/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/connectivity/satellite-internet-slow-starlink-hughesnet/</guid>
+      <description>Why satellite internet slows down, drops out, and stalls in bad weather — and the settings and placement fixes that actually help.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Boost Home Wi-Fi Across a Large House and Outbuildings</title>
+      <link>https://ohgeec.com/tech-support/connectivity/boost-wifi-signal-large-home-outbuildings/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/connectivity/boost-wifi-signal-large-home-outbuildings/</guid>
+      <description>Get Wi-Fi to the far bedroom, the shop, and the barn without buying the wrong gadget. Where to put the router, and when a mesh or a bridge is the right call.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Clear Cache, Cookies and Pop-Ups in Any Browser</title>
+      <link>https://ohgeec.com/tech-support/software/clear-cache-cookies-popups/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/software/clear-cache-cookies-popups/</guid>
+      <description>A slow, cluttered browser and constant pop-ups are usually the same problem. Clear the right things in Chrome, Edge, Safari or Firefox without losing your passwords.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Password Recovery and Setting Up a Password Manager with 2FA</title>
+      <link>https://ohgeec.com/tech-support/security/password-recovery-password-managers-2fa/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/security/password-recovery-password-managers-2fa/</guid>
+      <description>Get back into a locked account, then set up a password manager and two-factor so it never happens again. Written for people who have never used one.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Quick Fixes for an Extremely Slow Computer or Laptop</title>
+      <link>https://ohgeec.com/tech-support/software/speed-up-slow-computer/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/software/speed-up-slow-computer/</guid>
+      <description>The eight things that actually speed up a slow Windows PC or Mac, in order of effort — from what starts automatically to the drive that is quietly full.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Connect a Smart TV or Streaming Stick to Weak Wi-Fi</title>
+      <link>https://ohgeec.com/tech-support/hardware/smart-tv-streaming-weak-wifi/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/hardware/smart-tv-streaming-weak-wifi/</guid>
+      <description>Stop the buffering on a smart TV or streaming stick that sits too far from the router. The settings that help, and the cheap cable that beats all of them.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Spot and Avoid Phishing Scams, Text Spam and Robocalls</title>
+      <link>https://ohgeec.com/tech-support/security/spot-avoid-phishing-text-scams-robocalls/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/security/spot-avoid-phishing-text-scams-robocalls/</guid>
+      <description>The five tells that give away a scam message, plus how to cut down spam texts and robocalls and what to do if you already clicked.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Set Up a Wireless Printer and Fix Printer Offline Errors</title>
+      <link>https://ohgeec.com/tech-support/hardware/fix-printer-offline-wireless-setup/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/hardware/fix-printer-offline-wireless-setup/</guid>
+      <description>Get a wireless printer onto your network once and keep it there. Plus the offline-error fixes, in order, when it drops off again.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Move Your Photos and Files to a New Device and Set Up Cloud Backup</title>
+      <link>https://ohgeec.com/tech-support/software/transfer-photos-data-new-device-cloud/</link>
+      <guid isPermaLink="true">https://ohgeec.com/tech-support/software/transfer-photos-data-new-device-cloud/</guid>
+      <description>Get everything off the old phone or computer and onto the new one without losing photos — then set up a backup that actually runs on its own.</description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
