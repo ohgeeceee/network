@@ -64,7 +64,7 @@ await app.register(rateLimit, {
   errorResponseBuilder: () => ({ error: 'Please wait before trying again.' }),
 });
 
-app.get('/healthz', async (_request, reply) => {
+app.get('/healthz', { config: { rateLimit: false } }, async (_request, reply) => {
   try {
     await pool.query('SELECT 1');
     return reply.send({ ok: true });
@@ -108,7 +108,12 @@ app.post('/v1/intake', async (request, reply) => {
 });
 
 app.setNotFoundHandler((_request, reply) => reply.code(404).send({ error: 'Not found.' }));
-app.setErrorHandler((_error, _request, reply) => reply.code(400).send({ error: 'Request could not be accepted.' }));
+app.setErrorHandler((error, _request, reply) => {
+  const status = Number.isInteger(error.statusCode) && error.statusCode >= 400 && error.statusCode < 500
+    ? error.statusCode : 400;
+  const message = status === 429 ? 'Please wait before trying again.' : 'Request could not be accepted.';
+  return reply.code(status).send({ error: message });
+});
 
 const port = Number(process.env.PORT || 3000);
 await app.listen({ host: '0.0.0.0', port });
