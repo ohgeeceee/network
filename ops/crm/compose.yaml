@@ -27,8 +27,8 @@ services:
       postgres: { condition: service_healthy }
     environment:
       SECRET: ${DIRECTUS_SECRET:?set in .env}
-      ADMIN_EMAIL: ${ADMIN_EMAIL:?set in .env}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?set in .env}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
       DB_CLIENT: pg
       DB_HOST: postgres
       DB_PORT: 5432
