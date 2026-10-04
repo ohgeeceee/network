@@ -1,0 +1,12 @@
+[Unit]
+Description=Pull and health-check the approved ohgeec CRM intake image
+After=docker.service network-online.target
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=ohgeec-deploy
+Group=docker
+WorkingDirectory=/opt/ohgeec/network/ops/crm
+ExecStart=/opt/ohgeec/network/ops/crm/deploy.sh

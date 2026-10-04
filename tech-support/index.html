@@ -205,11 +205,30 @@
   var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var els = document.querySelectorAll(".rv");
-  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  els.forEach(function (e) { io.observe(e); });
+  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); }
+  else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+  // sticky CTA bar — appears past half a page, dismissible, remembered. No tracker.
+  var bar = document.getElementById("stickybar");
+  if (bar) {
+    var KEY = "ogc-cta-dismissed";
+    try { if (localStorage.getItem(KEY) === "1") { bar.parentNode.removeChild(bar); return; } } catch (e) {}
+    var onScroll = function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.hidden = (h > 0 ? window.scrollY / h : 0) < 0.5;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    var x = bar.querySelector(".sb-x");
+    if (x) x.addEventListener("click", function () {
+      bar.parentNode.removeChild(bar);
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    });
+  }
 })();
 </script>
 </body>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Remote Tech Support — Book a Session</title>
-<meta name="description" content="Fast, friendly remote tech support. Book a session and get your computer, network, or software problems solved from anywhere." />
+<title>Remote &amp; On-Site Tech Support — ohgeeceee</title>
+<meta name="description" content="Request remote tech support or on-site home technology help in Montana." />
 <style>
   :root{
     --bg:#0b1020; --bg2:#111a33; --card:#151f3d; --line:#26345f;
@@ -70,6 +70,9 @@
   .submit{justify-self:start; margin-top:6px; padding:14px 30px; border:0; border-radius:999px; cursor:pointer;
     background:linear-gradient(120deg,var(--accent),var(--accent2)); color:#04122e; font-weight:700; font-size:1rem; box-shadow:var(--shadow)}
   .submit:hover{transform:translateY(-2px)}
+  .submit:disabled{opacity:.6;cursor:wait;transform:none}
+  .consent{display:flex;align-items:flex-start;gap:10px}
+  .consent input[type=checkbox]{width:18px;height:18px;flex:0 0 auto;margin:2px 0 0}
   .note{color:var(--muted); font-size:.82rem; margin-top:10px}
   footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--muted); font-size:.85rem; text-align:center}
   @media(max-width:640px){ form{grid-template-columns:1fr} .book{padding:24px} }
@@ -89,9 +92,9 @@
   </header>
 
   <section class="hero">
-    <h1>Tech problems solved<br><span>without the house call.</span></h1>
-    <p>Secure remote support for your computer, network, and software — fast, friendly, and fixed from anywhere. Pick a time and I'll take it from there.</p>
-    <a class="cta" href="#book">📅 Book a session</a>
+    <h1 id="booking-hero-title">Tech problems solved<br><span>without the house call.</span></h1>
+    <p id="booking-hero-copy">Secure remote support for your computer, network, and software — fast, friendly, and fixed from anywhere. Pick a time and I'll take it from there.</p>
+    <a class="cta" id="booking-hero-cta" href="#book">📅 Request support</a>
     <div class="trust">
       <span>✅ <b>Secure</b> remote access</span>
       <span>⚡ <b>Same-day</b> appointments</span>
@@ -99,7 +102,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="service-categories">
     <div class="grid">
       <div class="card">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
@@ -134,7 +137,7 @@
     </div>
   </section>
 
-  <section class="pricing">
+  <section class="pricing" id="remote-pricing">
     <div class="plan">
       <h3>Quick Fix</h3>
       <div class="price">$39 <small>/ 30 min</small></div>
@@ -165,67 +168,98 @@
   </section>
 
   <section class="book" id="book">
-    <h2>Book your session</h2>
-    <p class="sub">Tell me what's going on and when works for you. You'll get a confirmation by email.</p>
+    <h2>Request tech support</h2>
+    <p class="sub">Tell me what is happening and when works for you. I will follow up using your preferred contact method.</p>
 
-    <form action="https://formsubmit.co/jon@ohgeec.com" method="POST">
-      <input type="hidden" name="_subject" value="🔧 New Remote Tech Support booking request" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="thanks.html" />
+    <form id="service-request" data-intake-form>
+      <input type="hidden" id="request-type" name="requestType" value="website_request" />
+      <input type="hidden" id="source-page" name="sourcePage" value="/book.html" />
 
-      <!-- spam honeypot (leave empty) -->
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+      <!-- Spam honeypot. Humans leave this field blank. -->
+      <div class="field" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+        <label for="website">Leave this field empty</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
 
       <div class="field">
         <label for="name">Your name *</label>
-        <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+        <input id="name" name="name" type="text" maxlength="120" placeholder="Jane Doe" autocomplete="name" required />
       </div>
       <div class="field">
-        <label for="email">Email *</label>
-        <input id="email" name="email" type="email" placeholder="jane@email.com" required />
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" maxlength="254" placeholder="jane@email.com" autocomplete="email" />
       </div>
       <div class="field">
-        <label for="phone">Phone (optional)</label>
-        <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" />
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" maxlength="32" placeholder="+1 406 555 0123" autocomplete="tel" />
+      </div>
+      <div class="field">
+        <label for="preferred-contact">Preferred contact *</label>
+        <select id="preferred-contact" name="preferredContact" required>
+          <option value="">Choose one…</option>
+          <option value="phone">Phone call</option>
+          <option value="sms">Text message</option>
+          <option value="email">Email</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="location">Town or county (required for on-site)</label>
+        <input id="location" name="location" type="text" maxlength="120" placeholder="Town or county; no street address yet" autocomplete="address-level2" />
       </div>
       <div class="field">
         <label for="service">What do you need? *</label>
         <select id="service" name="service" required>
           <option value="">Choose a service…</option>
-          <option>Virus &amp; malware removal</option>
-          <option>Setup &amp; optimization</option>
-          <option>Data backup &amp; recovery</option>
-          <option>Software &amp; app help</option>
-          <option>Network &amp; Wi-Fi</option>
-          <option>One-on-one tutoring</option>
-          <option>Something else</option>
+          <option value="virus_malware">Virus &amp; malware removal</option>
+          <option value="setup_optimization">Setup &amp; optimization</option>
+          <option value="data_recovery">Data backup &amp; recovery</option>
+          <option value="software_help">Software &amp; app help</option>
+          <option value="network_wifi">Network &amp; Wi-Fi</option>
+          <option value="starlink_setup">Starlink setup</option>
+          <option value="tutoring">One-on-one tutoring</option>
+          <option value="other">Something else</option>
         </select>
       </div>
       <div class="field">
-        <label for="date">Preferred date *</label>
-        <input id="date" name="date" type="date" required />
+        <label for="device-type">Device type</label>
+        <input id="device-type" name="deviceType" type="text" maxlength="120" placeholder="Router, Starlink, laptop…" />
       </div>
       <div class="field">
-        <label for="time">Preferred time *</label>
-        <input id="time" name="time" type="time" required />
+        <label for="service-mode">How should we help? *</label>
+        <select id="service-mode" name="serviceMode" required>
+          <option value="undecided">Not sure yet</option>
+          <option value="remote">Remote</option>
+          <option value="onsite">On-site in Montana</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="date">Preferred date</label>
+        <input id="date" name="date" type="date" />
+      </div>
+      <div class="field">
+        <label for="time">Preferred time</label>
+        <input id="time" name="time" type="time" />
       </div>
       <div class="field full">
-        <label for="message">What's going on? (optional)</label>
-        <textarea id="message" name="message" placeholder="Briefly describe the problem, your device, and anything you've already tried…"></textarea>
+        <label for="message">What is going on? *</label>
+        <textarea id="message" name="message" maxlength="2000" placeholder="Briefly describe the problem, device, and anything you have already tried. Do not include passwords or Wi-Fi credentials." required></textarea>
       </div>
       <div class="field full">
-        <button class="submit" type="submit">Request my session →</button>
-        <p class="note">By submitting you agree to be contacted about your request. Your details are only used to arrange support.</p>
+        <label class="consent"><input id="consent" name="consentToContact" type="checkbox" required /> I agree to be contacted about this service request.</label>
+        <p class="note">Only share what is needed to arrange support. Do not send account passwords, Wi-Fi passwords, or payment details. See the <a href="/privacy.html">privacy note</a>.</p>
+        <p id="intake-status" class="note" role="status" aria-live="polite"></p>
+        <button class="submit" id="intake-submit" type="submit" disabled>Send service request →</button>
+        <noscript><p class="note">The secure request form needs JavaScript. Please email <a href="mailto:hello@ohgeec.com">hello@ohgeec.com</a> or call/text the number listed on the support page. Do not email passwords.</p></noscript>
       </div>
     </form>
   </section>
 
   <footer>
-    Remote Tech Support · Available worldwide via secure remote connection<br>
-    Questions? Just reply to your confirmation email.
+    Remote support and on-site visits in Montana<br>
+    Questions? Email <a href="mailto:hello@ohgeec.com">hello@ohgeec.com</a>.
   </footer>
 
 </div>
+<script src="/intake.js" defer></script>
 </body>
 </html>

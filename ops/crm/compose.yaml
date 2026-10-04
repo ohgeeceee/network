@@ -1,0 +1,90 @@
+name: ohgeec-crm
+services:
+  postgres:
+    image: ${POSTGRES_IMAGE:?pin a reviewed Postgres image digest}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ohgeec
+      POSTGRES_USER: ohgeec_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+      INTAKE_DB_PASSWORD: ${INTAKE_DB_PASSWORD:?set in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ../../services/intake/sql/001_schema.sql:/docker-entrypoint-initdb.d/010-schema.sql:ro
+      - ../../services/intake/sql/020-create-api-role.sh:/docker-entrypoint-initdb.d/020-create-api-role.sh:ro
+    networks: [data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ohgeec_admin -d ohgeec"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  directus:
+    image: ${DIRECTUS_IMAGE:?pin a reviewed Directus image digest}
+    restart: unless-stopped
+    depends_on:
+      postgres: { condition: service_healthy }
+    environment:
+      SECRET: ${DIRECTUS_SECRET:?set in .env}
+      DB_CLIENT: pg
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: ohgeec
+      DB_USER: ohgeec_admin
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+      PUBLIC_URL: ${DIRECTUS_PRIVATE_URL:?set to Tailscale HTTPS URL}
+      TELEMETRY: "false"
+      LOG_LEVEL: warn
+    ports:
+      - "127.0.0.1:8055:8055"
+    networks: [data, private_admin]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8055/server/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  intake:
+    image: ${INTAKE_IMAGE:-ghcr.io/ohgeeceee/network-intake:stable}
+    restart: unless-stopped
+    depends_on:
+      postgres: { condition: service_healthy }
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: ohgeec
+      DB_USER: intake_api
+      DB_PASSWORD: ${INTAKE_DB_PASSWORD}
+      ALLOWED_ORIGINS: https://ohgeec.com,https://www.ohgeec.com
+      PORT: "3000"
+    networks: [data, ingress]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  cloudflared:
+    image: ${CLOUDFLARED_IMAGE:?pin a reviewed cloudflared image digest}
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?set in .env}
+    depends_on: [intake]
+    networks: [ingress]
+
+networks:
+  data:
+    internal: true
+  ingress: {}
+  private_admin: {}
+
+volumes:
+  pgdata:
