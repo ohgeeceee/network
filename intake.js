@@ -5,6 +5,11 @@
 
   const status = document.getElementById('intake-status');
   const submit = document.getElementById('intake-submit');
+  if (form.dataset.intakeEnabled !== 'true') {
+    submit.disabled = true;
+    status.textContent = 'Online requests are temporarily paused. Please email hello@ohgeec.com. Do not include passwords.';
+    return;
+  }
   const params = new URLSearchParams(window.location.search);
   const mode = params.get('mode');
   const serviceMode = document.getElementById('service-mode');
