@@ -1,0 +1,9 @@
+[Unit]
+Description=Pull and health-check the approved ohgeec CRM intake image
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/services/ohgeec/network/ops/crm
+ExecStart=%h/services/ohgeec/network/ops/crm/deploy.sh

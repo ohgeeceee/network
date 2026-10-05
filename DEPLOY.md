@@ -34,7 +34,7 @@ The private host needs Docker Compose v2, outbound DNS/HTTPS, a Tailscale client
 ## Update flow
 
 1. A merge to `main` deploys the new static site and publishes the intake container.
-2. The home server's systemd timer runs `ops/crm/deploy.sh` every five minutes.
+2. The host's systemd timer runs `ops/crm/deploy.sh` every five minutes. The script uses rootless Podman when available; the current laptop host should use the included user-level units (`ohgeec-crm-update.user.service` and `.timer`). Docker hosts can use the system-level units.
 3. The deploy script pulls the `stable` image, restarts only the intake service, waits for its health check, and restores the previous local image tag if the new container does not become healthy.
 4. Schema changes require an encrypted backup and a reviewed forward migration before the application image is rolled out.
 
