@@ -11,6 +11,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ../../services/intake/sql/001_schema.sql:/docker-entrypoint-initdb.d/010-schema.sql:ro
+      - ../../services/intake/sql/002_crm_extensions.sql:/docker-entrypoint-initdb.d/015-crm-extensions.sql:ro
       - ../../services/intake/sql/020-create-api-role.sh:/docker-entrypoint-initdb.d/020-create-api-role.sh:ro
     networks: [data]
     healthcheck:

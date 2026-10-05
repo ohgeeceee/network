@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS contacts (
   email text,
   email_normalized text,
   location_label text,
+  lead_status text NOT NULL DEFAULT 'new'
+    CHECK (lead_status IN ('new','contacted','qualified','converted','inactive')),
+  next_follow_up_at timestamptz,
   preferred_contact_method text NOT NULL DEFAULT 'phone'
     CHECK (preferred_contact_method IN ('phone','sms','email')),
   consent_to_contact boolean NOT NULL DEFAULT true,
@@ -21,10 +24,28 @@ CREATE UNIQUE INDEX IF NOT EXISTS contacts_email_normalized_unique
 CREATE UNIQUE INDEX IF NOT EXISTS contacts_phone_normalized_unique
   ON contacts(phone_normalized) WHERE phone_normalized IS NOT NULL;
 
+CREATE TABLE IF NOT EXISTS projects (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_number bigint GENERATED ALWAYS AS IDENTITY UNIQUE,
+  contact_id uuid NOT NULL REFERENCES contacts(id),
+  name text NOT NULL,
+  summary text,
+  status text NOT NULL DEFAULT 'planned'
+    CHECK (status IN ('planned','scheduled','in_progress','blocked','completed','cancelled')),
+  priority text NOT NULL DEFAULT 'normal'
+    CHECK (priority IN ('low','normal','high','urgent')),
+  start_date date,
+  target_date date,
+  completed_at timestamptz,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
 CREATE TABLE IF NOT EXISTS service_tickets (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   ticket_number bigint GENERATED ALWAYS AS IDENTITY UNIQUE,
   contact_id uuid NOT NULL REFERENCES contacts(id),
+  project_id uuid REFERENCES projects(id),
   issue_category text NOT NULL,
   request_type text NOT NULL DEFAULT 'website_request',
   device_type text,
@@ -61,6 +82,7 @@ CREATE TABLE IF NOT EXISTS client_assets (
 CREATE TABLE IF NOT EXISTS service_events (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   ticket_id uuid REFERENCES service_tickets(id),
+  project_id uuid REFERENCES projects(id),
   contact_id uuid NOT NULL REFERENCES contacts(id),
   event_type text NOT NULL CHECK (event_type IN ('note','status_change','visit','call','remote_session','work_log','intake')),
   body text NOT NULL,
@@ -77,8 +99,12 @@ CREATE TABLE IF NOT EXISTS intake_submissions (
 
 CREATE INDEX IF NOT EXISTS tickets_status_priority_created ON service_tickets(status, priority, created_at DESC);
 CREATE INDEX IF NOT EXISTS tickets_contact_created ON service_tickets(contact_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS tickets_project_created ON service_tickets(project_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS projects_status_target ON projects(status, target_date);
+CREATE INDEX IF NOT EXISTS projects_contact ON projects(contact_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS assets_contact ON client_assets(contact_id);
 CREATE INDEX IF NOT EXISTS events_ticket_created ON service_events(ticket_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS events_project_created ON service_events(project_id, created_at DESC);
 
 CREATE OR REPLACE FUNCTION touch_updated_at() RETURNS trigger
 LANGUAGE plpgsql
@@ -93,6 +119,9 @@ CREATE TRIGGER contacts_touch_updated_at BEFORE UPDATE ON contacts
   FOR EACH ROW EXECUTE FUNCTION touch_updated_at();
 DROP TRIGGER IF EXISTS tickets_touch_updated_at ON service_tickets;
 CREATE TRIGGER tickets_touch_updated_at BEFORE UPDATE ON service_tickets
+  FOR EACH ROW EXECUTE FUNCTION touch_updated_at();
+DROP TRIGGER IF EXISTS projects_touch_updated_at ON projects;
+CREATE TRIGGER projects_touch_updated_at BEFORE UPDATE ON projects
   FOR EACH ROW EXECUTE FUNCTION touch_updated_at();
 DROP TRIGGER IF EXISTS assets_touch_updated_at ON client_assets;
 CREATE TRIGGER assets_touch_updated_at BEFORE UPDATE ON client_assets
