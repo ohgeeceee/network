@@ -202,16 +202,16 @@
       <summary>Still not working?</summary>
       <div class="esc-body">
         <ol><li>If you already gave out a password, change it immediately and turn on two-factor — start with email.</li><li>If you gave card details, call the number on the back of the card and ask them to freeze it.</li><li>If you installed something they told you to install, remove it and run a malware scan.</li><li>Report the message: forward spam texts to 7726 (SPAM), and report calls and emails to the FTC at ReportFraud.ftc.gov.</li></ol>
-        <p class="esc-pro">If none of that helped, it is usually a hardware or account problem rather than a settings one &mdash; and that is exactly the kind of thing worth handing to someone for an hour. <a href="/book.html">Book a session &rarr;</a></p>
+        <p class="esc-pro">If none of that helped, it is usually a hardware or account problem rather than a settings one &mdash; and that is exactly the kind of thing worth handing to someone for an hour. <a href="/tech-support/onsite-montana/?requestType=spot-avoid-phishing-text-scams-robocalls&amp;sourcePage=%2Ftech-support%2Fsecurity%2Fspot-avoid-phishing-text-scams-robocalls%2F#request">Get a free 10-minute call &rarr;</a></p>
       </div>
     </details>
   </div>
 
   <section class="cta">
   <h2 class="rv">Still stuck? <em>I can take it from here.</em></h2>
-  <p class="rv">If the steps above did not do it, that is what I am here for &mdash; remote, flat rate, plain language. You watch everything I do.</p>
-  <a class="btn rv" href="/book.html" rel="noopener">Book a session &rarr;</a>
-  <p class="fine rv">REMOTE SESSIONS ONLY &mdash; ANYWHERE IN THE US &mdash; FLAT RATE, UP FRONT</p>
+  <p class="rv">If the steps above did not do it, that is what I am here for &mdash; remote or on-site in Montana, plain language, and clear pricing.</p>
+  <a class="btn rv" href="/tech-support/onsite-montana/?requestType=spot-avoid-phishing-text-scams-robocalls&amp;sourcePage=%2Ftech-support%2Fsecurity%2Fspot-avoid-phishing-text-scams-robocalls%2F#request" rel="noopener">Get a free 10-minute call &rarr;</a>
+  <p class="fine rv">REMOTE SUPPORT AVAILABLE</p>
 </section>
 
   <div class="wrap wrap--narrow">
@@ -265,11 +265,30 @@
   var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var els = document.querySelectorAll(".rv");
-  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  els.forEach(function (e) { io.observe(e); });
+  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); }
+  else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+  // sticky CTA bar — appears past half a page, dismissible, remembered. No tracker.
+  var bar = document.getElementById("stickybar");
+  if (bar) {
+    var KEY = "ogc-cta-dismissed";
+    try { if (localStorage.getItem(KEY) === "1") { bar.parentNode.removeChild(bar); return; } } catch (e) {}
+    var onScroll = function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.hidden = (h > 0 ? window.scrollY / h : 0) < 0.5;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    var x = bar.querySelector(".sb-x");
+    if (x) x.addEventListener("click", function () {
+      bar.parentNode.removeChild(bar);
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    });
+  }
 })();
 </script>
 </body>

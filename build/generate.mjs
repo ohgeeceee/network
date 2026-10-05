@@ -252,6 +252,7 @@ function loadGuides() {
       service_intent: d.service_intent || 'pro_recommended',
       on_site_eligible: d.on_site_eligible === true || d.on_site_eligible === 'true',
       cta_type: d.cta_type || 'remote_booking',
+      cta_label: d.cta_label || (SERVICE_LANES[d.cta_type] ? SERVICE_LANES[d.cta_type].label : 'Book a session'),
       service_link: d.service_link || (SERVICE_LANES[d.cta_type] ? SERVICE_LANES[d.cta_type].url : BOOKING_URL),
       problem_type: d.problem_type || '', symptoms: asList(d.symptoms), quick_fix: d.quick_fix,
       prerequisites: asList(d.prerequisites), dont_need: d.dont_need || '',
@@ -396,13 +397,20 @@ function crumbs(items) {
   }).join('');
   return `<nav class="crumb" aria-label="Breadcrumb"><ol>${parts}</ol></nav>`;
 }
-function ctaBlock(heading, body, ctaLabel) {
+function ctaBlock(heading, body, ctaLabel, url = BOOKING_URL, audience = 'REMOTE SESSIONS ONLY &mdash; ANYWHERE IN THE US &mdash; FLAT RATE, UP FRONT') {
   return `<section class="cta">
   <h2 class="rv">${heading}</h2>
   <p class="rv">${body}</p>
-  <a class="btn rv" href="${BOOKING_URL}" rel="noopener">${ctaLabel} &rarr;</a>
-  <p class="fine rv">REMOTE SESSIONS ONLY &mdash; ANYWHERE IN THE US &mdash; FLAT RATE, UP FRONT</p>
+  <a class="btn rv" href="${esc(url)}" rel="noopener">${ctaLabel} &rarr;</a>
+  <p class="fine rv">${audience}</p>
 </section>`;
+}
+
+function guideServiceUrl(g) {
+  const params = new URLSearchParams({ requestType: g.slug, sourcePage: g.urlPath });
+  const [pathAndQuery, fragment] = g.service_link.split('#', 2);
+  const separator = pathAndQuery.includes('?') ? '&' : '?';
+  return `${pathAndQuery}${separator}${params.toString()}${fragment ? `#${fragment}` : ''}`;
 }
 
 /* ------------------------------------------------------------------ *
@@ -473,7 +481,7 @@ function renderGuide(g, all) {
       <summary>Still not working?</summary>
       <div class="esc-body">
         <ol>${g.escalation.map((e) => `<li>${inline(e)}</li>`).join('')}</ol>
-        <p class="esc-pro">If none of that helped, it is usually a hardware or account problem rather than a settings one &mdash; and that is exactly the kind of thing worth handing to someone for an hour. <a href="${BOOKING_URL}">Book a session &rarr;</a></p>
+        <p class="esc-pro">If none of that helped, it is usually a hardware or account problem rather than a settings one &mdash; and that is exactly the kind of thing worth handing to someone for an hour. <a href="${esc(guideServiceUrl(g))}">${esc(g.cta_label)} &rarr;</a></p>
       </div>
     </details>` : '';
   const sources = g.sources.length ? g.sources.map((s) => `<a href="${s.url}" rel="noopener">${esc(s.label)}</a>`).join('') : '';
@@ -527,7 +535,7 @@ ${topbar('tech')}
     ${escBlock}
   </div>
 
-  ${ctaBlock('Still stuck? <em>I can take it from here.</em>', 'If the steps above did not do it, that is what I am here for &mdash; remote, flat rate, plain language. You watch everything I do.', 'Book a session')}
+  ${ctaBlock('Still stuck? <em>I can take it from here.</em>', 'If the steps above did not do it, that is what I am here for &mdash; remote or on-site in Montana, plain language, and clear pricing.', g.cta_label, guideServiceUrl(g), g.cta_type === 'onsite_request' ? 'ON-SITE SERVICE IN MONTANA' : 'REMOTE SUPPORT AVAILABLE')}
 
   <div class="wrap wrap--narrow">
     ${relatedBlock(g, all)}
@@ -691,6 +699,7 @@ function writeSitemap(guides) {
     { loc: '/tech-support/', mod: today, cf: 'weekly', pr: '0.9' },
     ...Object.keys(CATEGORIES).map((k) => ({ loc: `/tech-support/${k}/`, mod: today, cf: 'weekly', pr: '0.7' })),
     ...guides.map((g) => ({ loc: g.urlPath, mod: g.last_verified, cf: 'monthly', pr: '0.8' })),
+    { loc: ONSITE_URL, mod: today, cf: 'monthly', pr: '0.7' },
     { loc: '/book.html', mod: today, cf: 'monthly', pr: '0.7' },
     { loc: '/support.html', mod: today, cf: 'yearly', pr: '0.3' },
   ];
@@ -705,6 +714,58 @@ ${entries.map((e) => `  <url>
 </urlset>
 `;
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
+}
+function renderOnsiteLanding() {
+  const canonical = SITE + ONSITE_URL;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'On-site home technology support in Montana',
+    provider: { '@type': 'Person', name: AUTHOR, url: SITE + '/' },
+    areaServed: { '@type': 'State', name: 'Montana' },
+    serviceType: 'Home technology setup and troubleshooting',
+    url: canonical,
+  };
+  return `${head({ title: 'On-site tech support in Montana — ohgeeceee', description: 'On-site help with Starlink, Wi-Fi, computers, printers, and connected devices across Montana. Request a visit and share only the details needed to plan it.', canonical, ogImage: OG_DEFAULT, type: 'website', ld })}
+<body>
+${topbar('tech')}
+<main>
+  <div class="wrap wrap--narrow">
+    ${crumbs([{ label: 'Home', href: '/' }, { label: 'Tech Support', href: '/tech-support/' }, { label: 'On-site help in Montana' }])}
+    <p class="kicker rv">MONTANA · HOME TECH SUPPORT</p>
+    <h1 class="rv">The tech at home, sorted.</h1>
+    <p class="lede rv">On-site help for rural homes, small businesses, and the places where a reliable connection matters. Tell me what is happening and where you are; we will confirm availability before scheduling.</p>
+    <section class="prereq rv">
+      <h2>What I can help with</h2>
+      <ul>
+        <li>Starlink setup, dish placement, and Wi-Fi coverage</li>
+        <li>Wi-Fi dead zones, router setup, and connected devices</li>
+        <li>Computer, printer, smart TV, and home network troubleshooting</li>
+      </ul>
+      <p class="dont">No account passwords or Wi-Fi passwords in the request form. We can arrange a safe way to share access if a visit requires it.</p>
+    </section>
+    <section class="cta" id="request">
+      <h2>Request an on-site visit</h2>
+      <p>Share your Montana town or county, a short description, and a preferred time. Exact address and access details can wait until the visit is confirmed.</p>
+      <a class="btn" id="onsite-request-link" href="/book.html?mode=onsite">Request an on-site visit &rarr;</a>
+      <p class="fine">MONTANA ON-SITE SERVICE · REQUESTS ARE CONFIRMED BEFORE A VISIT IS BOOKED</p>
+    </section>
+    <p>If remote help is a better fit, <a href="/book.html?mode=remote">request a remote session</a>. For urgent issues, call or text after we confirm your request.</p>
+  </div>
+</main>
+${footer()}
+<script>
+  const incoming = new URLSearchParams(location.search);
+  const booking = new URL('/book.html', location.origin);
+  booking.searchParams.set('mode', 'onsite');
+  booking.searchParams.set('requestType', incoming.get('requestType') || 'onsite_support');
+  booking.searchParams.set('sourcePage', incoming.get('sourcePage') || location.pathname);
+  document.getElementById('onsite-request-link').href = booking.pathname + booking.search;
+</script>
+${revealScript()}
+</body>
+</html>
+`;
 }
 function writeFeed(guides) {
   const items = guides.map((g) => `    <item>
@@ -778,6 +839,8 @@ fs.mkdirSync(path.join(ROOT, 'content'), { recursive: true });
 fs.writeFileSync(path.join(ROOT, 'content', 'guides.json'), JSON.stringify({ generated: today, count: guides.length, guides: manifest }, null, 2));
 
 writeSitemap(guides);
+fs.mkdirSync(path.join(OUT_DIR, 'onsite-montana'), { recursive: true });
+fs.writeFileSync(path.join(OUT_DIR, 'onsite-montana', 'index.html'), renderOnsiteLanding());
 writeFeed(guides);
 writeRedirectStub();
 
@@ -785,6 +848,7 @@ console.log(`\n\u2714 Built ${guides.length} guides, ${Object.keys(CATEGORIES).l
 console.log(`  tech-support/index.html`);
 console.log(`  tech-support/<category>/index.html`);
 console.log(`  tech-support/<category>/<slug>/index.html`);
+console.log(`  tech-support/onsite-montana/index.html`);
 console.log(`  content/guides.json  (${manifest.length} entries)`);
 console.log(`  sitemap.xml, tech-support/feed.xml, tech-support.html (redirect stub)`);
 if (warnings.length) {

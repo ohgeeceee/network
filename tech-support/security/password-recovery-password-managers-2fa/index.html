@@ -224,16 +224,16 @@
       <summary>Still not working?</summary>
       <div class="esc-body">
         <ol><li>If the reset email never arrives, check the spam and junk folders, and search your inbox for the account name.</li><li>If the account uses a phone number you no longer have, use the account's account-recovery form rather than the normal reset.</li><li>If you are locked out of your email itself, call the provider's support line — email is the master key, so it is worth the phone call.</li><li>If you believe the account was taken over, change the email password first, then everything else, then check the account's forwarding and recovery settings for anything you did not add.</li></ol>
-        <p class="esc-pro">If none of that helped, it is usually a hardware or account problem rather than a settings one &mdash; and that is exactly the kind of thing worth handing to someone for an hour. <a href="/book.html">Book a session &rarr;</a></p>
+        <p class="esc-pro">If none of that helped, it is usually a hardware or account problem rather than a settings one &mdash; and that is exactly the kind of thing worth handing to someone for an hour. <a href="/book.html?requestType=password-recovery-password-managers-2fa&amp;sourcePage=%2Ftech-support%2Fsecurity%2Fpassword-recovery-password-managers-2fa%2F">Book a remote session &rarr;</a></p>
       </div>
     </details>
   </div>
 
   <section class="cta">
   <h2 class="rv">Still stuck? <em>I can take it from here.</em></h2>
-  <p class="rv">If the steps above did not do it, that is what I am here for &mdash; remote, flat rate, plain language. You watch everything I do.</p>
-  <a class="btn rv" href="/book.html" rel="noopener">Book a session &rarr;</a>
-  <p class="fine rv">REMOTE SESSIONS ONLY &mdash; ANYWHERE IN THE US &mdash; FLAT RATE, UP FRONT</p>
+  <p class="rv">If the steps above did not do it, that is what I am here for &mdash; remote or on-site in Montana, plain language, and clear pricing.</p>
+  <a class="btn rv" href="/book.html?requestType=password-recovery-password-managers-2fa&amp;sourcePage=%2Ftech-support%2Fsecurity%2Fpassword-recovery-password-managers-2fa%2F" rel="noopener">Book a remote session &rarr;</a>
+  <p class="fine rv">REMOTE SUPPORT AVAILABLE</p>
 </section>
 
   <div class="wrap wrap--narrow">
@@ -288,11 +288,30 @@
   var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var els = document.querySelectorAll(".rv");
-  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  els.forEach(function (e) { io.observe(e); });
+  if (reduced || !("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); }
+  else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+  // sticky CTA bar — appears past half a page, dismissible, remembered. No tracker.
+  var bar = document.getElementById("stickybar");
+  if (bar) {
+    var KEY = "ogc-cta-dismissed";
+    try { if (localStorage.getItem(KEY) === "1") { bar.parentNode.removeChild(bar); return; } } catch (e) {}
+    var onScroll = function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.hidden = (h > 0 ? window.scrollY / h : 0) < 0.5;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    var x = bar.querySelector(".sb-x");
+    if (x) x.addEventListener("click", function () {
+      bar.parentNode.removeChild(bar);
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    });
+  }
 })();
 </script>
 </body>

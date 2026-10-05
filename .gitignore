@@ -6,3 +6,9 @@ verify2.js
 hub.js
 .DS_Store
 Thumbs.db
+
+# Local site artifact, CRM secrets, and database backups
+/site/
+/ops/crm/.env
+/ops/crm/*.dump*
+/ops/crm/*.age

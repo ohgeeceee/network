@@ -13,6 +13,7 @@ targeted_region: rural-us
 service_intent: pro_required
 on_site_eligible: true
 cta_type: onsite_request
+cta_label: Request on-site Starlink setup
 service_link: /tech-support/onsite-montana/
 
 problem_type: Slow

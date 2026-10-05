@@ -1,112 +1,37 @@
-# Deploying the ohgeeceee network hub (free)
+# Deploying ohgeec.com and the private CRM
 
-The hub is three static files — `index.html`, `support.html`, `ogc-network.js` (plus
-`CNAME`). No build step, no server. Any static host works; below is **GitHub Pages**
-(what you asked for) and one alternative worth knowing about.
+## Public portfolio
 
----
+The portfolio and support guides remain static on GitHub Pages. `.github/workflows/deploy.yml` builds the guide pages, assembles only public site files, deploys them to Pages, and builds/publishes the private intake service image to GHCR from commits to `main`. Pull requests run the static guide generator but do not publish images or deploy Pages.
 
-## Recommended: GitHub Pages
+To switch from the current branch-based Pages source to the workflow:
 
-Best fit here — it's free, gives you HTTPS on your own domain, and lives next to your
-existing `github.com/ohgeeceee` repos.
+1. In the repository, open **Settings → Pages** and change **Build and deployment → Source** to **GitHub Actions**.
+2. Check that the repository's custom domain is still `ohgeec.com` and HTTPS is enforced.
+3. Merge the workflow to `main`. Confirm the `Build and deploy portfolio + intake API` workflow succeeds and the live site loads `book.html`, `/privacy.html`, the guide hub, and `/tech-support/onsite-montana/`.
+4. The workflow excludes source content, service source, CRM operations files, and credentials from the Pages artifact. The guides and their generated HTML remain public as intended.
 
-### 1. Make the repo
+GitHub Actions uses GitHub-hosted runners only. It publishes `ghcr.io/ohgeeceee/network-intake:stable` and an immutable `sha-<commit>` image tag. The home server pulls the image; GitHub Actions never connects into the home network.
 
-1. Create a new **public** repo, e.g. `github.com/ohgeeceee/ohgeec`.
-2. Add these files to the repo root (drag-and-drop in the browser is fine):
-   - `index.html`
-   - `support.html`
-   - `ogc-network.js`
-   - `CNAME`  ← already contains `ohgeec.com`, this is what binds the domain
-3. Commit to the `main` branch.
+## DNS and public API
 
-### 2. Turn on Pages
+The portfolio stays on GitHub Pages at `ohgeec.com`. The laptop exposes only the intake API through Tailscale Funnel at `https://parrot.tail60dba7.ts.net:8443`; Directus remains private on the separate Tailscale Serve port 443. Funnel provides a tailnet hostname, not a custom `api.ohgeec.com` hostname, and does not require a router port-forward or public home IP.
 
-Repo → **Settings → Pages** → under *Build and deployment*, set **Source: Deploy from a
-branch**, **Branch: `main` / `/ (root)`** → Save. Give it a minute; it'll show a live URL.
+The compose file binds intake to `127.0.0.1:3000`. Enable Funnel on port 8443 with `sudo tailscale funnel --bg --https=8443 --yes http://127.0.0.1:3000`. Do not route other services through Funnel. `PUBLIC_INTAKE_ENABLED` defaults to `false`; change it to `true` only after full-disk encryption and encrypted backup restoration have been verified, then recreate the intake container.
 
-### 3. Point ohgeec.com at GitHub
+The public form sends JSON to `https://parrot.tail60dba7.ts.net:8443/v1/intake`. The receiver validates an allowlisted schema and writes the contact, ticket, and first event in one PostgreSQL function call when intake is enabled. CORS only allows the portfolio's exact origins; it is not treated as authentication. The form contains no shared secret.
 
-At your domain registrar's DNS, add these records for the **apex** (`ohgeec.com`):
+## Private CRM host
 
-| Type | Name | Value |
-|------|------|-------|
-| A | `@` | `185.199.108.153` |
-| A | `@` | `185.199.109.153` |
-| A | `@` | `185.199.110.153` |
-| A | `@` | `185.199.111.153` |
-| AAAA | `@` | `2606:50c0:8000::153` |
-| AAAA | `@` | `2606:50c0:8001::153` |
-| AAAA | `@` | `2606:50c0:8002::153` |
-| AAAA | `@` | `2606:50c0:8003::153` |
+Follow [ops/crm/README.md](ops/crm/README.md) on the Linux server. Directus listens on `127.0.0.1:8055`; use Tailscale Serve for the owner's tailnet access. PostgreSQL has no host port. Never expose Directus or PostgreSQL publicly and never mount the Docker socket into application containers.
 
-And for the `www` version:
+The private host needs Docker Compose v2, outbound DNS/HTTPS, a Tailscale client, GHCR `read:packages` access, a protected `ops/crm/.env`, and a separate encrypted backup target. Image digests in `.env` must be set to reviewed versions before starting services. The compose stack is not live until those host-specific values, DNS, tunnel route, and initial Directus account are configured.
 
-| Type | Name | Value |
-|------|------|-------|
-| CNAME | `www` | `ohgeeceee.github.io` |
+## Update flow
 
-(The four A records are the important ones; the AAAA records add IPv6 and are optional
-but recommended. Always confirm the current IPs in GitHub's docs — link at the bottom.)
+1. A merge to `main` deploys the new static site and publishes the intake container.
+2. The host's systemd timer runs `ops/crm/deploy.sh` every five minutes. The script uses rootless Podman when available; the current laptop host should use the included user-level units (`ohgeec-crm-update.user.service` and `.timer`). Docker hosts can use the system-level units.
+3. The deploy script pulls the `stable` image, restarts only the intake service, waits for its health check, and restores the previous local image tag if the new container does not become healthy.
+4. Schema changes require an encrypted backup and a reviewed forward migration before the application image is rolled out.
 
-### 4. Lock in the domain + HTTPS
-
-Back in **Settings → Pages**: the *Custom domain* box should already read `ohgeec.com`
-(from the `CNAME` file). Once DNS propagates (minutes to a few hours), tick
-**Enforce HTTPS**. Done — `https://ohgeec.com` is live.
-
-### Bandwidth note
-
-GitHub Pages has a ~100 GB/month soft limit. Since every site in the network loads
-`ogc-network.js` from here, that's the one file with real traffic — but it's tiny
-(~14 KB, and browsers cache it), so you're nowhere near the limit at personal scale.
-
----
-
-## Alternative worth considering: Cloudflare Pages
-
-If you'd rather not think about bandwidth at all, **Cloudflare Pages** is the one I'd
-point you to. Same price (free), same drag-or-git deploy, but:
-
-- **Unlimited bandwidth** — nice precisely because `ogc-network.js` is served to all
-  your other domains.
-- Faster global CDN and instant cache purges.
-- Free custom domains + automatic HTTPS.
-
-Trade-off: you manage the domain's DNS inside Cloudflare (which is itself free and, if
-you move `ohgeec.com`'s nameservers there, also simplifies the DNS steps above). If your
-whole world is already on GitHub, Pages is the lower-friction pick. Both are genuinely
-fine.
-
-Netlify and Vercel are also free and excellent for static sites; they're just heavier
-than you need for three files. Any of the four will serve this correctly.
-
----
-
-## After the hub is live
-
-Add one line before `</body>` on each site so the network bar + Support button appear:
-
-```html
-<script src="https://ohgeec.com/ogc-network.js" defer></script>
-```
-
-Add `data-ogc-theme="dark"` on the dark sites (beemuu, Manners, GarageRoute):
-
-```html
-<script src="https://ohgeec.com/ogc-network.js" data-ogc-theme="dark" defer></script>
-```
-
-Because all sites load the registry from `ohgeec.com`, later changes (a new site, or
-flipping Idaho Blotter from "soon" to "live") are a one-line edit in `ogc-network.js`
-here — every site updates automatically, no redeploys elsewhere.
-
----
-
-### Quick sanity check once live
-- `https://ohgeec.com` shows the hub with all six cards.
-- `https://ohgeec.com/ogc-network.js` loads the script (not a 404).
-- On any site with the snippet, the network bar appears at the bottom.
-
-Source for the DNS values: GitHub Docs — *Managing a custom domain for your GitHub Pages site*.
+For a manual update on the host, run `ops/crm/deploy.sh`. Keep deployment credentials read-only for GHCR and do not run untrusted pull-request workflows on the home server.
