@@ -15,19 +15,15 @@ GitHub Actions uses GitHub-hosted runners only. It publishes `ghcr.io/ohgeeceee/
 
 ## DNS and public API
 
-Keep `ohgeec.com` pointed at GitHub Pages. Add `api.ohgeec.com` as the only public home-server route, through Cloudflare Tunnel. For the tunnel's custom hostname, manage the zone in the same Cloudflare account or configure the required CNAME at the authoritative DNS provider. If moving DNS to Cloudflare, recreate the existing GitHub Pages apex A/AAAA and `www` CNAME records as DNS-only records; keep only the tunnel hostname proxied. The tunnel makes outbound connections, so no router port-forward or public home IP is needed.
+The portfolio stays on GitHub Pages at `ohgeec.com`. The laptop exposes only the intake API through Tailscale Funnel at `https://parrot.tail60dba7.ts.net:8443`; Directus remains private on the separate Tailscale Serve port 443. Funnel provides a tailnet hostname, not a custom `api.ohgeec.com` hostname, and does not require a router port-forward or public home IP.
 
-In Cloudflare Zero Trust, create a tunnel on the home server and configure one published application:
+The compose file binds intake to `127.0.0.1:3000`. Enable Funnel on port 8443 with `sudo tailscale funnel --bg --https=8443 --yes http://127.0.0.1:3000`. Do not route other services through Funnel. `PUBLIC_INTAKE_ENABLED` defaults to `false`; change it to `true` only after full-disk encryption and encrypted backup restoration have been verified, then recreate the intake container.
 
-- Hostname: `api.ohgeec.com`
-- Service: `http://intake:3000`
-- No other public hostname routes
-
-The public form sends JSON to `https://api.ohgeec.com/v1/intake`. The receiver validates an allowlisted schema and writes the contact, ticket, and first event in one PostgreSQL function call. CORS only allows the portfolio's exact origins; it is not treated as authentication. The form contains no shared secret.
+The public form sends JSON to `https://parrot.tail60dba7.ts.net:8443/v1/intake`. The receiver validates an allowlisted schema and writes the contact, ticket, and first event in one PostgreSQL function call when intake is enabled. CORS only allows the portfolio's exact origins; it is not treated as authentication. The form contains no shared secret.
 
 ## Private CRM host
 
-Follow [ops/crm/README.md](ops/crm/README.md) on the Linux server. Directus listens on `127.0.0.1:8055`; use Tailscale Serve for the owner's tailnet access. PostgreSQL has no host port. Never create Cloudflare routes for Directus or PostgreSQL and never mount the Docker socket into application containers.
+Follow [ops/crm/README.md](ops/crm/README.md) on the Linux server. Directus listens on `127.0.0.1:8055`; use Tailscale Serve for the owner's tailnet access. PostgreSQL has no host port. Never expose Directus or PostgreSQL publicly and never mount the Docker socket into application containers.
 
 The private host needs Docker Compose v2, outbound DNS/HTTPS, a Tailscale client, GHCR `read:packages` access, a protected `ops/crm/.env`, and a separate encrypted backup target. Image digests in `.env` must be set to reviewed versions before starting services. The compose stack is not live until those host-specific values, DNS, tunnel route, and initial Directus account are configured.
 

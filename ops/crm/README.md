@@ -5,10 +5,10 @@ This Compose project runs the private CRM and the public form receiver. The port
 ## Before the first start
 
 1. Use a patched Linux host with Docker Compose v2 or Podman 5 with a Compose provider, a firewall that blocks inbound WAN connections, full-disk encryption, and a separate backup destination. Install and authenticate Tailscale on the host before enabling remote admin access. Do not configure router port forwarding. Do not enter real client information until full-disk encryption and encrypted off-host backups are ready.
-2. Use Cloudflare DNS for the `api.ohgeec.com` hostname (the apex `ohgeec.com` can keep serving from GitHub Pages). Create a Cloudflare Tunnel and install its token in the host's `.env`. Configure exactly one public hostname route: `api.ohgeec.com` -> `http://intake:3000`. Do not add Directus, Postgres, SSH, or the Docker socket as a public route.
-3. The example pins the reviewed x86-64 image digests for Postgres, Directus, and cloudflared. Copy `.env.example` to `.env`, set a valid `ADMIN_EMAIL`, and replace every remaining placeholder. Generate independent random values for every password/secret, set `chmod 600 .env`, and keep that file outside Git backups.
+2. The public intake route uses Tailscale Funnel at `https://<host>.<tailnet>.ts.net:8443`; Funnel supports only tailnet hostnames and specific HTTPS ports. The compose file binds intake to host loopback port 3000; route Funnel port 8443 to `http://127.0.0.1:3000`. Keep the existing Tailscale Serve route on port 443 for private Directus administration. Do not expose Directus, Postgres, SSH, or the Docker socket publicly. Leave `PUBLIC_INTAKE_ENABLED=false` until full-disk encryption and encrypted backup restoration have been verified.
+3. The example pins the reviewed x86-64 image digests for Postgres and Directus. Copy `.env.example` to `.env`, set a valid `ADMIN_EMAIL`, and replace every remaining placeholder. Generate independent random values for every password/secret, set `chmod 600 .env`, and keep that file outside Git backups.
 4. Give the GitHub Container Registry package `ghcr.io/ohgeeceee/network-intake` read access for a dedicated host token with `read:packages` only. Log in to GHCR as the restricted deploy account (`podman login ghcr.io` for the rootless Podman host, or `docker login ghcr.io` for Docker). Do not use a self-hosted GitHub Actions runner on this server.
-5. Add `api.ohgeec.com` to the allowed CORS origins only if you serve the website there; the default exact allowed origins are `https://ohgeec.com` and `https://www.ohgeec.com`.
+5. Keep the allowed CORS origins limited to the website origins `https://ohgeec.com` and `https://www.ohgeec.com`; do not add the API hostname as an origin.
 
 ## Start and administer
 

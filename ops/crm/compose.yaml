@@ -60,8 +60,11 @@ services:
       DB_USER: intake_api
       DB_PASSWORD: ${INTAKE_DB_PASSWORD}
       ALLOWED_ORIGINS: https://ohgeec.com,https://www.ohgeec.com
+      PUBLIC_INTAKE_ENABLED: ${PUBLIC_INTAKE_ENABLED:-false}
       PORT: "3000"
-    networks: [data, ingress]
+    networks: [data]
+    ports:
+      - "127.0.0.1:3000:3000"
     read_only: true
     tmpfs: [/tmp]
     cap_drop: [ALL]
@@ -73,19 +76,9 @@ services:
       retries: 5
       start_period: 20s
 
-  cloudflared:
-    image: ${CLOUDFLARED_IMAGE:?pin a reviewed cloudflared image digest}
-    restart: unless-stopped
-    command: tunnel --no-autoupdate run
-    environment:
-      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?set in .env}
-    depends_on: [intake]
-    networks: [ingress]
-
 networks:
   data:
     internal: true
-  ingress: {}
   private_admin: {}
 
 volumes:

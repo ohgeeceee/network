@@ -74,6 +74,9 @@ app.get('/healthz', { config: { rateLimit: false } }, async (_request, reply) =>
 });
 
 app.post('/v1/intake', async (request, reply) => {
+  if (process.env.PUBLIC_INTAKE_ENABLED !== 'true') {
+    return reply.code(503).send({ error: 'Online requests are temporarily unavailable. Please email hello@ohgeec.com.' });
+  }
   const key = request.headers['idempotency-key'];
   if (typeof key !== 'string' || !/^[a-zA-Z0-9_-]{16,100}$/.test(key)) {
     return reply.code(400).send({ error: 'Request could not be accepted.' });

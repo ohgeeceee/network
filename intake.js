@@ -1,6 +1,7 @@
 (() => {
   const form = document.querySelector('[data-intake-form]');
   if (!form) return;
+  const intakeEndpoint = form.dataset.intakeEndpoint || 'https://api.ohgeec.com/v1/intake';
 
   const status = document.getElementById('intake-status');
   const submit = document.getElementById('intake-submit');
@@ -69,7 +70,7 @@
     submit.disabled = true;
     status.textContent = 'Sending your request…';
     try {
-      const response = await fetch('https://api.ohgeec.com/v1/intake', {
+      const response = await fetch(intakeEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Idempotency-Key': idempotencyKey },
         body: JSON.stringify(payload),
