@@ -6,4 +6,4 @@ After=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=%h/services/ohgeec/network/ops/crm
-ExecStart=%h/services/ohgeec/network/ops/crm/deploy.sh
+ExecStart=/bin/sh %h/services/ohgeec/network/ops/crm/deploy.sh
