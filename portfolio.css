@@ -333,3 +333,90 @@ footer.site a:hover { color: var(--ink); }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .rv { opacity: 1; transform: none; }
 }
+.booking-main { padding-top: 72px; }
+.booking-hero { padding: 78px clamp(20px, 5vw, 72px) 74px; border-bottom: 1px solid var(--line); }
+.booking-hero__inner { display: grid; width: min(100%, 1260px); grid-template-columns: minmax(0, 1.4fr) minmax(250px, .6fr); align-items: end; gap: clamp(38px, 8vw, 120px); margin: 0 auto; }
+.booking-hero__copy { max-width: 760px; }
+.booking-hero .eyebrow { margin-bottom: 19px; }
+.booking-hero h1 { max-width: 780px; margin: 0; font: 400 clamp(3.2rem, 7vw, 6.4rem)/.99 var(--serif); letter-spacing: -.052em; }
+.booking-hero h1 em, .booking-section-head h2 em, .booking-request h2 em { color: #756d64; font-weight: 400; }
+.booking-lede { max-width: 620px; margin: 25px 0 0; color: #413b34; font-size: clamp(1rem, 1.45vw, 1.17rem); line-height: 1.7; }
+.booking-hero .hero-link { margin-top: 29px; }
+.booking-promise { padding: 0 0 4px 23px; border-left: 1px solid var(--line); }
+.booking-promise__label, .booking-price__label, .booking-step__number { margin: 0 0 13px; color: var(--faint); font: 10px/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.booking-promise__lead { margin: 0 0 18px; font: 500 21px/1.35 var(--serif); }
+.booking-promise ul { display: grid; gap: 8px; margin: 0; padding: 0; color: var(--muted); font-size: 12px; list-style: none; }
+.booking-promise li::before { margin-right: 9px; color: #438b50; content: "—"; }
+.booking-services, .booking-pricing { padding: 70px clamp(20px, 5vw, 72px) 78px; border-bottom: 1px solid var(--line); }
+.booking-section-head { width: min(100%, 1260px); margin: 0 auto 32px; }
+.booking-section-head .eyebrow { margin-bottom: 14px; }
+.booking-section-head h2, .booking-request h2 { margin: 0; font: 400 clamp(2.4rem, 4.6vw, 4.4rem)/1.02 var(--serif); letter-spacing: -.045em; }
+.booking-steps { display: grid; width: min(100%, 1260px); grid-template-columns: repeat(3, 1fr); margin: 0 auto; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.booking-step { min-height: 178px; padding: 19px 22px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.booking-step__number { display: block; margin-bottom: 23px; }
+.booking-step h3 { margin: 0 0 9px; font: 500 23px/1.15 var(--serif); }
+.booking-step p { max-width: 340px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.booking-section-head--row { display: flex; align-items: end; justify-content: space-between; gap: 35px; }
+.booking-section-head--row > p { max-width: 310px; margin: 0 0 5px; color: var(--muted); font-size: 12px; }
+.booking-price-grid { display: grid; width: min(100%, 1260px); grid-template-columns: repeat(3, 1fr); margin: 0 auto; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.booking-price { min-height: 170px; padding: 19px 22px 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.booking-price--featured { background: rgba(20, 17, 14, .035); }
+.booking-price__label { margin-bottom: 17px; }
+.booking-price__amount { margin: 0 0 12px; font: 500 34px/1 var(--serif); letter-spacing: -.035em; }
+.booking-price__amount span { color: var(--muted); font: 11px var(--sans); letter-spacing: 0; }
+.booking-price > p:last-child { max-width: 290px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+.booking-request { padding: 76px clamp(20px, 5vw, 72px) 88px; background: #f1ede6; }
+.booking-request__inner { display: grid; width: min(100%, 1260px); grid-template-columns: minmax(220px, .68fr) minmax(0, 1.32fr); align-items: start; gap: clamp(35px, 7vw, 104px); margin: 0 auto; }
+.booking-request__intro { position: sticky; top: 34px; }
+.booking-request__intro .eyebrow { margin-bottom: 17px; }
+.booking-request__intro > p:not(.eyebrow) { max-width: 360px; margin: 20px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.booking-request__privacy a, .booking-back { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.booking-back { display: inline-flex; align-items: center; gap: 12px; margin-top: 28px; color: var(--ink); font-size: 12px; }
+.request-form { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 15px; margin: 0; padding: clamp(20px, 3.5vw, 38px); border: 1px solid var(--line); background: var(--paper); }
+.request-form__honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.form-field { display: flex; min-width: 0; flex-direction: column; gap: 7px; }
+.form-field--full { grid-column: 1 / -1; }
+.form-field > label:not(.form-consent) { color: var(--ink); font-size: 11px; font-weight: 500; }
+.form-field > label span[aria-hidden="true"] { color: #9e3b34; }
+.form-field__hint { margin-left: 5px; color: var(--faint); font-size: 10px; font-weight: 400; }
+.form-field input, .form-field select, .form-field textarea { width: 100%; min-height: 46px; padding: 11px 12px; border: 1px solid rgba(20, 17, 14, .2); border-radius: 2px; background: #fff; color: var(--ink); font: 13px/1.5 var(--sans); }
+.form-field textarea { min-height: 132px; resize: vertical; }
+.form-field input::placeholder, .form-field textarea::placeholder { color: #827a70; opacity: 1; }
+.form-field input:focus-visible, .form-field select:focus-visible, .form-field textarea:focus-visible { outline: 3px solid rgba(46, 109, 180, .28); outline-offset: 1px; border-color: #2e6db4; }
+.form-consent { display: flex; align-items: flex-start; gap: 10px; color: var(--ink); font-size: 12px; line-height: 1.5; }
+.form-consent input { width: 17px; min-height: 17px; height: 17px; flex: none; margin: 1px 0 0; accent-color: var(--ink); }
+.form-note, .form-status { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.65; }
+.form-note a { text-underline-offset: 2px; }
+.form-status:not(:empty) { padding: 10px 12px; border-left: 2px solid #438b50; background: rgba(67, 139, 80, .07); color: var(--ink); }
+.request-submit { display: inline-flex; width: fit-content; min-height: 47px; align-items: center; gap: 24px; justify-content: space-between; margin-top: 3px; padding: 0 17px; border: 0; border-radius: 2px; background: var(--ink); color: var(--paper); font: 600 12px var(--sans); cursor: pointer; transition: background .18s ease, transform .18s ease; }
+.request-submit:hover { transform: translateY(-2px); background: #383128; }
+.request-submit:focus-visible { outline: 3px solid #2e6db4; outline-offset: 3px; }
+.request-submit:disabled { cursor: not-allowed; opacity: .52; transform: none; }
+.booking-page footer.site { background: var(--paper); }
+.booking-page a:focus-visible { outline: 3px solid #2e6db4; outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .booking-main { padding-top: 62px; }
+  .booking-hero { padding-top: 60px; padding-bottom: 56px; }
+  .booking-hero__inner { grid-template-columns: 1fr; gap: 38px; }
+  .booking-hero h1 { font-size: clamp(3rem, 12vw, 5rem); }
+  .booking-promise { max-width: 430px; }
+  .booking-services, .booking-pricing { padding-top: 53px; padding-bottom: 58px; }
+  .booking-steps { grid-template-columns: 1fr; }
+  .booking-step { min-height: 0; }
+  .booking-step__number { margin-bottom: 14px; }
+  .booking-section-head--row { align-items: start; flex-direction: column; gap: 16px; }
+  .booking-price-grid { grid-template-columns: 1fr; }
+  .booking-price { min-height: 0; }
+  .booking-request { padding-top: 55px; padding-bottom: 62px; }
+  .booking-request__inner { grid-template-columns: 1fr; gap: 30px; }
+  .booking-request__intro { position: static; }
+}
+@media (max-width: 520px) {
+  .request-form { grid-template-columns: 1fr; gap: 15px; padding: 19px 15px; }
+  .form-field--full { grid-column: auto; }
+  .booking-page footer.site { align-items: flex-start; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .booking-page *, .booking-page *::before, .booking-page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

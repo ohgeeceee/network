@@ -19,12 +19,16 @@
   serviceMode.addEventListener('change', syncLocationRequirement);
   syncLocationRequirement();
   if (mode === 'onsite') {
-    document.getElementById('booking-hero-title').innerHTML = 'On-site tech support<br><span>in Montana.</span>';
-    document.getElementById('booking-hero-copy').textContent = 'Starlink, Wi-Fi, computers, printers, and connected devices. Send a request with your Montana town or county and I will confirm availability.';
-    document.getElementById('booking-hero-cta').textContent = 'Request an on-site visit';
+    const title = document.getElementById('booking-hero-title');
+    title.replaceChildren(document.createTextNode('On-site tech support'), document.createElement('br'));
+    const titleLine = document.createElement('em');
+    titleLine.textContent = 'across Montana.';
+    title.append(titleLine);
+    document.getElementById('booking-hero-copy').textContent = 'Starlink, Wi-Fi, computers, printers, and connected devices. Share your Montana town or county and I’ll reply to confirm availability.';
+    document.getElementById('booking-hero-cta-label').textContent = 'Request an on-site visit';
     document.getElementById('remote-pricing').hidden = true;
-    document.getElementById('service-categories').hidden = true;
-    document.querySelector('.book h2').textContent = 'Request an on-site visit';
+    document.getElementById('service-overview').hidden = true;
+    document.getElementById('request-heading').textContent = 'Request an on-site visit';
   }
 
   const requestType = params.get('requestType');

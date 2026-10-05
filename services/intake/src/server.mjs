@@ -60,7 +60,10 @@ await app.register(cors, {
 await app.register(rateLimit, {
   max: 12,
   timeWindow: '10 minutes',
-  keyGenerator: (request) => request.headers['cf-connecting-ip'] || request.ip,
+  // Funnel isn't behind Cloudflare, so CF-Connecting-IP is client-controlled.
+  // Tailscale Funnel proxies to localhost; this intentionally becomes a shared
+  // server-side bucket rather than trusting a spoofable public header.
+  keyGenerator: (request) => request.ip,
   errorResponseBuilder: () => ({ error: 'Please wait before trying again.' }),
 });
 

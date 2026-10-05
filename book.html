@@ -1,265 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Remote &amp; On-Site Tech Support — ohgeeceee</title>
-<meta name="description" content="Request remote tech support or on-site home technology help in Montana." />
-<style>
-  :root{
-    --bg:#0b1020; --bg2:#111a33; --card:#151f3d; --line:#26345f;
-    --txt:#e8edff; --muted:#9fb0d6; --accent:#5b8cff; --accent2:#22d3ee;
-    --good:#34d399; --shadow:0 18px 50px rgba(0,0,0,.45);
-    --radius:18px;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    color:var(--txt); background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(91,140,255,.18), transparent 60%),
-      radial-gradient(900px 500px at -10% 20%, rgba(34,211,238,.14), transparent 55%),
-      linear-gradient(180deg,var(--bg),var(--bg2));
-    min-height:100vh; line-height:1.55;
-  }
-  a{color:var(--accent); text-decoration:none}
-  .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
-  header.nav{display:flex; align-items:center; justify-content:space-between; padding:22px 0}
-  .brand{display:flex; align-items:center; gap:12px; font-weight:700; font-size:1.15rem}
-  .logo{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
-    background:linear-gradient(135deg,var(--accent),var(--accent2)); box-shadow:var(--shadow)}
-  .logo svg{width:22px;height:22px}
-  .nav .pill{border:1px solid var(--line); padding:9px 16px; border-radius:999px; color:var(--muted); font-size:.9rem}
-  .hero{padding:54px 0 30px; text-align:center}
-  .hero h1{font-size:clamp(2rem,5vw,3.3rem); line-height:1.1; margin:0 0 14px; letter-spacing:-.02em}
-  .hero h1 span{background:linear-gradient(120deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
-  .hero p{max-width:640px; margin:0 auto; color:var(--muted); font-size:1.08rem}
-  .cta{display:inline-flex; gap:10px; align-items:center; margin-top:24px; padding:14px 26px; border-radius:999px;
-    background:linear-gradient(120deg,var(--accent),var(--accent2)); color:#04122e; font-weight:700; box-shadow:var(--shadow);
-    transition:transform .15s ease, box-shadow .15s ease}
-  .cta:hover{transform:translateY(-2px); box-shadow:0 22px 60px rgba(91,140,255,.4)}
-  .trust{display:flex; gap:26px; justify-content:center; flex-wrap:wrap; margin-top:26px; color:var(--muted); font-size:.92rem}
-  .trust b{color:var(--txt)}
-  .grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin:46px 0}
-  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px}
-  .card h3{margin:0 0 6px; font-size:1.08rem}
-  .card p{margin:0; color:var(--muted); font-size:.95rem}
-  .icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;
-    background:rgba(91,140,255,.14); border:1px solid var(--line)}
-  .icon svg{width:22px;height:22px;stroke:var(--accent); fill:none; stroke-width:1.8}
-  .pricing{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin:18px 0 50px}
-  .plan{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px; position:relative}
-  .plan.featured{border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset, var(--shadow)}
-  .plan .tag{position:absolute; top:-12px; right:18px; background:linear-gradient(120deg,var(--accent),var(--accent2)); color:#04122e; font-size:.72rem; font-weight:700; padding:5px 12px; border-radius:999px}
-  .plan h3{margin:0 0 4px}
-  .price{font-size:2.1rem; font-weight:800; margin:10px 0 2px}
-  .price small{font-size:.9rem; color:var(--muted); font-weight:500}
-  .plan ul{list-style:none; padding:0; margin:14px 0 0; color:var(--muted); font-size:.95rem}
-  .plan li{padding:6px 0; border-top:1px solid var(--line); display:flex; gap:10px}
-  .plan li svg{width:18px;height:18px;stroke:var(--good); fill:none; stroke-width:2.2; flex:0 0 auto; margin-top:3px}
-  .book{background:linear-gradient(180deg,var(--card),#101937); border:1px solid var(--line); border-radius:24px; padding:34px; box-shadow:var(--shadow); margin:10px 0 60px}
-  .book h2{margin:0 0 6px; font-size:1.7rem}
-  .book p.sub{margin:0 0 22px; color:var(--muted)}
-  form{display:grid; gap:16px; grid-template-columns:1fr 1fr}
-  .field{display:flex; flex-direction:column; gap:7px}
-  .field.full{grid-column:1/-1}
-  label{font-size:.85rem; color:var(--muted)}
-  input,select,textarea{background:#0c1530; border:1px solid var(--line); color:var(--txt); border-radius:12px; padding:12px 14px; font:inherit; width:100%}
-  input:focus,select:focus,textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(91,140,255,.18)}
-  textarea{resize:vertical; min-height:96px}
-  .submit{justify-self:start; margin-top:6px; padding:14px 30px; border:0; border-radius:999px; cursor:pointer;
-    background:linear-gradient(120deg,var(--accent),var(--accent2)); color:#04122e; font-weight:700; font-size:1rem; box-shadow:var(--shadow)}
-  .submit:hover{transform:translateY(-2px)}
-  .submit:disabled{opacity:.6;cursor:wait;transform:none}
-  .consent{display:flex;align-items:flex-start;gap:10px}
-  .consent input[type=checkbox]{width:18px;height:18px;flex:0 0 auto;margin:2px 0 0}
-  .note{color:var(--muted); font-size:.82rem; margin-top:10px}
-  footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--muted); font-size:.85rem; text-align:center}
-  @media(max-width:640px){ form{grid-template-columns:1fr} .book{padding:24px} }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Request tech support — ohgeeceee</title>
+  <meta name="description" content="Request remote tech help or an on-site visit in Montana. Tell me what is happening and I’ll follow up to confirm a time.">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="canonical" href="https://ohgeec.com/book.html">
+  <link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/fonts.css">
+  <link rel="stylesheet" href="/portfolio.css">
+  <script src="/intake.js" defer></script>
 </head>
-<body>
-<div class="wrap">
-
-  <header class="nav">
-    <div class="brand">
-      <span class="logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#04122e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
-      </span>
-      <span>Remote Tech Support</span>
-    </div>
-    <a class="pill" href="#book">Book now →</a>
+<body class="booking-page">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="ohgeeceee network home">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="5" r="2.4" fill="#14110E"></circle>
+        <circle cx="5" cy="17" r="2.4" fill="#14110E"></circle>
+        <circle cx="19" cy="17" r="2.4" fill="#14110E"></circle>
+        <path d="M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8" stroke="#14110E" stroke-width="1.3" stroke-linecap="round"></path>
+      </svg>
+      <b>ohgeec.com</b>
+    </a>
+    <span class="coords">46.8797&deg; N, 110.3626&deg; W &mdash; Montana</span>
+    <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/tech-support/">Guides</a>
+      <a href="/support.html" class="nav-support">Support</a>
+    </nav>
   </header>
 
-  <section class="hero">
-    <h1 id="booking-hero-title">Tech problems solved<br><span>without the house call.</span></h1>
-    <p id="booking-hero-copy">Secure remote support for your computer, network, and software — fast, friendly, and fixed from anywhere. Pick a time and I'll take it from there.</p>
-    <a class="cta" id="booking-hero-cta" href="#book">📅 Request support</a>
-    <div class="trust">
-      <span>✅ <b>Secure</b> remote access</span>
-      <span>⚡ <b>Same-day</b> appointments</span>
-      <span>💬 <b>Plain-English</b> explanations</span>
-    </div>
-  </section>
+  <main class="booking-main">
+    <section class="booking-hero" aria-labelledby="booking-hero-title">
+      <div class="booking-hero__inner">
+        <div class="booking-hero__copy">
+          <p class="eyebrow">Tech support / Montana &amp; beyond</p>
+          <h1 id="booking-hero-title">When tech gets in the way,<br><em>we’ll work through it.</em></h1>
+          <p class="booking-lede" id="booking-hero-copy">Remote help for computers, Wi-Fi, and the devices around your home. On-site visits are available across Montana. Tell me what’s going on and I’ll follow up to confirm a time.</p>
+          <a class="hero-link" id="booking-hero-cta" href="#book"><span id="booking-hero-cta-label">Make a service request</span><span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <aside class="booking-promise" aria-label="A few things to know">
+          <p class="booking-promise__label">A few things to know</p>
+          <p class="booking-promise__lead">A request starts a conversation. It isn’t a confirmed appointment.</p>
+          <ul>
+            <li>Remote or on-site support</li>
+            <li>Plain-English answers, no jargon</li>
+            <li>No passwords or payment details in the form</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
-  <section id="service-categories">
-    <div class="grid">
-      <div class="card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
-        <h3>Virus &amp; malware removal</h3>
-        <p>Clean infections, lock down your system, and stop them coming back.</p>
+    <section class="booking-services" id="service-overview" aria-labelledby="services-title">
+      <div class="booking-section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 id="services-title">A useful next step,<br><em>without the runaround.</em></h2>
       </div>
-      <div class="card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
-        <h3>Setup &amp; optimization</h3>
-        <p>New PC? Slow laptop? I'll get it running fast and configured right.</p>
+      <div class="booking-steps">
+        <article class="booking-step">
+          <span class="booking-step__number">01</span>
+          <h3>Tell me what’s up</h3>
+          <p>Share a short description and the best way to reach you. A town or county is enough for on-site planning.</p>
+        </article>
+        <article class="booking-step">
+          <span class="booking-step__number">02</span>
+          <h3>We’ll pick a time</h3>
+          <p>I’ll reply to confirm availability, the right service, and what it will cost before work begins.</p>
+        </article>
+        <article class="booking-step">
+          <span class="booking-step__number">03</span>
+          <h3>Get back to your day</h3>
+          <p>We’ll work through the issue remotely or plan an on-site visit anywhere in Montana.</p>
+        </article>
       </div>
-      <div class="card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0zM12 7v5l3 2"/></svg></div>
-        <h3>Data backup &amp; recovery</h3>
-        <p>Recover lost files and set up automatic backups so it never happens again.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg></div>
-        <h3>Software &amp; app help</h3>
-        <p>Troubleshoot crashes, install updates, and wrangle stubborn programs.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M2 20h20M5 20V9M12 20V4M19 20v-7"/></svg></div>
-        <h3>Network &amp; Wi-Fi</h3>
-        <p>Fix dropouts, boost coverage, and secure your home network.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 10l7-7 7 7"/></svg></div>
-        <h3>One-on-one tutoring</h3>
-        <p>Learn your device at your pace — no jargon, no judgement.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="pricing" id="remote-pricing">
-    <div class="plan">
-      <h3>Quick Fix</h3>
-      <div class="price">$39 <small>/ 30 min</small></div>
-      <ul>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Single issue or question</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Best for quick wins</li>
-      </ul>
-    </div>
-    <div class="plan featured">
-      <span class="tag">MOST POPULAR</span>
-      <h3>Standard</h3>
-      <div class="price">$69 <small>/ 60 min</small></div>
-      <ul>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Most problems fixed</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Setup, cleanup &amp; tune-up</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Email summary after</li>
-      </ul>
-    </div>
-    <div class="plan">
-      <h3>Premium</h3>
-      <div class="price">$119 <small>/ 2 hrs</small></div>
-      <ul>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Complex or multi-device</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Data recovery &amp; migration</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>7-day follow-up support</li>
-      </ul>
-    </div>
-  </section>
+    <section class="booking-pricing" id="remote-pricing" aria-labelledby="pricing-title">
+      <div class="booking-section-head booking-section-head--row">
+        <div>
+          <p class="eyebrow">Remote support</p>
+          <h2 id="pricing-title">Straightforward<br><em>starting points.</em></h2>
+        </div>
+        <p>We’ll confirm the right session and total before I start. No surprise add-ons.</p>
+      </div>
+      <div class="booking-price-grid">
+        <article class="booking-price">
+          <p class="booking-price__label">Quick fix</p>
+          <p class="booking-price__amount">$39 <span>/ 30 min</span></p>
+          <p>One issue, a quick question, or a small setup task.</p>
+        </article>
+        <article class="booking-price booking-price--featured">
+          <p class="booking-price__label">Most requested</p>
+          <p class="booking-price__amount">$69 <span>/ 60 min</span></p>
+          <p>Time for most troubleshooting, cleanup, and setup work.</p>
+        </article>
+        <article class="booking-price">
+          <p class="booking-price__label">Extended session</p>
+          <p class="booking-price__amount">$119 <span>/ 2 hrs</span></p>
+          <p>For multi-device help, data moves, or more involved issues.</p>
+        </article>
+      </div>
+    </section>
 
-  <section class="book" id="book">
-    <h2>Request tech support</h2>
-    <p class="sub">Tell me what is happening and when works for you. I will follow up using your preferred contact method.</p>
+    <section class="booking-request" id="book" aria-labelledby="request-heading">
+      <div class="booking-request__inner">
+        <div class="booking-request__intro">
+          <p class="eyebrow">Service request / 01</p>
+          <h2 id="request-heading">What can I<br><em>help with?</em></h2>
+          <p>Share only what’s needed to plan support. I’ll reply using your preferred contact method and confirm a time with you.</p>
+          <p class="booking-request__privacy">Please don’t include passwords, Wi-Fi credentials, payment details, or account recovery codes. <a href="/privacy.html">Read the privacy note</a>.</p>
+          <a class="booking-back" href="/tech-support/">Back to the Montana tech guides <span aria-hidden="true">&rarr;</span></a>
+        </div>
 
-    <form id="service-request" data-intake-form data-intake-enabled="false" data-intake-endpoint="https://parrot.tail60dba7.ts.net:8443/v1/intake">
-      <input type="hidden" id="request-type" name="requestType" value="website_request" />
-      <input type="hidden" id="source-page" name="sourcePage" value="/book.html" />
+        <form class="request-form" id="service-request" data-intake-form data-intake-enabled="true" data-intake-endpoint="https://parrot.tail60dba7.ts.net:8443/v1/intake">
+          <input type="hidden" id="request-type" name="requestType" value="website_request">
+          <input type="hidden" id="source-page" name="sourcePage" value="/book.html">
+          <div class="request-form__honeypot" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
 
-      <!-- Spam honeypot. Humans leave this field blank. -->
-      <div class="field" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
-        <label for="website">Leave this field empty</label>
-        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          <div class="form-field">
+            <label for="name">Your name <span aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" maxlength="120" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="preferred-contact">Best way to reach you <span aria-hidden="true">*</span></label>
+            <select id="preferred-contact" name="preferredContact" required>
+              <option value="">Choose one</option>
+              <option value="phone">Phone call</option>
+              <option value="sms">Text message</option>
+              <option value="email">Email</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" maxlength="254" autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" maxlength="32" autocomplete="tel">
+          </div>
+          <div class="form-field">
+            <label for="location">Town or county <span class="form-field__hint">required for on-site</span></label>
+            <input id="location" name="location" type="text" maxlength="120" placeholder="No street address needed" autocomplete="address-level2">
+          </div>
+          <div class="form-field">
+            <label for="service-mode">How should we help? <span aria-hidden="true">*</span></label>
+            <select id="service-mode" name="serviceMode" required>
+              <option value="undecided">Not sure yet</option>
+              <option value="remote">Remote</option>
+              <option value="onsite">On-site in Montana</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="service">What do you need? <span aria-hidden="true">*</span></label>
+            <select id="service" name="service" required>
+              <option value="">Choose a service</option>
+              <option value="virus_malware">Virus &amp; malware removal</option>
+              <option value="setup_optimization">Setup &amp; optimization</option>
+              <option value="data_recovery">Data backup &amp; recovery</option>
+              <option value="software_help">Software &amp; app help</option>
+              <option value="network_wifi">Network &amp; Wi-Fi</option>
+              <option value="starlink_setup">Starlink setup</option>
+              <option value="tutoring">One-on-one tutoring</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="device-type">Device or equipment</label>
+            <input id="device-type" name="deviceType" type="text" maxlength="120" placeholder="Starlink, router, laptop…">
+          </div>
+          <div class="form-field">
+            <label for="date">Preferred date <span class="form-field__hint">optional</span></label>
+            <input id="date" name="date" type="date">
+          </div>
+          <div class="form-field">
+            <label for="time">Preferred time <span class="form-field__hint">optional</span></label>
+            <input id="time" name="time" type="time">
+          </div>
+          <div class="form-field form-field--full">
+            <label for="message">A little about what’s happening <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" maxlength="2000" placeholder="What is the device doing? What have you already tried? Please leave out passwords and account details." required></textarea>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-consent"><input id="consent" name="consentToContact" type="checkbox" required> <span>I agree to be contacted about this service request.</span></label>
+            <p class="form-note">Your request is sent over HTTPS to the private service system. A date or time here is a preference, not a confirmed booking.</p>
+            <p id="intake-status" class="form-status" role="status" aria-live="polite"></p>
+            <button class="request-submit" id="intake-submit" type="submit" disabled>Send request <span aria-hidden="true">&rarr;</span></button>
+            <noscript><p class="form-note">This form needs JavaScript. Please use the contact details on the <a href="/tech-support/">support page</a>. Do not email passwords.</p></noscript>
+          </div>
+        </form>
       </div>
+    </section>
+  </main>
 
-      <div class="field">
-        <label for="name">Your name *</label>
-        <input id="name" name="name" type="text" maxlength="120" placeholder="Jane Doe" autocomplete="name" required />
-      </div>
-      <div class="field">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" maxlength="254" placeholder="jane@email.com" autocomplete="email" />
-      </div>
-      <div class="field">
-        <label for="phone">Phone</label>
-        <input id="phone" name="phone" type="tel" maxlength="32" placeholder="+1 406 555 0123" autocomplete="tel" />
-      </div>
-      <div class="field">
-        <label for="preferred-contact">Preferred contact *</label>
-        <select id="preferred-contact" name="preferredContact" required>
-          <option value="">Choose one…</option>
-          <option value="phone">Phone call</option>
-          <option value="sms">Text message</option>
-          <option value="email">Email</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="location">Town or county (required for on-site)</label>
-        <input id="location" name="location" type="text" maxlength="120" placeholder="Town or county; no street address yet" autocomplete="address-level2" />
-      </div>
-      <div class="field">
-        <label for="service">What do you need? *</label>
-        <select id="service" name="service" required>
-          <option value="">Choose a service…</option>
-          <option value="virus_malware">Virus &amp; malware removal</option>
-          <option value="setup_optimization">Setup &amp; optimization</option>
-          <option value="data_recovery">Data backup &amp; recovery</option>
-          <option value="software_help">Software &amp; app help</option>
-          <option value="network_wifi">Network &amp; Wi-Fi</option>
-          <option value="starlink_setup">Starlink setup</option>
-          <option value="tutoring">One-on-one tutoring</option>
-          <option value="other">Something else</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="device-type">Device type</label>
-        <input id="device-type" name="deviceType" type="text" maxlength="120" placeholder="Router, Starlink, laptop…" />
-      </div>
-      <div class="field">
-        <label for="service-mode">How should we help? *</label>
-        <select id="service-mode" name="serviceMode" required>
-          <option value="undecided">Not sure yet</option>
-          <option value="remote">Remote</option>
-          <option value="onsite">On-site in Montana</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="date">Preferred date</label>
-        <input id="date" name="date" type="date" />
-      </div>
-      <div class="field">
-        <label for="time">Preferred time</label>
-        <input id="time" name="time" type="time" />
-      </div>
-      <div class="field full">
-        <label for="message">What is going on? *</label>
-        <textarea id="message" name="message" maxlength="2000" placeholder="Briefly describe the problem, device, and anything you have already tried. Do not include passwords or Wi-Fi credentials." required></textarea>
-      </div>
-      <div class="field full">
-        <label class="consent"><input id="consent" name="consentToContact" type="checkbox" required /> I agree to be contacted about this service request.</label>
-        <p class="note">Only share what is needed to arrange support. Do not send account passwords, Wi-Fi passwords, or payment details. See the <a href="/privacy.html">privacy note</a>.</p>
-        <p id="intake-status" class="note" role="status" aria-live="polite"></p>
-        <button class="submit" id="intake-submit" type="submit" disabled>Send service request →</button>
-        <noscript><p class="note">The secure request form needs JavaScript. Please email <a href="mailto:hello@ohgeec.com">hello@ohgeec.com</a> or call/text the number listed on the support page. Do not email passwords.</p></noscript>
-      </div>
-    </form>
-  </section>
-
-  <footer>
-    Remote support and on-site visits in Montana<br>
-    Questions? Email <a href="mailto:hello@ohgeec.com">hello@ohgeec.com</a>.
+  <footer class="site">
+    <span>ohgeeceee &mdash; built by hand in Montana.</span>
+    <span><a href="/privacy.html">Service request privacy</a></span>
+    <span>&copy; <span id="yr">2026</span> the ohgeeceee network &mdash; <a href="https://github.com/ohgeeceee" rel="noopener">GitHub</a></span>
   </footer>
-
-</div>
-<script src="/intake.js" defer></script>
 </body>
 </html>
