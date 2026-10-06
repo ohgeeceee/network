@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#b3401f">
+  <title>Gallatin Canyon cabin — inventory report</title>
+  <link rel="stylesheet" href="/emberproof/demo/static/app.css">
+</head>
+<body>
+<div class="demo-banner" role="note">
+  <b>Read-only demo.</b> This is a snapshot of a sample house with made-up
+  photographs. Nothing here saves, and nothing here is anyone's real home.
+  <a href="../">Get EmberProof</a>
+</div>
+<style>
+  /* Normal flow at the top of the body. Sticky positioning here would fight
+     the app's own sticky header, and as the last element it would render at
+     the bottom of the page. */
+  .demo-banner {
+    padding: .65rem 1rem;
+    background: #14110e; color: #faf7f2;
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    text-align: center;
+  }
+  .demo-banner b { color: #ffb27a; }
+  .demo-banner a { color: #faf7f2; }
+  .capture-form input, .capture-form select, .capture-form textarea,
+  .capture-form button, .capture-form summary { opacity: .5; }
+  .capture-form { position: relative; }
+  .capture-form::after {
+    content: "Disabled in the demo"; position: absolute; inset: auto 0 0 0;
+    text-align: center; font-size: 12px; color: #6b645c; padding: .4rem;
+  }
+</style>
+<script>
+  // Belt and braces: no form in a static snapshot should ever navigate.
+  document.addEventListener('submit', function (e) { e.preventDefault(); }, true);
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll(
+      '.capture-form input, .capture-form select, .capture-form textarea, .capture-form button'
+    ).forEach(function (el) { el.disabled = true; });
+  });
+</script>
+
+  <div class="outbox-banner" data-outbox-banner hidden role="status"></div>
+
+  <header class="top">
+    <a class="brand" href="/emberproof/demo/">
+      <span class="spark" aria-hidden="true"></span> EmberProof
+    </a>
+    <form class="search" action="/emberproof/demo/search" method="get" role="search">
+      <input type="search" name="q" placeholder="Search everything you own"
+             value="" aria-label="Search items">
+    </form>
+  </header>
+
+  
+    
+  
+
+  <main>
+<div class="print-toolbar">
+  <button class="btn primary" onclick="window.print()">Print / Save as PDF</button>
+  <a class="btn" href="/emberproof/demo/properties/1/report.pdf">Download the PDF instead</a>
+</div>
+
+<article class="report">
+  <header class="report-cover">
+    <h1>Home contents inventory</h1>
+    <p class="report-prop">Gallatin Canyon cabin</p>
+    <p class="muted">1420 Squaw Creek Rd, Gallatin County, MT</p>
+    <p class="muted small">
+      Insurer: Mountain West Mutual
+       · Policy HO-3 4481920
+    </p>
+    <div class="report-stats">
+      <div><b>&lt;built-in method items of dict object at 0x7f6679591080&gt;</b><span>items</span></div>
+      <div><b>5</b><span>rooms</span></div>
+      <div><b>$15,062</b><span>replacement value</span></div>
+      <div><b>18</b><span>photographs</span></div>
+    </div>
+  </header>
+
+  
+    
+      <section class="report-room">
+        <h2>Kitchen</h2>
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Category</th><th>Qty</th><th>Brand / model / serial</th><th class="num">Value</th><th>Src</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>
+                  KitchenAid stand mixer
+                  
+                </td>
+                <td>Appliances</td>
+                <td>1</td>
+                <td>
+                  KitchenAid Pro 5 Plus
+                  
+                </td>
+                <td class="num">$449</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Espresso machine
+                  
+                </td>
+                <td>Appliances</td>
+                <td>1</td>
+                <td>
+                  Breville Barista Express
+                  
+                </td>
+                <td class="num">$600</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Cast iron set
+                  
+                </td>
+                <td>Kitchen</td>
+                <td>1</td>
+                <td>
+                  Lodge
+                  
+                </td>
+                <td class="num">$120</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Instant Pot
+                  
+                </td>
+                <td>Appliances</td>
+                <td>1</td>
+                <td>
+                  Instant Pot Duo 6qt
+                  
+                </td>
+                <td class="num">$600</td>
+                <td>ver.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </section>
+    
+  
+    
+      <section class="report-room">
+        <h2>Living room</h2>
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Category</th><th>Qty</th><th>Brand / model / serial</th><th class="num">Value</th><th>Src</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>
+                  Sofa — leather sectional
+                  
+                </td>
+                <td>Furniture</td>
+                <td>1</td>
+                <td>
+                  —
+                  
+                </td>
+                <td class="num">$2,400</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  65&#34; OLED TV
+                  
+                </td>
+                <td>Electronics</td>
+                <td>1</td>
+                <td>
+                  LG OLED65C2
+                  
+                </td>
+                <td class="num">$1,800</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Record player
+                  
+                </td>
+                <td>Electronics</td>
+                <td>1</td>
+                <td>
+                  Audio-Technica AT-LP120
+                  
+                </td>
+                <td class="num">$300</td>
+                <td>est.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Floor lamp
+                  
+                </td>
+                <td>Furniture</td>
+                <td>1</td>
+                <td>
+                  —
+                  
+                </td>
+                <td class="num">$400</td>
+                <td>est.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </section>
+    
+  
+    
+      <section class="report-room">
+        <h2>Bedroom</h2>
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Category</th><th>Qty</th><th>Brand / model / serial</th><th class="num">Value</th><th>Src</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>
+                  Queen bed frame
+                  
+                </td>
+                <td>Furniture</td>
+                <td>1</td>
+                <td>
+                  —
+                  
+                </td>
+                <td class="num">$900</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Mattress
+                  
+                </td>
+                <td>Bedding &amp; linens</td>
+                <td>1</td>
+                <td>
+                  Casper Original Queen
+                  
+                </td>
+                <td class="num">$1,295</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Dresser
+                  
+                </td>
+                <td>Furniture</td>
+                <td>1</td>
+                <td>
+                  —
+                  
+                </td>
+                <td class="num">$400</td>
+                <td>est.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </section>
+    
+  
+    
+      <section class="report-room">
+        <h2>Garage</h2>
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Category</th><th>Qty</th><th>Brand / model / serial</th><th class="num">Value</th><th>Src</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>
+                  Snow blower
+                  
+                </td>
+                <td>Outdoor &amp; lawn</td>
+                <td>1</td>
+                <td>
+                  Ariens Deluxe 28
+                  
+                </td>
+                <td class="num">$1,400</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Cordless drill set
+                  
+                </td>
+                <td>Tools</td>
+                <td>1</td>
+                <td>
+                  DeWalt 20V Max
+                  
+                </td>
+                <td class="num">$250</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Generator
+                  
+                </td>
+                <td>Tools</td>
+                <td>1</td>
+                <td>
+                  Honda EU2200i
+                  
+                </td>
+                <td class="num">$1,099</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Mountain bike
+                  
+                </td>
+                <td>Sports &amp; fitness</td>
+                <td>1</td>
+                <td>
+                  Trek Fuel EX 7
+                  
+                </td>
+                <td class="num">$150</td>
+                <td>est.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </section>
+    
+  
+    
+      <section class="report-room">
+        <h2>Office</h2>
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Category</th><th>Qty</th><th>Brand / model / serial</th><th class="num">Value</th><th>Src</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>
+                  Standing desk
+                  
+                </td>
+                <td>Furniture</td>
+                <td>1</td>
+                <td>
+                  Uplift V2
+                  
+                </td>
+                <td class="num">$400</td>
+                <td>est.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Laptop
+                  
+                </td>
+                <td>Electronics</td>
+                <td>1</td>
+                <td>
+                  Apple MacBook Pro 14
+                  
+                </td>
+                <td class="num">$2,199</td>
+                <td>ver.</td>
+              </tr>
+            
+              <tr>
+                <td>
+                  Monitor
+                  
+                </td>
+                <td>Electronics</td>
+                <td>1</td>
+                <td>
+                  Dell U2723QE
+                  
+                </td>
+                <td class="num">$300</td>
+                <td>est.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </section>
+    
+  
+
+  <footer class="report-foot">
+    <p>Assembled by the property owner from their own photographs and records.
+       Values reflect replacement cost at the time of writing. Items marked
+       <b>est.</b> carry a category estimate; items marked <b>ver.</b> were confirmed
+       by the owner. Original photographs and receipts are retained alongside this report.</p>
+    <p class="muted small">Generated by EmberProof — local-first home inventory.</p>
+  </footer>
+</article>
+</main>
+
+  <footer class="foot">
+    <p>EmberProof keeps everything on this machine. No account, no upload, no cloud.</p>
+  </footer>
+  <script src="/emberproof/demo/static/outbox.js"></script>
+  <script src="/emberproof/demo/static/app.js"></script>
+</body>
+</html>

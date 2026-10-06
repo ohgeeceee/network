@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#b3401f">
+  <title>Bedroom — Gallatin Canyon cabin</title>
+  <link rel="stylesheet" href="/emberproof/demo/static/app.css">
+</head>
+<body>
+<div class="demo-banner" role="note">
+  <b>Read-only demo.</b> This is a snapshot of a sample house with made-up
+  photographs. Nothing here saves, and nothing here is anyone's real home.
+  <a href="../">Get EmberProof</a>
+</div>
+<style>
+  /* Normal flow at the top of the body. Sticky positioning here would fight
+     the app's own sticky header, and as the last element it would render at
+     the bottom of the page. */
+  .demo-banner {
+    padding: .65rem 1rem;
+    background: #14110e; color: #faf7f2;
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    text-align: center;
+  }
+  .demo-banner b { color: #ffb27a; }
+  .demo-banner a { color: #faf7f2; }
+  .capture-form input, .capture-form select, .capture-form textarea,
+  .capture-form button, .capture-form summary { opacity: .5; }
+  .capture-form { position: relative; }
+  .capture-form::after {
+    content: "Disabled in the demo"; position: absolute; inset: auto 0 0 0;
+    text-align: center; font-size: 12px; color: #6b645c; padding: .4rem;
+  }
+</style>
+<script>
+  // Belt and braces: no form in a static snapshot should ever navigate.
+  document.addEventListener('submit', function (e) { e.preventDefault(); }, true);
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll(
+      '.capture-form input, .capture-form select, .capture-form textarea, .capture-form button'
+    ).forEach(function (el) { el.disabled = true; });
+  });
+</script>
+
+  <div class="outbox-banner" data-outbox-banner hidden role="status"></div>
+
+  <header class="top">
+    <a class="brand" href="/emberproof/demo/">
+      <span class="spark" aria-hidden="true"></span> EmberProof
+    </a>
+    <form class="search" action="/emberproof/demo/search" method="get" role="search">
+      <input type="search" name="q" placeholder="Search everything you own"
+             value="" aria-label="Search items">
+    </form>
+  </header>
+
+  
+    
+  
+
+  <main>
+<p class="crumbs"><a href="/emberproof/demo/properties/1">← Gallatin Canyon cabin</a></p>
+
+<header class="room-head">
+  <div>
+    <h1>Bedroom</h1>
+    <p class="muted">
+      <b data-item-count>3</b>
+      items documented
+    </p>
+  </div>
+  <p class="session-chip" data-session-count hidden>
+    <b data-n>0</b> added this session ·
+    <a href="">refresh list</a>
+  </p>
+</header>
+
+<section class="panel capture">
+  <h2>Add an item</h2>
+  <form method="post" action="/emberproof/demo/rooms/3/items"
+        enctype="multipart/form-data" class="capture-form">
+    <label class="photo-drop">
+      <span>Photograph the item</span>
+      <input type="file" name="photos" accept="image/*" capture="environment" multiple>
+      <small>On a phone this opens the camera. Add several shots if it helps.</small>
+      
+      <div class="previews" data-previews></div>
+    </label>
+
+    <label class="wide">What is it?
+      <input name="name" placeholder="65&quot; LG OLED TV" required autocomplete="off"
+             enterkeyhint="done">
+    </label>
+
+    <label>Category
+      <select name="category" data-category>
+        
+          <option value="electronics" data-default="300"
+                  >Electronics</option>
+        
+          <option value="appliance" data-default="600"
+                  >Appliances</option>
+        
+          <option value="furniture" data-default="400"
+                  >Furniture</option>
+        
+          <option value="kitchen" data-default="60"
+                  >Kitchen</option>
+        
+          <option value="bedding" data-default="80"
+                  >Bedding &amp; linens</option>
+        
+          <option value="clothing" data-default="40"
+                  >Clothing</option>
+        
+          <option value="tools" data-default="120"
+                  >Tools</option>
+        
+          <option value="jewelry" data-default="500"
+                  >Jewelry &amp; watches</option>
+        
+          <option value="musical" data-default="700"
+                  >Musical instruments</option>
+        
+          <option value="sports" data-default="150"
+                  >Sports &amp; fitness</option>
+        
+          <option value="outdoor" data-default="250"
+                  >Outdoor &amp; lawn</option>
+        
+          <option value="documents" data-default="20"
+                  >Documents &amp; media</option>
+        
+          <option value="other" data-default="75"
+                  selected>Other</option>
+        
+      </select>
+    </label>
+
+    <label>How many?
+      <input name="quantity" type="number" min="1" value="1" data-qty>
+    </label>
+
+    <label class="wide">Replacement value (USD)
+      <input name="replacement_value" inputmode="decimal"
+             placeholder="Leave blank to use the estimate" data-value>
+      <small class="field-hint">Blank saves the category estimate: <b data-estimate>75</b></small>
+    </label>
+
+    <details class="wide">
+      <summary>Brand, model, serial, receipt, notes</summary>
+      <div class="grid-form">
+        <label>Brand <input name="brand" placeholder="Optional"></label>
+        <label>Model <input name="model" placeholder="Optional"></label>
+        <label>Serial number <input name="serial" placeholder="Optional"></label>
+        <label>Purchase date <input name="purchase_date" type="date"></label>
+        <label>Purchase price (USD) <input name="purchase_price" inputmode="decimal" placeholder="What you paid"></label>
+        <label class="wide">Description
+          <textarea name="description" rows="2" placeholder="Condition, distinguishing marks, where it came from"></textarea>
+        </label>
+        <label class="wide">Notes <textarea name="notes" rows="2"></textarea></label>
+      </div>
+    </details>
+
+    <button class="btn primary wide" type="submit">Save &amp; add another</button>
+  </form>
+  <p class="hint">Name and a photo are enough. Leave the value blank and EmberProof fills in a
+     conservative category estimate, clearly marked as an estimate in the report — overwrite it
+     and it counts as confirmed.</p>
+</section>
+
+
+  <section class="item-list">
+    
+      <article class="item">
+        
+        <div class="thumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Dresser-11.jpg"
+                 alt="Dresser" loading="lazy">
+          
+        </div>
+        <div class="item-body">
+          <h3><a href="/emberproof/demo/items/11">Dresser</a></h3>
+          <p class="muted small">
+            Furniture · qty 1 ·
+            $400
+            <span class="src estimate">estimate</span>
+          </p>
+          
+          
+        </div>
+        <div class="item-actions">
+          <a class="btn small" href="/emberproof/demo/items/11">Edit</a>
+          <form method="post" action="/emberproof/demo/items/11/delete"
+                data-confirm="Delete “Dresser”?">
+            <button class="btn small danger">Delete</button>
+          </form>
+        </div>
+      </article>
+    
+      <article class="item">
+        
+        <div class="thumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Mattress-10.jpg"
+                 alt="Mattress" loading="lazy">
+          
+        </div>
+        <div class="item-body">
+          <h3><a href="/emberproof/demo/items/10">Mattress</a></h3>
+          <p class="muted small">
+            Bedding &amp; linens · qty 1 ·
+            $1,295
+            <span class="src manual">confirmed</span>
+          </p>
+          
+            <p class="muted small">Casper Original Queen</p>
+          
+          
+        </div>
+        <div class="item-actions">
+          <a class="btn small" href="/emberproof/demo/items/10">Edit</a>
+          <form method="post" action="/emberproof/demo/items/10/delete"
+                data-confirm="Delete “Mattress”?">
+            <button class="btn small danger">Delete</button>
+          </form>
+        </div>
+      </article>
+    
+      <article class="item">
+        
+        <div class="thumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Queenbedframe-9.jpg"
+                 alt="Queen bed frame" loading="lazy">
+          
+        </div>
+        <div class="item-body">
+          <h3><a href="/emberproof/demo/items/9">Queen bed frame</a></h3>
+          <p class="muted small">
+            Furniture · qty 1 ·
+            $900
+            <span class="src manual">confirmed</span>
+          </p>
+          
+          
+        </div>
+        <div class="item-actions">
+          <a class="btn small" href="/emberproof/demo/items/9">Edit</a>
+          <form method="post" action="/emberproof/demo/items/9/delete"
+                data-confirm="Delete “Queen bed frame”?">
+            <button class="btn small danger">Delete</button>
+          </form>
+        </div>
+      </article>
+    
+  </section>
+
+
+<nav class="room-switch">
+  <span class="muted small">Jump to:</span>
+  
+    <a class="chip "
+       href="/emberproof/demo/rooms/1">Kitchen</a>
+  
+    <a class="chip "
+       href="/emberproof/demo/rooms/2">Living room</a>
+  
+    <a class="chip active"
+       href="/emberproof/demo/rooms/3">Bedroom</a>
+  
+    <a class="chip "
+       href="/emberproof/demo/rooms/4">Garage</a>
+  
+    <a class="chip "
+       href="/emberproof/demo/rooms/5">Office</a>
+  
+</nav>
+</main>
+
+  <footer class="foot">
+    <p>EmberProof keeps everything on this machine. No account, no upload, no cloud.</p>
+  </footer>
+  <script src="/emberproof/demo/static/outbox.js"></script>
+  <script src="/emberproof/demo/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+property,Gallatin Canyon cabin
+address,"1420 Squaw Creek Rd, Gallatin County, MT"
+
+room,item,category,description,brand,model,serial,quantity,purchase_date,purchase_price_usd,replacement_value_usd,value_source,photos,notes
+Kitchen,KitchenAid stand mixer,Appliances,,KitchenAid,Pro 5 Plus,,1,2021-06-14,449.00,449.00,manual,1,
+Kitchen,Espresso machine,Appliances,,Breville,Barista Express,,1,,,600.00,manual,1,
+Kitchen,Cast iron set,Kitchen,,Lodge,,,1,2021-06-14,120.00,120.00,manual,1,
+Kitchen,Instant Pot,Appliances,,Instant Pot,Duo 6qt,,1,,,600.00,manual,1,
+Living room,Sofa — leather sectional,Furniture,,,,,1,2021-06-14,2400.00,2400.00,manual,1,
+Living room,"65"" OLED TV",Electronics,,LG,OLED65C2,,1,2021-06-14,1800.00,1800.00,manual,1,
+Living room,Record player,Electronics,,Audio-Technica,AT-LP120,,1,,,300.00,estimate,1,
+Living room,Floor lamp,Furniture,,,,,1,,,400.00,estimate,1,
+Bedroom,Queen bed frame,Furniture,,,,,1,2021-06-14,900.00,900.00,manual,1,
+Bedroom,Mattress,Bedding & linens,,Casper,Original Queen,,1,2021-06-14,1295.00,1295.00,manual,1,
+Bedroom,Dresser,Furniture,,,,,1,,,400.00,estimate,1,
+Garage,Snow blower,Outdoor & lawn,,Ariens,Deluxe 28,,1,2021-06-14,1400.00,1400.00,manual,1,
+Garage,Cordless drill set,Tools,,DeWalt,20V Max,,1,2021-06-14,250.00,250.00,manual,1,
+Garage,Generator,Tools,,Honda,EU2200i,,1,2021-06-14,1099.00,1099.00,manual,1,
+Garage,Mountain bike,Sports & fitness,,Trek,Fuel EX 7,,1,,,150.00,estimate,1,
+Office,Standing desk,Furniture,,Uplift,V2,,1,,,400.00,estimate,1,
+Office,Laptop,Electronics,,Apple,MacBook Pro 14,,1,2021-06-14,2199.00,2199.00,manual,1,
+Office,Monitor,Electronics,,Dell,U2723QE,,1,,,300.00,estimate,1,

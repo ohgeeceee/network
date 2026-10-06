@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#b3401f">
+  <title>Verify values — Gallatin Canyon cabin</title>
+  <link rel="stylesheet" href="/emberproof/demo/static/app.css">
+</head>
+<body>
+<div class="demo-banner" role="note">
+  <b>Read-only demo.</b> This is a snapshot of a sample house with made-up
+  photographs. Nothing here saves, and nothing here is anyone's real home.
+  <a href="../">Get EmberProof</a>
+</div>
+<style>
+  /* Normal flow at the top of the body. Sticky positioning here would fight
+     the app's own sticky header, and as the last element it would render at
+     the bottom of the page. */
+  .demo-banner {
+    padding: .65rem 1rem;
+    background: #14110e; color: #faf7f2;
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    text-align: center;
+  }
+  .demo-banner b { color: #ffb27a; }
+  .demo-banner a { color: #faf7f2; }
+  .capture-form input, .capture-form select, .capture-form textarea,
+  .capture-form button, .capture-form summary { opacity: .5; }
+  .capture-form { position: relative; }
+  .capture-form::after {
+    content: "Disabled in the demo"; position: absolute; inset: auto 0 0 0;
+    text-align: center; font-size: 12px; color: #6b645c; padding: .4rem;
+  }
+</style>
+<script>
+  // Belt and braces: no form in a static snapshot should ever navigate.
+  document.addEventListener('submit', function (e) { e.preventDefault(); }, true);
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll(
+      '.capture-form input, .capture-form select, .capture-form textarea, .capture-form button'
+    ).forEach(function (el) { el.disabled = true; });
+  });
+</script>
+
+  <div class="outbox-banner" data-outbox-banner hidden role="status"></div>
+
+  <header class="top">
+    <a class="brand" href="/emberproof/demo/">
+      <span class="spark" aria-hidden="true"></span> EmberProof
+    </a>
+    <form class="search" action="/emberproof/demo/search" method="get" role="search">
+      <input type="search" name="q" placeholder="Search everything you own"
+             value="" aria-label="Search items">
+    </form>
+  </header>
+
+  
+    
+  
+
+  <main>
+<p class="crumbs"><a href="/emberproof/demo/properties/1">← Gallatin Canyon cabin</a></p>
+
+
+  <header class="verify-head">
+    <h1>Verify these values</h1>
+    <p class="lede">
+      6 items in <b>Gallatin Canyon cabin</b>
+      carry a category estimate — <b>$1,950</b> of your total is currently a guess.
+      A number you can defend is worth real money in a claim; a guess gets argued down.
+    </p>
+  </header>
+
+  <section class="progress">
+    <div class="progress-bar">
+      <span style="width: 67.0%"></span>
+    </div>
+    <p class="muted small">
+      <b>12</b> of <b>18</b> confirmed ·
+      $13,112 defensible,
+      $1,950 still estimated
+    </p>
+  </section>
+
+  <form method="post" action="/emberproof/demo/properties/1/verify"
+        class="verify-form" data-verify-form>
+    <p class="hint">
+      Type what it would actually cost to replace each thing, or tick
+      <b>looks right</b> if the estimate is close enough. Anything you leave alone
+      stays marked as an estimate — that's fine, it just gets less weight.
+    </p>
+
+    
+      <article class="vrow">
+        <div class="vthumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Floorlamp-8.jpg" alt="" loading="lazy">
+          
+        </div>
+
+        <div class="vmeta">
+          <h3><a href="/emberproof/demo/items/8">Floor lamp</a></h3>
+          <p class="muted small">
+            Living room · Furniture
+            
+          </p>
+          
+        </div>
+
+        <div class="vvalue">
+          <span class="est-tag">estimate $400</span>
+          <input name="value_8" inputmode="decimal" autocomplete="off"
+                 placeholder="400"
+                 aria-label="Replacement value for Floor lamp">
+          
+        </div>
+
+        <label class="vconfirm">
+          <input type="checkbox" name="confirm_8" value="1">
+          <span>looks right</span>
+        </label>
+      </article>
+    
+      <article class="vrow">
+        <div class="vthumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Dresser-11.jpg" alt="" loading="lazy">
+          
+        </div>
+
+        <div class="vmeta">
+          <h3><a href="/emberproof/demo/items/11">Dresser</a></h3>
+          <p class="muted small">
+            Bedroom · Furniture
+            
+          </p>
+          
+        </div>
+
+        <div class="vvalue">
+          <span class="est-tag">estimate $400</span>
+          <input name="value_11" inputmode="decimal" autocomplete="off"
+                 placeholder="400"
+                 aria-label="Replacement value for Dresser">
+          
+        </div>
+
+        <label class="vconfirm">
+          <input type="checkbox" name="confirm_11" value="1">
+          <span>looks right</span>
+        </label>
+      </article>
+    
+      <article class="vrow">
+        <div class="vthumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Standingdesk-16.jpg" alt="" loading="lazy">
+          
+        </div>
+
+        <div class="vmeta">
+          <h3><a href="/emberproof/demo/items/16">Standing desk</a></h3>
+          <p class="muted small">
+            Office · Furniture
+            
+          </p>
+          
+            <p class="muted small">
+              Uplift V2
+            </p>
+          
+        </div>
+
+        <div class="vvalue">
+          <span class="est-tag">estimate $400</span>
+          <input name="value_16" inputmode="decimal" autocomplete="off"
+                 placeholder="400"
+                 aria-label="Replacement value for Standing desk">
+          
+        </div>
+
+        <label class="vconfirm">
+          <input type="checkbox" name="confirm_16" value="1">
+          <span>looks right</span>
+        </label>
+      </article>
+    
+      <article class="vrow">
+        <div class="vthumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Recordplayer-7.jpg" alt="" loading="lazy">
+          
+        </div>
+
+        <div class="vmeta">
+          <h3><a href="/emberproof/demo/items/7">Record player</a></h3>
+          <p class="muted small">
+            Living room · Electronics
+            
+          </p>
+          
+            <p class="muted small">
+              Audio-Technica AT-LP120
+            </p>
+          
+        </div>
+
+        <div class="vvalue">
+          <span class="est-tag">estimate $300</span>
+          <input name="value_7" inputmode="decimal" autocomplete="off"
+                 placeholder="300"
+                 aria-label="Replacement value for Record player">
+          
+        </div>
+
+        <label class="vconfirm">
+          <input type="checkbox" name="confirm_7" value="1">
+          <span>looks right</span>
+        </label>
+      </article>
+    
+      <article class="vrow">
+        <div class="vthumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Monitor-18.jpg" alt="" loading="lazy">
+          
+        </div>
+
+        <div class="vmeta">
+          <h3><a href="/emberproof/demo/items/18">Monitor</a></h3>
+          <p class="muted small">
+            Office · Electronics
+            
+          </p>
+          
+            <p class="muted small">
+              Dell U2723QE
+            </p>
+          
+        </div>
+
+        <div class="vvalue">
+          <span class="est-tag">estimate $300</span>
+          <input name="value_18" inputmode="decimal" autocomplete="off"
+                 placeholder="300"
+                 aria-label="Replacement value for Monitor">
+          
+        </div>
+
+        <label class="vconfirm">
+          <input type="checkbox" name="confirm_18" value="1">
+          <span>looks right</span>
+        </label>
+      </article>
+    
+      <article class="vrow">
+        <div class="vthumb">
+          
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Mountainbike-15.jpg" alt="" loading="lazy">
+          
+        </div>
+
+        <div class="vmeta">
+          <h3><a href="/emberproof/demo/items/15">Mountain bike</a></h3>
+          <p class="muted small">
+            Garage · Sports &amp; fitness
+            
+          </p>
+          
+            <p class="muted small">
+              Trek Fuel EX 7
+            </p>
+          
+        </div>
+
+        <div class="vvalue">
+          <span class="est-tag">estimate $150</span>
+          <input name="value_15" inputmode="decimal" autocomplete="off"
+                 placeholder="150"
+                 aria-label="Replacement value for Mountain bike">
+          
+        </div>
+
+        <label class="vconfirm">
+          <input type="checkbox" name="confirm_15" value="1">
+          <span>looks right</span>
+        </label>
+      </article>
+    
+
+    <div class="save-bar" data-save-bar>
+      <span class="muted small" data-change-count>No changes yet</span>
+      <button class="btn primary">Save confirmations</button>
+    </div>
+  </form>
+
+
+</main>
+
+  <footer class="foot">
+    <p>EmberProof keeps everything on this machine. No account, no upload, no cloud.</p>
+  </footer>
+  <script src="/emberproof/demo/static/outbox.js"></script>
+  <script src="/emberproof/demo/static/app.js"></script>
+</body>
+</html>

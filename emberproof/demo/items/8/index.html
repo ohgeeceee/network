@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#b3401f">
+  <title>Floor lamp — EmberProof</title>
+  <link rel="stylesheet" href="/emberproof/demo/static/app.css">
+</head>
+<body>
+<div class="demo-banner" role="note">
+  <b>Read-only demo.</b> This is a snapshot of a sample house with made-up
+  photographs. Nothing here saves, and nothing here is anyone's real home.
+  <a href="../">Get EmberProof</a>
+</div>
+<style>
+  /* Normal flow at the top of the body. Sticky positioning here would fight
+     the app's own sticky header, and as the last element it would render at
+     the bottom of the page. */
+  .demo-banner {
+    padding: .65rem 1rem;
+    background: #14110e; color: #faf7f2;
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    text-align: center;
+  }
+  .demo-banner b { color: #ffb27a; }
+  .demo-banner a { color: #faf7f2; }
+  .capture-form input, .capture-form select, .capture-form textarea,
+  .capture-form button, .capture-form summary { opacity: .5; }
+  .capture-form { position: relative; }
+  .capture-form::after {
+    content: "Disabled in the demo"; position: absolute; inset: auto 0 0 0;
+    text-align: center; font-size: 12px; color: #6b645c; padding: .4rem;
+  }
+</style>
+<script>
+  // Belt and braces: no form in a static snapshot should ever navigate.
+  document.addEventListener('submit', function (e) { e.preventDefault(); }, true);
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll(
+      '.capture-form input, .capture-form select, .capture-form textarea, .capture-form button'
+    ).forEach(function (el) { el.disabled = true; });
+  });
+</script>
+
+  <div class="outbox-banner" data-outbox-banner hidden role="status"></div>
+
+  <header class="top">
+    <a class="brand" href="/emberproof/demo/">
+      <span class="spark" aria-hidden="true"></span> EmberProof
+    </a>
+    <form class="search" action="/emberproof/demo/search" method="get" role="search">
+      <input type="search" name="q" placeholder="Search everything you own"
+             value="" aria-label="Search items">
+    </form>
+  </header>
+
+  
+    
+  
+
+  <main>
+<p class="crumbs">
+  <a href="/emberproof/demo/properties/1">← Gallatin Canyon cabin</a>
+  &nbsp;·&nbsp;
+  <a href="/emberproof/demo/rooms/2">Living room</a>
+</p>
+
+<h1>Floor lamp</h1>
+<p class="muted small">
+  Furniture ·
+  <span class="src estimate">estimated value</span>
+</p>
+
+<section class="panel">
+  <h2>Details</h2>
+  <form method="post" action="/emberproof/demo/items/8/edit"
+        enctype="multipart/form-data" class="grid-form">
+    <label class="wide">Name <input name="name" value="Floor lamp" required></label>
+    <label>Category
+      <select name="category" data-category>
+        
+          <option value="electronics" data-default="300"
+                  >Electronics</option>
+        
+          <option value="appliance" data-default="600"
+                  >Appliances</option>
+        
+          <option value="furniture" data-default="400"
+                  selected>Furniture</option>
+        
+          <option value="kitchen" data-default="60"
+                  >Kitchen</option>
+        
+          <option value="bedding" data-default="80"
+                  >Bedding &amp; linens</option>
+        
+          <option value="clothing" data-default="40"
+                  >Clothing</option>
+        
+          <option value="tools" data-default="120"
+                  >Tools</option>
+        
+          <option value="jewelry" data-default="500"
+                  >Jewelry &amp; watches</option>
+        
+          <option value="musical" data-default="700"
+                  >Musical instruments</option>
+        
+          <option value="sports" data-default="150"
+                  >Sports &amp; fitness</option>
+        
+          <option value="outdoor" data-default="250"
+                  >Outdoor &amp; lawn</option>
+        
+          <option value="documents" data-default="20"
+                  >Documents &amp; media</option>
+        
+          <option value="other" data-default="75"
+                  >Other</option>
+        
+      </select>
+    </label>
+    <label>Quantity <input name="quantity" type="number" min="1" value="1"></label>
+    <label>Replacement value (USD)
+      <input name="replacement_value" inputmode="decimal"
+             value="400.00"
+             placeholder="Leave blank to use the estimate">
+    </label>
+    <label>Purchase price (USD)
+      <input name="purchase_price" inputmode="decimal"
+             value="">
+    </label>
+    <label>Brand <input name="brand" value=""></label>
+    <label>Model <input name="model" value=""></label>
+    <label>Serial number <input name="serial" value=""></label>
+    <label>Purchase date <input name="purchase_date" type="date" value=""></label>
+    <label class="wide">Description <textarea name="description" rows="3"></textarea></label>
+    <label class="wide">Notes <textarea name="notes" rows="2"></textarea></label>
+    <label class="wide">Add more photos
+      <input type="file" name="photos" accept="image/*" capture="environment" multiple>
+    </label>
+    <button class="btn primary">Save changes</button>
+  </form>
+</section>
+
+<section class="panel">
+  <h2>Photographs <span class="muted small">(1)</span></h2>
+  
+    <div class="photo-grid">
+      
+        <figure>
+          <a href="/emberproof/demo/media/thumbs/20261005225502-Floorlamp-8.jpg" target="_blank">
+            <img src="/emberproof/demo/media/thumbs/20261005225502-Floorlamp-8.jpg"
+                 alt="Photo of Floor lamp" loading="lazy">
+          </a>
+          <figcaption class="muted small">
+            1200×900
+            
+          </figcaption>
+          <form method="post" action="/emberproof/demo/photos/8/delete"
+                data-confirm="Delete this photo?">
+            <button class="btn small danger">Remove</button>
+          </form>
+        </figure>
+      
+    </div>
+  
+</section>
+
+<section class="panel">
+  <h2>Receipts &amp; documents</h2>
+  
+    <p class="muted">No receipts attached.</p>
+  
+  <form method="post" action="/emberproof/demo/items/8/documents"
+        enctype="multipart/form-data" class="inline-form">
+    <select name="kind">
+      <option value="receipt">Receipt</option>
+      <option value="appraisal">Appraisal</option>
+      <option value="warranty">Warranty</option>
+      <option value="manual">Manual</option>
+    </select>
+    <input type="file" name="documents" accept="image/*,application/pdf" multiple>
+    <button class="btn">Attach</button>
+  </form>
+</section>
+
+<section class="danger-zone">
+  <form method="post" action="/emberproof/demo/items/8/delete"
+        data-confirm="Delete “Floor lamp” and all its photos?">
+    <button class="btn danger">Delete this item</button>
+  </form>
+</section>
+</main>
+
+  <footer class="foot">
+    <p>EmberProof keeps everything on this machine. No account, no upload, no cloud.</p>
+  </footer>
+  <script src="/emberproof/demo/static/outbox.js"></script>
+  <script src="/emberproof/demo/static/app.js"></script>
+</body>
+</html>
