@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EmberProof — prove what you owned</title>
+<meta name="description" content="A local-first home inventory. Walk your house with your phone, photograph each room, and get an itemised, dated, photograph-backed PDF you can hand an insurance adjuster after a fire, flood or burglary. No account, no cloud.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#FAF7F2">
+<link rel="canonical" href="https://ohgeec.com/emberproof/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="the ohgeeceee network">
+<meta property="og:title" content="EmberProof — prove what you owned">
+<meta property="og:description" content="Walk your house with your phone. Get an itemised, photographed, dated document for an insurance claim. Local-first: nothing leaves your machine.">
+<meta property="og:url" content="https://ohgeec.com/emberproof/">
+<meta property="og:image" content="https://ohgeec.com/emberproof/report.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EmberProof — prove what you owned">
+<meta name="twitter:description" content="A local-first home inventory that produces a claim-ready PDF.">
+<meta name="twitter:image" content="https://ohgeec.com/emberproof/report.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FAF7F2'/%3E%3Ccircle cx='12' cy='12' r='5' fill='%23B3401F'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../fonts.css">
+<style>
+  :root {
+    --ink: #14110e; --paper: #faf7f2; --muted: #6b645c;
+    --faint: rgba(20,17,14,.48); --line: rgba(20,17,14,.13);
+    --ember: #b3401f; --ember-soft: #f6e6e0; --warn: #8a6410;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 16px/1.65 var(--sans); -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 44px); }
+  .mono { font-family: var(--mono); }
+
+  header.top { padding: 26px 0 8px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand svg { width: 22px; height: 22px; }
+  .brand b { font-size: 14px; font-weight: 600; }
+
+  .hero { padding: clamp(28px, 6vw, 68px) 0 0; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ember); margin: 0 0 14px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 400; letter-spacing: -.02em;
+    font-size: clamp(38px, 7.5vw, 74px); line-height: 1.02; margin: 0 0 20px;
+  }
+  h1 em { font-style: italic; color: var(--ember); }
+  .lede { font-size: clamp(17px, 2.1vw, 21px); color: var(--muted); max-width: 44rem; margin: 0 0 26px; }
+
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 34px; }
+  .btn {
+    display: inline-block; padding: 12px 20px; border-radius: 999px;
+    text-decoration: none; font-size: 15px; font-weight: 500;
+    border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+  }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn:hover { opacity: .88; }
+
+  .shot { margin: 0 0 12px; }
+  .shot img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+  /* A 430x1500 phone shot stretched to the full 1080px container would be
+     ~3700px tall and bury every section below it. Show it at phone width. */
+  .shot.phone { max-width: 340px; margin-left: auto; margin-right: auto; }
+  .shot.doc { max-width: 620px; }
+  .shot figcaption { font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 10px; }
+
+  section { padding: clamp(38px, 6vw, 74px) 0; border-top: 1px solid var(--line); }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -.015em; margin: 0 0 18px; }
+  h2 em { font-style: italic; }
+  h3 { font-size: 16px; margin: 0 0 6px; }
+  p { max-width: 46rem; }
+
+  .two { display: grid; gap: clamp(24px, 4vw, 48px); grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 860px) { .two { grid-template-columns: 1fr 1fr; } }
+
+  ul.feat { list-style: none; padding: 0; margin: 0; }
+  ul.feat li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  ul.feat li:last-child { border-bottom: 0; }
+  ul.feat b { display: block; font-size: 15px; margin-bottom: 3px; }
+  ul.feat span { color: var(--muted); font-size: 15px; }
+
+  pre {
+    background: #14110e; color: #f4f1ec; border-radius: 12px; padding: 18px 20px;
+    overflow-x: auto; font-family: var(--mono); font-size: 13.5px; line-height: 1.7;
+    margin: 0 0 16px;
+  }
+  pre .c { color: #9a958e; }
+  code.inline {
+    font-family: var(--mono); font-size: .88em; background: rgba(20,17,14,.06);
+    padding: 2px 6px; border-radius: 5px;
+  }
+
+  .note {
+    background: #fdf3dd; border: 1px solid #ecd9a8; border-radius: 12px;
+    padding: 16px 20px; color: var(--warn); font-size: 15px; margin: 22px 0 0;
+  }
+  .note b { color: var(--ink); }
+
+  ul.limits { color: var(--muted); font-size: 15px; padding-left: 20px; }
+  ul.limits li { margin-bottom: 9px; }
+
+  footer.site {
+    border-top: 1px solid var(--line); padding: 30px 0 60px;
+    font-family: var(--mono); font-size: 11px; color: var(--faint);
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between;
+  }
+</style>
+<script src="../ogc-network.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="https://ohgeec.com/" aria-label="the ohgeeceee network">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="5" r="2.4" fill="#14110E"></circle>
+        <circle cx="5" cy="17" r="2.4" fill="#14110E"></circle>
+        <circle cx="19" cy="17" r="2.4" fill="#14110E"></circle>
+        <path d="M12 6.6 5.6 15.4M12 6.6l6.4 8.8M6.6 17.6h10.8" stroke="#14110E"
+              stroke-width="1.3" stroke-linecap="round"></path>
+      </svg>
+      <b>ohgeec.com</b>
+    </a>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Local-first · Open source · MIT</p>
+    <h1>Prove what<br>you <em>owned</em>.</h1>
+    <p class="lede">
+      After a fire, an insurer asks for a list of everything in your house. Almost
+      nobody has one. EmberProof is a home inventory you actually finish: walk each
+      room with your phone, photograph what matters, and get an itemised, dated,
+      photograph-backed document you can hand an adjuster.
+    </p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/ohgeeceee/emberproof">Get it on GitHub</a>
+      <a class="btn ghost" href="https://github.com/ohgeeceee/emberproof#quick-start">How to install</a>
+    </div>
+  </div>
+
+  <figure class="shot phone">
+    <img src="capture.png" width="430" height="1500"
+         alt="EmberProof capture screen: a photograph area, one line to name the item, and a list of items already documented with their photos.">
+    <figcaption>Capturing the kitchen. Name and a photo are enough — the value fills itself in.</figcaption>
+  </figure>
+
+  <section>
+    <h2>The list nobody has.</h2>
+    <p>
+      Reconstruction from memory is how people lose money they were owed. You end up
+      arguing about a refrigerator model number three weeks after the fact, with no
+      photographs and no receipts, and you get argued down. The fix is boring and takes
+      one afternoon: walk the house and write down one line per thing.
+    </p>
+    <p>
+      EmberProof makes that afternoon fast, and turns the result into a document that
+      holds up.
+    </p>
+  </section>
+
+  <section>
+    <div class="two">
+      <div>
+        <h2>What it does</h2>
+        <ul class="feat">
+          <li><b>Room-by-room capture</b><span>Photo first, one line to name it. The rest is optional and out of the way.</span></li>
+          <li><b>Estimates that admit they are estimates</b><span>Leave the value blank and you get a conservative category figure, marked <code class="inline">est.</code> in the report. Overwrite it and it counts as confirmed.</span></li>
+          <li><b>A verify screen</b><span>Shows only the guessed values, biggest first, so one sitting turns them into numbers you can defend.</span></li>
+          <li><b>A claim-ready PDF</b><span>Cover summary, a table per room with brand, model and serial, and a photograph of every item.</span></li>
+          <li><b>Works without a signal</b><span>A basement or a garage never costs you a photo — captures are held on the device and uploaded when you are back in range.</span></li>
+          <li><b>CSV, and a full backup</b><span>One ZIP with a consistent database snapshot and every original photo, restorable with one command.</span></li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <img src="verify.png" width="1000" height="800" loading="lazy"
+             alt="The verify screen, listing only the estimated items with a value box and a 'looks right' checkbox on each row.">
+        <figcaption>The verify screen — the highest-value page in the app.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="two">
+      <div>
+        <h2>The report.</h2>
+        <p>
+          This is the deliverable. It opens with the numbers that matter — how many
+          items, how many rooms, the total replacement value — and states plainly how
+          much of that total you confirmed yourself versus how much is a category
+          estimate.
+        </p>
+        <p>
+          That distinction is the whole point. A number you invented is worse than
+          useless in a claim. A number you can defend is worth real money, and this
+          document never blurs the two.
+        </p>
+      </div>
+      <figure class="shot doc">
+        <img src="report.png" width="935" height="1210" loading="lazy"
+             alt="Page one of the generated report: property and policy details, four headline figures, and an explanation of how many values are confirmed versus estimated.">
+        <figcaption>Page one of a real generated report.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Run it yourself.</h2>
+    <p>Python 3.10 or newer. One command and it is running on your own machine.</p>
+    <pre>git clone https://github.com/ohgeeceee/emberproof
+cd emberproof
+python3 -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt
+.venv/bin/python run.py --data-dir ./data</pre>
+    <p>Then open <code class="inline">http://127.0.0.1:8787</code>. Or in Docker:</p>
+    <pre>docker build -t emberproof .
+docker run -p 8787:8787 -v ~/inventory:/data emberproof</pre>
+    <div class="note">
+      <b>Nothing leaves your machine.</b> No account, no cloud, no upload. The photos
+      you take of the inside of your house stay on the computer you run this on.
+    </div>
+  </section>
+
+  <section>
+    <h2>What it does not do.</h2>
+    <ul class="limits">
+      <li>No authentication by default. It binds to <code class="inline">127.0.0.1</code> for exactly that reason; if you expose it, pass <code class="inline">--auth-token</code> or put it behind a reverse proxy.</li>
+      <li>Not encrypted at rest. Put the data directory on an encrypted volume — an inventory of your home is a burglary shopping list.</li>
+      <li>The category estimates are conservative guesses, not a valuation. They exist to give you a floor to edit.</li>
+      <li>Single user, single machine. No sync, no accounts, no conflict resolution.</li>
+      <li>HEIC photos (the iPhone default) need one optional package to get thumbnails.</li>
+    </ul>
+  </section>
+
+  <footer class="site">
+    <span>EmberProof — part of the ohgeeceee network</span>
+    <span><a href="https://github.com/ohgeeceee/emberproof">github.com/ohgeeceee/emberproof</a></span>
+  </footer>
+
+</div>
+</body>
+</html>

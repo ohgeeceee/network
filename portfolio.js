@@ -6,6 +6,7 @@
   // Keep private repositories out of this client-side portfolio.
   const repositories = [
     { name: 'network', description: 'The home for this portfolio and the independent sites in the network.', language: 'HTML', homepage: 'https://ohgeec.com' },
+    { name: 'emberproof', description: 'A local-first home inventory that turns a phone walkthrough into an itemised, photograph-backed PDF you can hand an insurance adjuster.', language: 'Python', homepage: 'https://ohgeec.com/emberproof/' },
     { name: 'adboard', description: 'Self-serve digital billboard advertising with an owner portal, campaign controls, and live GitHub Pages demo.', language: 'TypeScript', homepage: 'https://ohgeeceee.github.io/adboard/' },
     { name: 'soulregistry', description: 'An open registry and marketplace for portable AI agent identities and SOUL.md files.', language: 'JavaScript', homepage: 'https://ohgeeceee.github.io/soulregistry/' },
     { name: 'car-dealership', description: 'A dealership SaaS portfolio demo combining a public inventory site, interactive sales desk, and dealer portal.', language: 'JavaScript', homepage: 'https://ohgeeceee.github.io/car-dealership/', demo: 'https://ohgeeceee.github.io/car-dealership/demo/', portal: 'https://ohgeeceee.github.io/car-dealership/portal/' },
