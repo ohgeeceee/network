@@ -2,40 +2,40 @@
   'use strict';
 
   const sites = window.OGCNetwork?.sites || [];
-  // Public repository snapshot from github.com/ohgeeceee, checked 2026-10-01.
+  // Public repository snapshot from github.com/ohgeeceee, checked 2026-10-20.
   // Keep private repositories out of this client-side portfolio.
   const repositories = [
-    { name: 'network', description: 'The home for this portfolio and the independent sites in the network.', language: 'HTML', homepage: 'https://ohgeec.com' },
-    { name: 'emberproof', description: 'A local-first home inventory that turns a phone walkthrough into an itemised, photograph-backed PDF you can hand an insurance adjuster.', language: 'Python', homepage: 'https://ohgeec.com/emberproof/' },
-    { name: 'adboard', description: 'Self-serve digital billboard advertising with an owner portal, campaign controls, and live GitHub Pages demo.', language: 'TypeScript', homepage: 'https://ohgeeceee.github.io/adboard/' },
-    { name: 'soulregistry', description: 'An open registry and marketplace for portable AI agent identities and SOUL.md files.', language: 'JavaScript', homepage: 'https://ohgeeceee.github.io/soulregistry/' },
-    { name: 'car-dealership', description: 'A dealership SaaS portfolio demo combining a public inventory site, interactive sales desk, and dealer portal.', language: 'JavaScript', homepage: 'https://ohgeeceee.github.io/car-dealership/', demo: 'https://ohgeeceee.github.io/car-dealership/demo/', portal: 'https://ohgeeceee.github.io/car-dealership/portal/' },
+    { name: 'beemuu-plugins', description: 'The official, validated plugin marketplace for the BeeMuu diagnostics suite.', language: 'Python', homepage: 'https://plugins.beemuu.com/' },
     { name: 'beemuu', description: 'Open-source BMW diagnostics and telemetry, built with Tauri, Rust, Python, and web UI.', language: 'JavaScript', homepage: 'https://beemuu.com' },
-    { name: 'montanablotter', description: 'The codebase behind Montana Blotter, a public-records newsroom.', language: 'Python', homepage: 'https://montanablotter.com' },
-    { name: 'beemuu-plugins', description: 'Plugins for the beemuu diagnostics suite.', language: 'JavaScript', homepage: 'https://plugins.beemuu.com/' },
+    { name: 'manners-quest', description: 'Polite AI, gamified: earn XP, build streaks, and unlock badges with zero telemetry.', language: 'JavaScript' },
+    { name: 'network', description: 'The home for this portfolio and the independent sites in the network.', language: 'HTML', homepage: 'https://ohgeec.com' },
+    { name: 'emberproof', description: 'A local-first home inventory that turns a phone walkthrough into an itemised, photograph-backed PDF you can hand an insurance adjuster.', language: 'Python' },
+    { name: 'supportmt', description: 'The project behind SupportMT and its Montana community-resilience work.', language: 'TypeScript', homepage: 'https://supportmt.com' },
+    { name: 'montanablotter', description: 'The codebase behind Montana Blotter, a public-records newsroom.', language: 'Python', homepage: 'https://ohgeeceee.github.io/montanablotter/' },
+    { name: 'adboard', description: 'Self-serve digital billboard advertising with an owner portal, campaign controls, and live GitHub Pages demo.', language: 'TypeScript', homepage: 'https://ohgeeceee.github.io/adboard/' },
+    { name: 'jailmap', description: 'A responsible public search surface for official jail-custody records, with privacy safeguards and human review.', language: 'PLpgSQL', homepage: 'https://ohgeeceee.github.io/jailmap/' },
+    { name: 'blotter-host', description: 'Hosting and deployment infrastructure for the Blotter public-records projects.', language: 'JavaScript' },
+    { name: 'domainchecker', description: 'A focused domain-checking utility.', language: '' },
+    { name: 'car-dealership', description: 'A dealership SaaS portfolio demo combining a public inventory site, interactive sales desk, and dealer portal.', language: 'JavaScript', homepage: 'https://ohgeeceee.github.io/car-dealership/', demo: 'https://ohgeeceee.github.io/car-dealership/demo/', portal: 'https://ohgeeceee.github.io/car-dealership/portal/' },
+    { name: 'soulregistry', description: 'An open registry and marketplace for portable AI agent identities and SOUL.md files.', language: 'JavaScript', homepage: 'https://ohgeeceee.github.io/soulregistry/' },
     { name: 'garageroute', description: 'The software behind GarageRoute: discover local sales and plan a route.', language: 'TypeScript', homepage: 'https://www.garageroute.com' },
-    { name: 'finally.help', description: 'The project behind plain-language explainers at finally.help.', language: 'JavaScript', homepage: 'https://finally.help' },
-    { name: 'edgesync', description: '', language: 'TypeScript' },
     { name: 'hoteldeposit', description: '', language: 'HTML' },
+    { name: 'edgesync', description: '', language: 'TypeScript' },
+    { name: 'finally.help', description: 'The project behind plain-language explainers at finally.help.', language: 'JavaScript', homepage: 'https://finally.help' },
     { name: 'conductor', description: '', language: '' },
     { name: 'trade-operations', description: '', language: '' },
     { name: 'manners', description: 'A tiny browser extension that adds please and thank you to messages before you send.', language: 'HTML', homepage: 'https://manners.pro/' },
-    { name: 'supportmt', description: 'The project behind SupportMT and its Montana community-resilience work.', language: 'TypeScript', homepage: 'https://supportmt.com' },
     { name: '.vscode', description: 'Public editor and workspace settings repository.', language: '' },
-    { name: 'domainchecker', description: 'A domain-checking project.', language: '' },
-    { name: 'montanasolutions', description: 'A Montana-based technology company project.', language: 'HTML' },
     { name: 'yourkidding-me', description: 'A personal portfolio project.', language: 'TypeScript' },
+    { name: 'montanasolutions', description: 'A Montana-based technology company project.', language: 'HTML' },
     { name: 'educationalhistory', description: 'A Montana history and education project.', language: '' },
   ];
   const positions = {
-    idahoblotter: [28.3, 23],
-    carguy: [53, 88],
-    finally: [48, 10.2],
-    manners: [73, 26.1],
-    montanablotter: [20.1, 53.6],
-    beemuu: [81.3, 55.3],
-    supportmt: [39.8, 75.8],
-    garageroute: [68.9, 77.8],
+    finally: [46, 8], manners: [67, 16], mannersquest: [90, 34],
+    beemuu: [83, 47], beemuuplugins: [82, 63], emberproof: [70, 77],
+    garageroute: [51, 88], supportmt: [34, 79], montanablotter: [18, 65],
+    jailmap: [16, 46], carguy: [25, 29], idahoblotter: [33, 16],
+    adboard: [56, 27], soulregistry: [62, 57],
   };
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -60,7 +60,8 @@
     sites.forEach((site, index) => {
       const host = new URL(site.url).host.replace(/^www\./, '');
       const soon = site.status === 'soon';
-      const hasActions = site.id === 'carguy' && site.demoUrl && site.portalUrl;
+      const openSource = site.status === 'open-source';
+      const hasActions = Boolean(site.demoUrl || site.portalUrl);
       const row = element(soon || hasActions ? 'article' : 'a', `row rv${soon ? ' soon' : ''}${hasActions ? ' row-with-actions' : ''}`);
       row.style.setProperty('--accent', site.accent);
       if (!soon && !hasActions) {
@@ -74,7 +75,7 @@
       name.append(document.createTextNode(site.name));
       const status = element('span', 'st');
       status.append(element('i'));
-      status.append(document.createTextNode(soon ? 'Coming soon' : 'Live'));
+      status.append(document.createTextNode(soon ? 'Coming soon' : openSource ? 'Open source' : 'Live'));
       name.append(status);
       row.append(name);
 
@@ -83,9 +84,10 @@
       if (hasActions) {
         const actions = element('span', 'row-actions');
         [
+          { label: 'Visit ↗', url: site.url },
           { label: 'Demo ↗', url: site.demoUrl },
           { label: 'Portal ↗', url: site.portalUrl },
-        ].forEach(({ label, url }) => {
+        ].filter(({ url }) => url).forEach(({ label, url }) => {
           const link = element('a', '', label);
           link.href = url;
           link.target = '_blank';
@@ -109,7 +111,7 @@
         point.setAttribute('aria-label', `${site.name}, coming soon`);
       } else {
         point.href = site.url;
-        point.setAttribute('aria-label', `Visit ${site.name}: ${site.tagline}`);
+        point.setAttribute('aria-label', `${openSource ? 'View' : 'Visit'} ${site.name}: ${site.tagline}`);
       }
       const label = element('span', 'atlas-point__label');
       label.append(element('span', 'atlas-point__name', site.name));

@@ -33,11 +33,32 @@
       category: "Developer tools", accent: "#A9853B", status: "live"
     },
     {
+      id: "mannersquest", name: "Manners Quest", monogram: "MQ",
+      url: "https://github.com/ohgeeceee/manners-quest", aliases: [],
+      tagline: "Polite AI, gamified — earn XP, build streaks, and unlock badges while you chat.",
+      blurb: "A zero-telemetry companion to Manners.",
+      category: "Developer tools", accent: "#8E5AAE", status: "open-source"
+    },
+    {
       id: "beemuu", name: "beemuu", monogram: "B",
       url: "https://beemuu.com", aliases: [],
       tagline: "Open-source BMW diagnostics — read DTCs, watch live data, code modules.",
       blurb: "Any OBD-II cable. No dealer, no subscription.",
       category: "Diagnostics", accent: "#2E6DB4", status: "live"
+    },
+    {
+      id: "beemuuplugins", name: "BeeMuu Plugins", monogram: "BP",
+      url: "https://plugins.beemuu.com", aliases: [],
+      tagline: "The official, validated plugin marketplace for the BeeMuu diagnostics suite.",
+      blurb: "Community extensions for open BMW diagnostics.",
+      category: "Diagnostics", accent: "#527FB8", status: "live"
+    },
+    {
+      id: "emberproof", name: "EmberProof", monogram: "EP",
+      url: "https://github.com/ohgeeceee/emberproof", aliases: [],
+      tagline: "A private, local-first home inventory that produces claim-ready reports.",
+      blurb: "Prove what you owned — no account, cloud, or upload.",
+      category: "Personal tools", accent: "#C55A3D", status: "open-source"
     },
     {
       id: "garageroute", name: "GarageRoute", monogram: "GR",
@@ -62,6 +83,13 @@
       category: "Public records", accent: "#9E3B34", status: "live"
     },
     {
+      id: "jailmap", name: "JailMap", monogram: "JM",
+      url: "https://ohgeeceee.github.io/jailmap/", aliases: [],
+      tagline: "A responsible public search surface for official jail-custody records.",
+      blurb: "Official sources, privacy safeguards, and human review.",
+      category: "Public records", accent: "#477C8D", status: "live"
+    },
+    {
       id: "carguy", name: "Car Guy Portal", monogram: "CG",
       url: "https://ohgeeceee.github.io/car-dealership/", aliases: [],
       demoUrl: "https://ohgeeceee.github.io/car-dealership/demo/",
@@ -83,12 +111,19 @@
       tagline: "Self-serve digital billboard advertising — design, book, and go live in minutes.",
       blurb: "Put your business on any billboard in seconds.",
       category: "Business software", accent: "#22B8D6", status: "live"
+    },
+    {
+      id: "soulregistry", name: "SOUL.md Registry", monogram: "SR",
+      url: "https://ohgeeceee.github.io/soulregistry/", aliases: [],
+      tagline: "An open registry for portable AI-agent identities, judgment, and voice.",
+      blurb: "Browse and install reusable agent personas.",
+      category: "Developer tools", accent: "#7657B6", status: "live"
     }
   ];
 
   var CATEGORY_ORDER = [
     "Learning", "Developer tools", "Diagnostics",
-    "Marketplace", "Community", "Public records",
+    "Personal tools", "Marketplace", "Community", "Public records",
     "Business software", "In the works"
   ];
 
@@ -113,7 +148,7 @@
   };
 
   var API = {
-    version: "1.1.0", hub: HUB, sites: SITES, categoryOrder: CATEGORY_ORDER,
+    version: "1.2.0", hub: HUB, sites: SITES, categoryOrder: CATEGORY_ORDER,
     support: SUPPORT, supportUrl: HUB + "/support.html",
     renderHub: renderHub, renderSupport: renderSupport, mountBar: mountBar
   };
